@@ -1,5 +1,4 @@
-# Coq Tactics in Plain English
-
+# [Coq](/ctpe/prologue.html)
 If you're like me, one of the biggest shortcomings of the Coq ecosystem is the abysmally-complicated [tactic reference documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html).
 It is exhaustive (which is better than lacking), but I have a few specific issues with it:
 
@@ -21,12 +20,10 @@ For these reasons, I've decided to compile a reference document of every tactic 
 1. [Generalization](#generalization)
 2. [Simplification](#simplification)
 
-# Generalization
-
+# [Generalization](/ctpe/Generalization/index.html)
 Summary
 
-## [intros
-](Generalization/intros.html)
+## [intros](/ctpe/Generalization/intros.html)
 Typically the first tactic a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 
@@ -91,12 +88,10 @@ C -> A /\ C
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros)
 
-# Simplification
-
+# [Simplification](/ctpe/Simplification/index.html)
 Summary
 
-## [simpl
-](Simplification/simpl.html)
+## [simpl](/ctpe/Simplification/simpl.html)
 A short summary of what the tactic does, starting the most generally and ending the most specifically.
 
 ### Syntax

@@ -1,4 +1,4 @@
-<h1 id="coq-tactics-in-plain-english">Coq Tactics in Plain English</h1>
+<h1 id="coq"><a href="/ctpe/prologue.html">Coq</a></h1>
 <p>If you&rsquo;re like me, one of the biggest shortcomings of the Coq ecosystem is the abysmally-complicated <a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html">tactic reference documentation</a>. It is exhaustive (which is better than lacking), but I have a few specific issues with it:</p>
 <ol type="1">
 <li>Entries are far too verbose. I usually don&rsquo;t <em>need</em> an exhaustive explanation of what a tactic does.</li>
@@ -19,9 +19,9 @@
 <li><a href="#generalization">Generalization</a></li>
 <li><a href="#simplification">Simplification</a></li>
 </ol>
-<h1 id="generalization">Generalization</h1>
+<h1 id="generalization"><a href="/ctpe/Generalization/index.html">Generalization</a></h1>
 <p>Summary</p>
-<h2 id="intros"><a href="Generalization/intros.html">intros</a></h2>
+<h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
 <p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
 <p>More specifically, <code>intros</code> <a href="glossary.md#specialize">specializes</a> a goal by looking for <a href="glossary.md#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
 <h3 id="syntax">Syntax</h3>
@@ -56,9 +56,9 @@ BTrue : B
 C -&gt; A /\ C</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference Documentation</a></p>
-<h1 id="simplification">Simplification</h1>
+<h1 id="simplification"><a href="/ctpe/Simplification/index.html">Simplification</a></h1>
 <p>Summary</p>
-<h2 id="simpl"><a href="Simplification/simpl.html">simpl</a></h2>
+<h2 id="simpl"><a href="/ctpe/Simplification/simpl.html">simpl</a></h2>
 <p>A short summary of what the tactic does, starting the most generally and ending the most specifically.</p>
 <h3 id="syntax-1">Syntax</h3>
 <pre class="coq"><code>(* Example 1 *)

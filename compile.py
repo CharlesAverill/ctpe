@@ -1,7 +1,7 @@
 import os
 import shutil
 
-def compile_markdown(file_path, docs_dir):
+def compile_markdown(file_path, docs_dir, depth):
     with open(file_path, 'r') as file:
         lines = file.readlines()
     
@@ -12,12 +12,12 @@ def compile_markdown(file_path, docs_dir):
             if included_file_path.startswith('/'):
                 included_file_path = included_file_path[1:]
             included_file_path = os.path.join(os.path.dirname(file_path), included_file_path)
-            compiled_lines.extend(compile_markdown(included_file_path, docs_dir))
-        elif line.startswith("## "):
+            compiled_lines.extend(compile_markdown(included_file_path, docs_dir, depth + 1))
+        elif line.startswith("## ") or (depth == 1 and line.startswith("# ")):
             tokens = line.split(" ")
-            title = tokens[1]
+            title = tokens[1].strip()
             fp = file_path[len("docs/"):file_path.rindex('.')]
-            compiled_lines.extend(f"## [{title}]({fp}.html)")
+            compiled_lines.extend(f"{tokens[0]} [{title}](/ctpe/{fp}.html)")
         else:
             compiled_lines.append(line)
     
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     copy_source_to_docs(source_dir, docs_dir)
     
     template_path = os.path.join(docs_dir, "template.md")
-    compile_markdown(template_path, docs_dir)
+    compile_markdown(template_path, docs_dir, 0)
     rename_template_to_index(docs_dir)
     
     print("Compilation complete. Output written to docs/index.md")

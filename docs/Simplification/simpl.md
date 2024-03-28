@@ -1,5 +1,4 @@
-## [simpl
-](Simplification/simpl.html)
+## [simpl](/ctpe/Simplification/simpl.html)
 A short summary of what the tactic does, starting the most generally and ending the most specifically.
 
 ### Syntax
