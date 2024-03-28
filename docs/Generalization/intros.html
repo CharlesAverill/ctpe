@@ -1,4 +1,4 @@
-<h2 id="intros">intros</h2>
+<h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
 <p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
 <p>More specifically, <code>intros</code> <a href="glossary.md#specialize">specializes</a> a goal by looking for <a href="glossary.md#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
 <h3 id="syntax">Syntax</h3>

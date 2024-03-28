@@ -50,7 +50,7 @@ if __name__ == "__main__":
     copy_source_to_docs(source_dir, docs_dir)
     
     template_path = os.path.join(docs_dir, "template.md")
-    compile_markdown(template_path, docs_dir, 0, sys.argv[1] == "test")
+    compile_markdown(template_path, docs_dir, 0, len(sys.argv) > 1 and sys.argv[1] == "test")
     rename_template_to_index(docs_dir)
     
     print("Compilation complete. Output written to docs/index.md")
