@@ -15,7 +15,7 @@ def compile_markdown(file_path, docs_dir, depth):
             compiled_lines.extend(compile_markdown(included_file_path, docs_dir, depth + 1))
         elif line.startswith("## ") or (depth == 1 and line.startswith("# ")):
             tokens = line.split(" ")
-            title = tokens[1].strip()
+            title = (" ".join(tokens[1:])).strip()
             fp = file_path[len("docs/"):file_path.rindex('.')]
             compiled_lines.extend(f"{tokens[0]} [{title}](/ctpe/{fp}.html)")
         else:

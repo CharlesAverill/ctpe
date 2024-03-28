@@ -1,4 +1,4 @@
-# [Evidence](/ctpe/EvidenceAnalysis/index.html)
+# [Evidence Analysis](/ctpe/EvidenceAnalysis/index.html)
 Summary
 
 ## [inversion](/ctpe/EvidenceAnalysis/inversion.html)
