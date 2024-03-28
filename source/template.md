@@ -1,3 +1,7 @@
+---
+title: Coq Tactics in Plain English
+---
+
 #include prologue.md
 
 # Table of Contents

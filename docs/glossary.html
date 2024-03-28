@@ -1,7 +1,29 @@
-<h1 id="specialize">Specialize</h1>
-<p>To transform a theorem P into some theorem P&rsquo; that applies to a similar but more specific set of inputs than P. For example, the commutativity of addition states that</p>
-<pre class="coq"><code>forall (n m : nat), n + m = m + n.</code></pre>
-<p>This can be specialized into the following theorem, which says that addition is commutative if one of the arguments is 7:</p>
-<pre class="coq"><code>forall (m : nat), 7 + m = m + 7.</code></pre>
-<p>Important property: if the original general theorem P is true, then a specialized form P&rsquo; of that theorem is always true!</p>
-<p>Synonyms: weaken Antonyms: generalize, strengthen</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Glossary - CTPE</title>
+ <style>
+body {
+font-family: Garamond;
+text-align: justify;
+margin-left: 25%;
+margin-right: 25%;
+}
+ </style>
+
+<link rel="stylesheet" href="/highlight/styles/school-book.css"><script src="/highlight/highlight.min.js"></script>    <script>hljs.highlightAll();</script>
+</head>
+<body>
+ <div class="container">
+ <h1 id="specialize">Specialize</h1>
+ <p>To transform a theorem P into some theorem P&rsquo; that applies to a similar but more specific set of inputs than P. For example, the commutativity of addition states that</p>
+ <pre class="coq"><code>forall (n m : nat), n + m = m + n.</code></pre>
+ <p>This can be specialized into the following theorem, which says that addition is commutative if one of the arguments is 7:</p>
+ <pre class="coq"><code>forall (m : nat), 7 + m = m + 7.</code></pre>
+ <p>Important property: if the original general theorem P is true, then a specialized form P&rsquo; of that theorem is always true!</p>
+ <p>Synonyms: weaken Antonyms: generalize, strengthen</p>
+ </div>
+</body>
+</html>

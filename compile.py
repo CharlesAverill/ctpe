@@ -2,7 +2,7 @@ import os
 import shutil
 import sys
 
-def compile_markdown(file_path, docs_dir, depth, use_absolute_path=False):
+def compile_markdown(file_path, docs_dir, depth, use_absolute_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
     
@@ -13,7 +13,7 @@ def compile_markdown(file_path, docs_dir, depth, use_absolute_path=False):
             if included_file_path.startswith('/'):
                 included_file_path = included_file_path[1:]
             included_file_path = os.path.join(os.path.dirname(file_path), included_file_path)
-            compiled_lines.extend(compile_markdown(included_file_path, docs_dir, depth + 1))
+            compiled_lines.extend(compile_markdown(included_file_path, docs_dir, depth + 1, use_absolute_path))
         elif line.startswith("## ") or (depth == 1 and line.startswith("# ")):
             tokens = line.split(" ")
             title = (" ".join(tokens[1:])).strip()
@@ -21,9 +21,9 @@ def compile_markdown(file_path, docs_dir, depth, use_absolute_path=False):
                 fp = file_path[len("docs/"):file_path.rindex('.')]
             else:
                 fp = "/ctpe/" + file_path[len("docs/"):file_path.rindex('.')]
-            print(line.strip(), "-", fp)
             compiled_lines.extend(f"{tokens[0]} [{title}]({fp}.html)")
         else:
+            line = line.replace("(glossary.md", "(" + ('/ctpe/' if not use_absolute_path else '/') + 'glossary.html')
             compiled_lines.append(line)
     
     with open(file_path, 'w') as file:

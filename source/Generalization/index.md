@@ -1,3 +1,7 @@
+---
+title: Generalization - CTPE
+---
+
 # Generalization
 
 Summary

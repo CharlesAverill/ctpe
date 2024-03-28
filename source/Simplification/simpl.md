@@ -1,3 +1,7 @@
+---
+title: simpl - CTPE
+---
+
 ## simpl
 
 `simpl` evaluates terms that are constructed of constant values - not variables.

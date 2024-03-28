@@ -1,3 +1,7 @@
+---
+title: Simplification - CTPE
+---
+
 # Simplification
 
 Summary

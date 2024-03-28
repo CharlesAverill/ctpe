@@ -1,26 +1,45 @@
-<h2 id="inversion"><a href="/ctpe/EvidenceAnalysis/inversion.html">inversion</a></h2>
-<p><code>inversion</code> looks at a given piece of structural evidence and draws conclusions from it. If there are multiple sets of conclusions, <code>inversion</code> will generate a new proof obligation for each one.</p>
-<p>This tactic often generates many trivial equality assumptions that may clutter the assumption space. I recommend almost always following <code>inversion</code> with <a href="/"><code>subst</code></a> to immediately substitute away these equalities.</p>
-<h3 id="syntax">Syntax</h3>
-<pre class="coq"><code>(* Standard usage *)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>inversion - CTPE</title>
+ <style>
+body {
+font-family: Garamond;
+text-align: justify;
+margin-left: 25%;
+margin-right: 25%;
+}
+ </style>
+
+<link rel="stylesheet" href="/highlight/styles/school-book.css"><script src="/highlight/highlight.min.js"></script>    <script>hljs.highlightAll();</script>
+</head>
+<body>
+ <div class="container">
+ <h2 id="inversion"><a href="/ctpe/EvidenceAnalysis/inversion.html">inversion</a></h2>
+ <p><code>inversion</code> looks at a given piece of structural evidence and draws conclusions from it. If there are multiple sets of conclusions, <code>inversion</code> will generate a new proof obligation for each one.</p>
+ <p>This tactic often generates many trivial equality assumptions that may clutter the assumption space. I recommend almost always following <code>inversion</code> with <a href="/"><code>subst</code></a> to immediately substitute away these equalities.</p>
+ <h3 id="syntax">Syntax</h3>
+ <pre class="coq"><code>(* Standard usage *)
 inversion H.</code></pre>
-<h3 id="examples">Examples</h3>
-<p>Before</p>
-<pre class="coq"><code>n: nat
+ <h3 id="examples">Examples</h3>
+ <p>Before</p>
+ <pre class="coq"><code>n: nat
 H: n &lt;= 1
 -------------------------
 1/1
 n = 0 \/ n = 1</code></pre>
-<pre class="coq"><code>inversion H.</code></pre>
-<p>After (for first goal)</p>
-<pre class="coq"><code>n: nat
+ <pre class="coq"><code>inversion H.</code></pre>
+ <p>After (for first goal)</p>
+ <pre class="coq"><code>n: nat
 H: n &lt;= 1
 H0: n = 1
 -------------------------
 1/2
 1 = 0 \/ 1 = 1</code></pre>
-<p>After (for second goal)</p>
-<pre class="coq"><code>n: nat
+ <p>After (for second goal)</p>
+ <pre class="coq"><code>n: nat
 H: n &lt;= 1
 m: nat
 H1: n &lt;= 0
@@ -28,14 +47,17 @@ H0: m = 0
 -------------------------
 1/2
 n = 0 \/ n = 1</code></pre>
-<p>Script</p>
-<pre class="coq"><code>Theorem test : 
-    forall n, n &lt;= 1 -&gt; n = 0 \/ n = 1.
+ <p>Script</p>
+ <pre class="coq"><code>Theorem test : 
+forall n, n &lt;= 1 -&gt; n = 0 \/ n = 1.
 Proof.
-    intros. inversion H. 
-    - right. reflexivity.
-    - inversion H1. left. reflexivity.
+intros. inversion H. 
+- right. reflexivity.
+- inversion H1. left. reflexivity.
 Qed.
-</code></pre>
-<h3 id="resources">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.inversion">Reference Documentation</a></p>
+ </code></pre>
+ <h3 id="resources">Resources</h3>
+ <p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.inversion">Reference Documentation</a></p>
+ </div>
+</body>
+</html>

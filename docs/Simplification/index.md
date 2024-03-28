@@ -1,5 +1,13 @@
+---
+title: Simplification - CTPE
+---
+
 # [Simplification](/ctpe/Simplification/index.html)
 Summary
+
+---
+title: simpl - CTPE
+---
 
 ## [simpl](/ctpe/Simplification/simpl.html)
 `simpl` evaluates terms that are constructed of constant values - not variables.

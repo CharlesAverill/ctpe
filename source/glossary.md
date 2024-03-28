@@ -1,3 +1,7 @@
+---
+title: Glossary - CTPE
+---
+
 # Specialize
 
 To transform a theorem P into some theorem P' that applies to a similar but more specific set of inputs than P. 

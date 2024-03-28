@@ -1,3 +1,11 @@
+---
+title: Coq Tactics in Plain English
+---
+
+---
+title : Prologue - CTPE
+---
+
 # [Coq Tactics in Plain English](/ctpe/prologue.html)
 If you're like me, one of the biggest shortcomings of the Coq ecosystem is the abysmally-complicated [tactic reference documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html).
 It is exhaustive (which is better than lacking), but I have a few specific issues with it:
@@ -21,14 +29,22 @@ For these reasons, I've decided to compile a reference document of every tactic 
 2. [Simplification](#simplification)
 3. [Evidence Analysis](#evidence-analysis)
 
+---
+title: Generalization - CTPE
+---
+
 # [Generalization](/ctpe/Generalization/index.html)
 Summary
+
+---
+title: intros - CTPE
+---
 
 ## [intros](/ctpe/Generalization/intros.html)
 Typically the first tactic a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 
-More specifically, `intros` [specializes](glossary.md#specialize) a goal by looking for [type inhabitation](glossary.md#type_inhabitation) and proposition assumptions and moving them into the assumption space.
+More specifically, `intros` [specializes](/ctpe/glossary.html#specialize) a goal by looking for [type inhabitation](/ctpe/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
 Calling `intros` here will provide you an assumption `n` that there is a value of type `nat`.
 
@@ -89,8 +105,16 @@ C -> A /\ C
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros)
 
+---
+title: Simplification - CTPE
+---
+
 # [Simplification](/ctpe/Simplification/index.html)
 Summary
+
+---
+title: simpl - CTPE
+---
 
 ## [simpl](/ctpe/Simplification/simpl.html)
 `simpl` evaluates terms that are constructed of constant values - not variables.
@@ -138,8 +162,16 @@ TODO : Below link should be updated with the `master` version once it makes its 
 
 [Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl)
 
+---
+title: Evidence Analysis - CTPE
+---
+
 # [Evidence Analysis](/ctpe/EvidenceAnalysis/index.html)
 Summary
+
+---
+title: inversion - CTPE
+---
 
 ## [inversion](/ctpe/EvidenceAnalysis/inversion.html)
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.

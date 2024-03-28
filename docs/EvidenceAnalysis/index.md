@@ -1,5 +1,13 @@
+---
+title: Evidence Analysis - CTPE
+---
+
 # [Evidence Analysis](/ctpe/EvidenceAnalysis/index.html)
 Summary
+
+---
+title: inversion - CTPE
+---
 
 ## [inversion](/ctpe/EvidenceAnalysis/inversion.html)
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.

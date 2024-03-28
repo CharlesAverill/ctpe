@@ -1,35 +1,57 @@
-<h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
-<p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
-<p>More specifically, <code>intros</code> <a href="glossary.md#specialize">specializes</a> a goal by looking for <a href="glossary.md#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
-<h3 id="syntax">Syntax</h3>
-<pre class="coq"><code>(* Simple usage - introduces all named assumptions *)
-intros.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>intros - CTPE</title>
+ <style>
+body {
+font-family: Garamond;
+text-align: justify;
+margin-left: 25%;
+margin-right: 25%;
+}
+ </style>
 
+<link rel="stylesheet" href="/highlight/styles/school-book.css"><script src="/highlight/highlight.min.js"></script>    <script>hljs.highlightAll();</script>
+</head>
+<body>
+ <div class="container">
+ <h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
+ <p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
+ <p>More specifically, <code>intros</code> <a href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking for <a href="/ctpe/glossary.html#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
+ <h3 id="syntax">Syntax</h3>
+ <pre class="coq"><code>(* Simple usage - introduces all named assumptions *)
+intros.
+ 
 (* Give specific names to assumptions as you introduce *)
 intros n m x.
-
+ 
 (* Split a conjunction or existential assumption upon introducing *)
 intros [A B].</code></pre>
-<h3 id="examples">Examples</h3>
-<p>Before</p>
-<pre class="coq"><code>-------------------------
+ <h3 id="examples">Examples</h3>
+ <p>Before</p>
+ <pre class="coq"><code>-------------------------
 forall (n : nat), n + 0 = n</code></pre>
-<pre class="coq"><code>intros x.</code></pre>
-<p>After</p>
-<pre class="coq"><code>x: nat
+ <pre class="coq"><code>intros x.</code></pre>
+ <p>After</p>
+ <pre class="coq"><code>x: nat
 -------------------------
 1/1
 x + 0 = x</code></pre>
-<p>Before</p>
-<pre class="coq"><code>-------------------------
+ <p>Before</p>
+ <pre class="coq"><code>-------------------------
 forall (A B C : Prop), A /\ B -&gt; C -&gt; A /\ C</code></pre>
-<pre class="coq"><code>intros A B C [ATrue BTrue].</code></pre>
-<p>After</p>
-<pre class="coq"><code>A, B, C : Prop
+ <pre class="coq"><code>intros A B C [ATrue BTrue].</code></pre>
+ <p>After</p>
+ <pre class="coq"><code>A, B, C : Prop
 ATrue : A
 BTrue : B
 -------------------------
 1/1
 C -&gt; A /\ C</code></pre>
-<h3 id="resources">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference Documentation</a></p>
+ <h3 id="resources">Resources</h3>
+ <p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference Documentation</a></p>
+ </div>
+</body>
+</html>

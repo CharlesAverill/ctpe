@@ -1,3 +1,7 @@
+---
+title: intros - CTPE
+---
+
 ## intros
 
 Typically the first tactic a Coq user ever utilizes.

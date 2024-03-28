@@ -1,3 +1,7 @@
+---
+title: inversion - CTPE
+---
+
 ## inversion
 
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.
