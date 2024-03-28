@@ -1,10 +1,8 @@
-Theorem destruct_example2 : forall (P Q R : Prop),
-    ((P /\ Q) /\ R) -> P /\ (Q /\ R).
+Theorem destruct_example3 : 
+    forall (P Q R : Prop),
+    (P \/ Q) -> P \/ Q \/ R.
 Proof.
-    intros P Q R H.
-    destruct H as [[PTrue QTrue] RTrue]. split.
-    - apply PTrue.
-    - split. 
-        -- apply QTrue.
-        -- apply RTrue.
-Qed.
+    intros. destruct H as [PTrue | QTrue].
+    - left. assumption.
+    - right. left. assumption.
+Qed. 

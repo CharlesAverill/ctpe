@@ -5,7 +5,7 @@ title: destruct - CTPE
 ## destruct
 
 `destruct` allows for case analysis on terms, including assumptions.
-It can be used to split assumptions with conjunctions, as well as existential assumptions.
+It can be used to split assumptions with conjunctions and disjunctions, as well as existential assumptions.
 The arguments of `destruct` are [patterns](glossary.md#pattern).
 
 ### Syntax
@@ -25,6 +25,9 @@ destruct H as [H0 [? H1]].
 
 (* Destructing multiple terms/hypotheses *)
 destruct x as [| x0 x1], H as [[H1 H0] H2].
+
+(* Providing names for newly-introduced terms in different generated subgoals *)
+destruct H as [H1 | H2].
 ```
 
 ### Examples
@@ -81,6 +84,18 @@ Proof.
         -- apply QTrue.
         -- apply RTrue.
 Qed.
+```
+
+Script
+```coq
+Theorem destruct_example3 : 
+    forall (P Q R : Prop),
+    (P \/ Q) -> P \/ Q \/ R.
+Proof.
+    intros. destruct H as [PTrue | QTrue].
+    - left. assumption.
+    - right. left. assumption.
+Qed. 
 ```
 
 ### Resources

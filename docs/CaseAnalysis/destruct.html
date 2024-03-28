@@ -118,7 +118,7 @@ body {
     <!-- Content -->
     <div class="container">
 <h2 id="destruct"><a href="/ctpe/CaseAnalysis/destruct.html">destruct</a></h2>
-<p><code>destruct</code> allows for case analysis on terms, including assumptions. It can be used to split assumptions with conjunctions, as well as existential assumptions. The arguments of <code>destruct</code> are <a href="/ctpe/glossary.html#pattern">patterns</a>.</p>
+<p><code>destruct</code> allows for case analysis on terms, including assumptions. It can be used to split assumptions with conjunctions and disjunctions, as well as existential assumptions. The arguments of <code>destruct</code> are <a href="/ctpe/glossary.html#pattern">patterns</a>.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 destruct H.
@@ -133,7 +133,10 @@ destruct H as [H0 [H1 H2]].
 destruct H as [H0 [? H1]].
 
 (* Destructing multiple terms/hypotheses *)
-destruct x as [| x0 x1], H as [[H1 H0] H2].</code></pre>
+destruct x as [| x0 x1], H as [[H1 H0] H2].
+
+(* Providing names for newly-introduced terms in different generated subgoals *)
+destruct H as [H1 | H2].</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
@@ -171,6 +174,15 @@ Proof.
         -- apply QTrue.
         -- apply RTrue.
 Qed.</code></pre>
+<p>Script</p>
+<pre class="coq"><code>Theorem destruct_example3 : 
+    forall (P Q R : Prop),
+    (P \/ Q) -&gt; P \/ Q \/ R.
+Proof.
+    intros. destruct H as [PTrue | QTrue].
+    - left. assumption.
+    - right. left. assumption.
+Qed. </code></pre>
 <h3 id="resources">Resources</h3>
 <p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference Documentation</a></p>
 <hr>
