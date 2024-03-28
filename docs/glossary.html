@@ -1,0 +1,7 @@
+<h1 id="specialize">Specialize</h1>
+<p>To transform a theorem P into some theorem P&rsquo; that applies to a similar but more specific set of inputs than P. For example, the commutativity of addition states that</p>
+<pre class="coq"><code>forall (n m : nat), n + m = m + n.</code></pre>
+<p>This can be specialized into the following theorem, which says that addition is commutative if one of the arguments is 7:</p>
+<pre class="coq"><code>forall (m : nat), 7 + m = m + 7.</code></pre>
+<p>Important property: if the original general theorem P is true, then a specialized form P&rsquo; of that theorem is always true!</p>
+<p>Synonyms: weaken Antonyms: generalize, strengthen</p>

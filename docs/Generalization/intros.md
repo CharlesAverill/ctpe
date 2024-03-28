@@ -1,5 +1,5 @@
-## intros
-
+## [intros
+](Generalization/intros.html)
 Typically the first tactic a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 

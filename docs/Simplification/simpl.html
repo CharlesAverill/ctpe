@@ -1,0 +1,34 @@
+<h2 id="simpl"><a href="Simplification/simpl.html">simpl</a></h2>
+<p>A short summary of what the tactic does, starting the most generally and ending the most specifically.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>(* Example 1 *)
+tactic argument in H with x.
+
+(* Example 2 *)
+tactic -&gt; t.</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+-------------------------
+1/2
+False
+-------------------------
+2/2
+True</code></pre>
+<pre class="coq"><code>tactic n.</code></pre>
+<p>After</p>
+<pre class="coq"><code>n: nat
+-------------------------
+1/2
+True
+-------------------------
+2/2
+True</code></pre>
+<p>Script</p>
+<pre class="coq"><code>Theorem test : 
+    forall (n : nat), False /\ True.
+Proof.
+    tactic n. all: auto.
+Qed.</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference Documentation</a></p>

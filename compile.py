@@ -13,6 +13,11 @@ def compile_markdown(file_path, docs_dir):
                 included_file_path = included_file_path[1:]
             included_file_path = os.path.join(os.path.dirname(file_path), included_file_path)
             compiled_lines.extend(compile_markdown(included_file_path, docs_dir))
+        elif line.startswith("## "):
+            tokens = line.split(" ")
+            title = tokens[1]
+            fp = file_path[len("docs/"):file_path.rindex('.')]
+            compiled_lines.extend(f"## [{title}]({fp}.html)")
         else:
             compiled_lines.append(line)
     

@@ -25,8 +25,8 @@ For these reasons, I've decided to compile a reference document of every tactic 
 
 Summary
 
-## intros
-
+## [intros
+](Generalization/intros.html)
 Typically the first tactic a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 
@@ -95,8 +95,8 @@ C -> A /\ C
 
 Summary
 
-## simpl
-
+## [simpl
+](Simplification/simpl.html)
 A short summary of what the tactic does, starting the most generally and ending the most specifically.
 
 ### Syntax
