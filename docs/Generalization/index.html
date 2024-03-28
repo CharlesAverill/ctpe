@@ -118,7 +118,7 @@ body {
     <!-- Content -->
     <div class="container">
 <h1 id="generalization"><a href="/ctpe/Generalization/index.html">Generalization</a></h1>
-<p>Summary</p>
+<p>This group of tactics is often found at the beginnings of proofs. Generalization and its counterpart Specialization (both are included here) are concepts used to fine-tune how strong of a theorem is needed to continue. Theorems that are too strong (specific) aren&rsquo;t useful for many different kinds of goals. Theorems that are too weak (general) are frequently unprovable (even if their specified counterparts are!) and those that are provable are frequently harder to prove!</p>
 <h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
 <p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
 <p>More specifically, <code>intros</code> <a href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking for <a href="/ctpe/glossary.html#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>

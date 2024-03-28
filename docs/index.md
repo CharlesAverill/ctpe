@@ -53,7 +53,10 @@ title: Generalization - CTPE
 ---
 
 # [Generalization](/ctpe/Generalization/index.html)
-Summary
+This group of tactics is often found at the beginnings of proofs. 
+Generalization and its counterpart Specialization (both are included here) are concepts used to fine-tune how strong of a theorem is needed to continue.
+Theorems that are too strong (specific) aren't useful for many different kinds of goals.
+Theorems that are too weak (general) are frequently unprovable (even if their specified counterparts are!) and those that are provable are frequently harder to prove!
 
 ---
 title: intros - CTPE
@@ -220,7 +223,8 @@ title: Simplification - CTPE
 ---
 
 # [Simplification](/ctpe/Simplification/index.html)
-Summary
+This group of tactic aims to reduce the complexity of terms in a goal. 
+They will not solve a goal, only convert it into what is a structurally smaller (although maybe not lexically smaller!) form of the original goal.
 
 ---
 title: simpl - CTPE
@@ -281,7 +285,9 @@ title: Specific Solvers - CTPE
 ---
 
 # [Specific Solvers](/ctpe/SpecificSolvers/index.html)
-Summary
+Each tactic in this group exists to solve a very specific kind of goal.
+They're fairly simple to learn about and use, because their goal targets are such small groups that there are hardly any degrees of freedom for automation to be required.
+Essentially all Coq proofs include some of these (whether they're written by the programmer or called by more complex tactics).
 
 ---
 title: reflexivity - CTPE
@@ -545,7 +551,8 @@ title: Rewriting - CTPE
 ---
 
 # [Rewriting](/ctpe/Rewriting/index.html)
-Summary
+This group of tactics is very frequently used in the middles of proofs.
+Rewriting in all of its forms is an efficient way to bring together previously-independent parts of a goal.
 
 ---
 title: rewrite - CTPE
@@ -712,7 +719,9 @@ title: Case Analysis - CTPE
 ---
 
 # [Case Analysis](/ctpe/CaseAnalysis/index.html)
-Summary
+Case analysis is a core aspect of constructivist logic.
+Although for many kinds of problems it is a low-level tool, it is ubiquitous among the foundations of all problems formalized in the Coq system.
+The core idea is: "if I want to prove a property P holds for a term t, I can do so by writing multiple sub-proofs that for each form that t can have, P holds."
 
 ---
 title: destruct - CTPE

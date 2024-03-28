@@ -3,7 +3,8 @@ title: Simplification - CTPE
 ---
 
 # [Simplification](/ctpe/Simplification/index.html)
-Summary
+This group of tactic aims to reduce the complexity of terms in a goal. 
+They will not solve a goal, only convert it into what is a structurally smaller (although maybe not lexically smaller!) form of the original goal.
 
 ---
 title: simpl - CTPE

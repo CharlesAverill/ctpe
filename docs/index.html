@@ -155,7 +155,7 @@ body {
 <hr>
 <hr>
 <h1 id="generalization"><a href="/ctpe/Generalization/index.html">Generalization</a></h1>
-<p>Summary</p>
+<p>This group of tactics is often found at the beginnings of proofs. Generalization and its counterpart Specialization (both are included here) are concepts used to fine-tune how strong of a theorem is needed to continue. Theorems that are too strong (specific) aren&rsquo;t useful for many different kinds of goals. Theorems that are too weak (general) are frequently unprovable (even if their specified counterparts are!) and those that are provable are frequently harder to prove!</p>
 <h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
 <p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
 <p>More specifically, <code>intros</code> <a href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking for <a href="/ctpe/glossary.html#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
@@ -239,7 +239,7 @@ False</code></pre>
 <hr>
 <hr>
 <h1 id="simplification"><a href="/ctpe/Simplification/index.html">Simplification</a></h1>
-<p>Summary</p>
+<p>This group of tactic aims to reduce the complexity of terms in a goal. They will not solve a goal, only convert it into what is a structurally smaller (although maybe not lexically smaller!) form of the original goal.</p>
 <h2 id="simpl"><a href="/ctpe/Simplification/simpl.html">simpl</a></h2>
 <p><code>simpl</code> evaluates terms that are constructed of constant values - not variables. <code>simpl</code> can also partially evaluate partially-constant values.</p>
 <h3 id="syntax-2">Syntax</h3>
@@ -270,7 +270,7 @@ simpl (2 + 2) in H.</code></pre>
 <hr>
 <hr>
 <h1 id="specific-solvers"><a href="/ctpe/SpecificSolvers/index.html">Specific Solvers</a></h1>
-<p>Summary</p>
+<p>Each tactic in this group exists to solve a very specific kind of goal. They&rsquo;re fairly simple to learn about and use, because their goal targets are such small groups that there are hardly any degrees of freedom for automation to be required. Essentially all Coq proofs include some of these (whether they&rsquo;re written by the programmer or called by more complex tactics).</p>
 <h2 id="reflexivity"><a href="/ctpe/SpecificSolvers/reflexivity.html">reflexivity</a></h2>
 <p><code>reflexivity</code> solves goals which state that a term is equal to itself. <code>reflexivity</code> has some simplification power, but not as much as <a href="/ctpe/Simplification/simpl.html"><code>simpl</code></a>. This tactic will fail if it cannot solve the goal.</p>
 <p><code>reflexivity</code> makes an attempt to simplify the goal and then <code>apply eq_refl</code>, where <code>eq_refl</code> is the sole constructor of the <code>eq</code> Inductive Proposition, stating that <code>forall {A : Type} (a : A), eq a a</code>.</p>
@@ -383,7 +383,7 @@ x = x + y</code></pre>
 <hr>
 <hr>
 <h1 id="rewriting"><a href="/ctpe/Rewriting/index.html">Rewriting</a></h1>
-<p>Summary</p>
+<p>This group of tactics is very frequently used in the middles of proofs. Rewriting in all of its forms is an efficient way to bring together previously-independent parts of a goal.</p>
 <h2 id="rewrite"><a href="/ctpe/Rewriting/rewrite.html">rewrite</a></h2>
 <p><code>rewrite</code> takes an equivalence proof as input, like <code>t1 = t2</code>, and replaces all occurances of <code>t1</code> with <code>t2</code>. Replacement of <code>t2</code> with <code>t1</code> can be achieved with the variant <code>rewrite &lt;-</code> (rewrite backwards). Multiple rewrites can be chained with one tactic via a list of comma-separated equivalence proofs. Each of the equivalence proofs in the chain may be rewritten backwards. <code>rewrite</code> will fail if there are no <code>t1</code>&rsquo;s (in this example) to replace.</p>
 <h3 id="syntax-8">Syntax</h3>
@@ -467,7 +467,7 @@ y = 0</code></pre>
 <hr>
 <hr>
 <h1 id="case-analysis"><a href="/ctpe/CaseAnalysis/index.html">Case Analysis</a></h1>
-<p>Summary</p>
+<p>Case analysis is a core aspect of constructivist logic. Although for many kinds of problems it is a low-level tool, it is ubiquitous among the foundations of all problems formalized in the Coq system. The core idea is: &ldquo;if I want to prove a property P holds for a term t, I can do so by writing multiple sub-proofs that for each form that t can have, P holds.&rdquo;</p>
 <h2 id="destruct"><a href="/ctpe/CaseAnalysis/destruct.html">destruct</a></h2>
 <p><code>destruct</code> allows for case analysis on inductive terms or assumptions. It can be used to split assumptions with conjunctions and disjunctions, as well as existential assumptions. The arguments of <code>destruct</code> are <a href="/ctpe/glossary.html#pattern">patterns</a>.</p>
 <h3 id="syntax-11">Syntax</h3>

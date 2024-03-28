@@ -118,7 +118,7 @@ body {
     <!-- Content -->
     <div class="container">
 <h1 id="specific-solvers"><a href="/ctpe/SpecificSolvers/index.html">Specific Solvers</a></h1>
-<p>Summary</p>
+<p>Each tactic in this group exists to solve a very specific kind of goal. They&rsquo;re fairly simple to learn about and use, because their goal targets are such small groups that there are hardly any degrees of freedom for automation to be required. Essentially all Coq proofs include some of these (whether they&rsquo;re written by the programmer or called by more complex tactics).</p>
 <h2 id="reflexivity"><a href="/ctpe/SpecificSolvers/reflexivity.html">reflexivity</a></h2>
 <p><code>reflexivity</code> solves goals which state that a term is equal to itself. <code>reflexivity</code> has some simplification power, but not as much as <a href="/ctpe/Simplification/simpl.html"><code>simpl</code></a>. This tactic will fail if it cannot solve the goal.</p>
 <p><code>reflexivity</code> makes an attempt to simplify the goal and then <code>apply eq_refl</code>, where <code>eq_refl</code> is the sole constructor of the <code>eq</code> Inductive Proposition, stating that <code>forall {A : Type} (a : A), eq a a</code>.</p>
