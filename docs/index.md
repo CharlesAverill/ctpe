@@ -137,10 +137,10 @@ TODO : Below link should be updated with the `master` version once it makes its 
 
 [Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl)
 
-# [Evidence](/ctpe/Evidence Analysis/index.html)
+# [Evidence](/ctpe/EvidenceAnalysis/index.html)
 Summary
 
-## [inversion](/ctpe/Evidence Analysis/inversion.html)
+## [inversion](/ctpe/EvidenceAnalysis/inversion.html)
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.
 If there are multiple sets of conclusions, `inversion` will generate a new proof obligation for each one.
 

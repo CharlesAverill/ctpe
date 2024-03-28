@@ -1,7 +1,7 @@
-# [Evidence](/ctpe/Evidence Analysis/index.html)
+# [Evidence](/ctpe/EvidenceAnalysis/index.html)
 Summary
 
-## [inversion](/ctpe/Evidence Analysis/inversion.html)
+## [inversion](/ctpe/EvidenceAnalysis/inversion.html)
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.
 If there are multiple sets of conclusions, `inversion` will generate a new proof obligation for each one.
 

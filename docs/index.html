@@ -85,9 +85,9 @@ simpl (2 + 2) in H.</code></pre>
 <h3 id="resources-1">Resources</h3>
 <p>TODO : Below link should be updated with the <code>master</code> version once it makes its way into the tree</p>
 <p><a href="https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl">Reference Documentation</a></p>
-<h1 id="evidence"><a href="/ctpe/Evidence%20Analysis/index.html">Evidence</a></h1>
+<h1 id="evidence"><a href="/ctpe/EvidenceAnalysis/index.html">Evidence</a></h1>
 <p>Summary</p>
-<h2 id="inversion"><a href="/ctpe/Evidence%20Analysis/inversion.html">inversion</a></h2>
+<h2 id="inversion"><a href="/ctpe/EvidenceAnalysis/inversion.html">inversion</a></h2>
 <p><code>inversion</code> looks at a given piece of structural evidence and draws conclusions from it. If there are multiple sets of conclusions, <code>inversion</code> will generate a new proof obligation for each one.</p>
 <p>This tactic often generates many trivial equality assumptions that may clutter the assumption space. I recommend almost always following <code>inversion</code> with <a href="/"><code>subst</code></a> to immediately substitute away these equalities.</p>
 <h3 id="syntax-2">Syntax</h3>

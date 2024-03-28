@@ -9,4 +9,4 @@
 
 #include Simplification/index.md
 
-#include Evidence Analysis/index.md
+#include EvidenceAnalysis/index.md
