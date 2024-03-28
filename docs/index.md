@@ -40,7 +40,8 @@ There are many other guides to Coq tactics, you should check them out too if I d
 
 1. [Generalization](#generalization)
 2. [Simplification](#simplification)
-3. [Case Analysis](#case-analysis)
+3. [Rewriting](#rewriting)
+4. [Case Analysis](#case-analysis)
 
 <hr>
 
@@ -64,6 +65,10 @@ Typically the first tactic a Coq user ever utilizes.
 More specifically, `intros` [specializes](/ctpe/glossary.html#specialize) a goal by looking for [type inhabitation](/ctpe/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
 Calling `intros` here will provide you an assumption `n` that there is a value of type `nat`.
+
+`intros` will not introduce variables that are contained in opaque/wrapped definitions.
+
+A simpler tactic, `intro`, acts similarly but can only introduce one assumption, and will introduce variables contained in opaque/wrapped definitions.
 
 ### Syntax
 
@@ -110,17 +115,100 @@ intros A B C [ATrue BTrue].
 
 After
 ```coq
-A, B, C : Prop
-ATrue : A
-BTrue : B
+A, B, C: Prop
+ATrue: A
+BTrue: B
 -------------------------
 1/1
 C -> A /\ C
 ```
 
+Before (assume `P := forall (n : nat), n = n`)
+```coq
+-------------------------
+1/1
+P
+```
+
+```coq
+intros.
+```
+
+After
+```coq
+-------------------------
+1/1
+P
+```
+
+Alternatively,
+
+```coq
+intro.
+```
+
+After
+```coq
+n: nat
+-------------------------
+1/1
+n = n
+```
+
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros)
+
+<hr>
+
+---
+title: clear - CTPE
+---
+
+## [clear](/ctpe/Generalization/clear.html)
+`clear` erases assumptions from the assumption space.
+Multiple assumptions may be erased in one tactic via a space-separated list of assumptions.
+`clear` will fail if an assumption passed into it contains as subterms other variables that still exist in the goal state.
+
+### Syntax
+
+```coq
+(* Simple usage *)
+clear H.
+
+(* Clear multiple assumptions *)
+clear H Heq X Y n.
+```
+
+### Examples
+
+Before
+```coq
+n: nat
+H, Hr1, Hr2: n = 0
+IHn: n = 1
+-------------------------
+1/1
+False
+```
+
+```coq
+clear Hr1 Hr2.
+```
+
+After
+```coq
+n: nat
+H: n = 0
+IHn: n = 1
+-------------------------
+1/1
+False
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic)
 
 <hr>
 
@@ -182,6 +270,173 @@ After
 TODO : Below link should be updated with the `master` version once it makes its way into the tree
 
 [Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl)
+
+<hr>
+
+<hr>
+
+---
+title: Rewriting - CTPE
+---
+
+# [Rewriting](/ctpe/Rewriting/index.html)
+Summary
+
+---
+title: rewrite - CTPE
+---
+
+## [rewrite](/ctpe/Rewriting/rewrite.html)
+`rewrite` takes an equivalence proof as input, like `t1 = t2`, and replaces all occurances of `t1` with `t2`.
+Replacement of `t2` with `t1` can be achieved with the variant `rewrite <-` (rewrite backwards).
+Multiple rewrites can be chained with one tactic via a list of comma-separated equivalence proofs.
+Each of the equivalence proofs in the chain may be rewritten backwards.
+`rewrite` will fail if there are no `t1`'s (in this example) to replace.
+
+### Syntax
+
+```coq
+(* Replace t1 with t2 in the goal *)
+rewrite t1_eq_t2.
+
+(* Rewrite in an assumption *)
+rewrite Eq in H.
+
+(* Rewrite in the goal and all assumptions *)
+rewrite HEq in *.
+
+(* Rewrite multiple values *)
+rewrite t1_eq_t2, <- x_eq_y, ht_eq_ht.
+```
+
+### Examples
+
+Before
+```coq
+x, y: nat
+H: x = y
+-------------------------
+x + y = y + y
+```
+
+```coq
+rewrite H.
+```
+
+After
+```coq
+x, y: nat
+H: x = y
+-------------------------
+y + y = y + y
+```
+
+Alternatively,
+```coq
+rewrite <- H.
+```
+
+
+```coq
+x, y: nat
+H: x = y
+-------------------------
+x + x = x + x
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.rewrite)
+
+<hr>
+
+---
+title: rename - CTPE
+---
+
+## [rename](/ctpe/Rewriting/rename.html)
+`rename` changes the name of an introduced variable or assumption.
+
+### Syntax
+
+```coq
+(* Simple example *)
+rename x into y.
+```
+
+### Examples
+
+Before
+```coq
+n: nat
+-------------------------
+1/1
+n = n
+```
+
+```coq
+rename n into x.
+```
+
+After
+```coq
+x: nat
+-------------------------
+1/1
+x = x
+```
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.rename)
+
+<hr>
+
+---
+title: remember - CTPE
+---
+
+## [remember](/ctpe/Rewriting/remember.html)
+`remember` gives a name to complex terms.
+Specifically, `remember t` (where `t` has type `T`) introduces an assumption that there exists a member of type `T`, gives it a name such as `t0`, and provides another assumption that `t = t0`.
+
+### Syntax
+
+```coq
+(* Simple usage *)
+remember (5 + x).
+
+(* Provide a name for the remembered term *)
+remember ("hello world") as s.
+```
+
+### Examples
+
+Before
+```coq
+x, y: nat
+H: x + y = x
+-------------------------
+1/1
+y = 0
+```
+
+```coq
+remember (x + y) as sum.
+```
+
+After
+```coq
+x, y, sum: nat
+Heqsum: sum = x + y
+H: sum = x
+-------------------------
+1/1
+y = 0
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.remember)
 
 <hr>
 
@@ -295,7 +550,7 @@ Qed.
 
 ### Resources
 
-[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic)
+[Reference Documentation](https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.destruct)
 
 <hr>
 
@@ -486,7 +741,7 @@ Qed.
 
 ### Resources
 
-[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic)
+[Reference Documentation](https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.induction)
 
 <hr>
 

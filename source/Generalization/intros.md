@@ -11,6 +11,10 @@ More specifically, `intros` [specializes](glossary.md#specialize) a goal by look
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
 Calling `intros` here will provide you an assumption `n` that there is a value of type `nat`.
 
+`intros` will not introduce variables that are contained in opaque/wrapped definitions.
+
+A simpler tactic, `intro`, acts similarly but can only introduce one assumption, and will introduce variables contained in opaque/wrapped definitions.
+
 ### Syntax
 
 ```coq
@@ -56,12 +60,44 @@ intros A B C [ATrue BTrue].
 
 After
 ```coq
-A, B, C : Prop
-ATrue : A
-BTrue : B
+A, B, C: Prop
+ATrue: A
+BTrue: B
 -------------------------
 1/1
 C -> A /\ C
+```
+
+Before (assume `P := forall (n : nat), n = n`)
+```coq
+-------------------------
+1/1
+P
+```
+
+```coq
+intros.
+```
+
+After
+```coq
+-------------------------
+1/1
+P
+```
+
+Alternatively,
+
+```coq
+intro.
+```
+
+After
+```coq
+n: nat
+-------------------------
+1/1
+n = n
 ```
 
 ### Resources

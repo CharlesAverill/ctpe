@@ -148,6 +148,7 @@ body {
 <ol type="1">
 <li><a href="#generalization">Generalization</a></li>
 <li><a href="#simplification">Simplification</a></li>
+<li><a href="#rewriting">Rewriting</a></li>
 <li><a href="#case-analysis">Case Analysis</a></li>
 </ol>
 <hr>
@@ -157,6 +158,8 @@ body {
 <h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
 <p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
 <p>More specifically, <code>intros</code> <a href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking for <a href="/ctpe/glossary.html#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
+<p><code>intros</code> will not introduce variables that are contained in opaque/wrapped definitions.</p>
+<p>A simpler tactic, <code>intro</code>, acts similarly but can only introduce one assumption, and will introduce variables contained in opaque/wrapped definitions.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage - introduces all named assumptions *)
 intros.
@@ -181,21 +184,64 @@ x + 0 = x</code></pre>
 forall (A B C : Prop), A /\ B -&gt; C -&gt; A /\ C</code></pre>
 <pre class="coq"><code>intros A B C [ATrue BTrue].</code></pre>
 <p>After</p>
-<pre class="coq"><code>A, B, C : Prop
-ATrue : A
-BTrue : B
+<pre class="coq"><code>A, B, C: Prop
+ATrue: A
+BTrue: B
 -------------------------
 1/1
 C -&gt; A /\ C</code></pre>
+<p>Before (assume <code>P := forall (n : nat), n = n</code>)</p>
+<pre class="coq"><code>-------------------------
+1/1
+P</code></pre>
+<pre class="coq"><code>intros.</code></pre>
+<p>After</p>
+<pre class="coq"><code>-------------------------
+1/1
+P</code></pre>
+<p>Alternatively,</p>
+<pre class="coq"><code>intro.</code></pre>
+<p>After</p>
+<pre class="coq"><code>n: nat
+-------------------------
+1/1
+n = n</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference Documentation</a></p>
+<hr>
+<h2 id="clear"><a href="/ctpe/Generalization/clear.html">clear</a></h2>
+<p><code>clear</code> erases assumptions from the assumption space. Multiple assumptions may be erased in one tactic via a space-separated list of assumptions. <code>clear</code> will fail if an assumption passed into it contains as subterms other variables that still exist in the goal state.</p>
+<h3 id="syntax-1">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+clear H.
+
+(* Clear multiple assumptions *)
+clear H Heq X Y n.</code></pre>
+<h3 id="examples-1">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+H, Hr1, Hr2: n = 0
+IHn: n = 1
+-------------------------
+1/1
+False</code></pre>
+<pre class="coq"><code>clear Hr1 Hr2.</code></pre>
+<p>After</p>
+<pre class="coq"><code>n: nat
+H: n = 0
+IHn: n = 1
+-------------------------
+1/1
+False</code></pre>
+<h3 id="resources-1">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference Documentation</a></p>
 <hr>
 <hr>
 <h1 id="simplification"><a href="/ctpe/Simplification/index.html">Simplification</a></h1>
 <p>Summary</p>
 <h2 id="simpl"><a href="/ctpe/Simplification/simpl.html">simpl</a></h2>
 <p><code>simpl</code> evaluates terms that are constructed of constant values - not variables. <code>simpl</code> can also partially evaluate partially-constant values.</p>
-<h3 id="syntax-1">Syntax</h3>
+<h3 id="syntax-2">Syntax</h3>
 <pre class="coq"><code>(* Simplify the goal as much as possible *)
 simpl.
 
@@ -207,7 +253,7 @@ simpl in *.
 
 (* Only simplify a specific term in a specific hypothesis *)
 simpl (2 + 2) in H.</code></pre>
-<h3 id="examples-1">Examples</h3>
+<h3 id="examples-2">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>-------------------------
 1/1
@@ -217,16 +263,100 @@ simpl (2 + 2) in H.</code></pre>
 <pre class="coq"><code>-------------------------
 1/1
 4 = 1 + 3</code></pre>
-<h3 id="resources-1">Resources</h3>
+<h3 id="resources-2">Resources</h3>
 <p>TODO : Below link should be updated with the <code>master</code> version once it makes its way into the tree</p>
 <p><a href="https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl">Reference Documentation</a></p>
+<hr>
+<hr>
+<h1 id="rewriting"><a href="/ctpe/Rewriting/index.html">Rewriting</a></h1>
+<p>Summary</p>
+<h2 id="rewrite"><a href="/ctpe/Rewriting/rewrite.html">rewrite</a></h2>
+<p><code>rewrite</code> takes an equivalence proof as input, like <code>t1 = t2</code>, and replaces all occurances of <code>t1</code> with <code>t2</code>. Replacement of <code>t2</code> with <code>t1</code> can be achieved with the variant <code>rewrite &lt;-</code> (rewrite backwards). Multiple rewrites can be chained with one tactic via a list of comma-separated equivalence proofs. Each of the equivalence proofs in the chain may be rewritten backwards. <code>rewrite</code> will fail if there are no <code>t1</code>&rsquo;s (in this example) to replace.</p>
+<h3 id="syntax-3">Syntax</h3>
+<pre class="coq"><code>(* Replace t1 with t2 in the goal *)
+rewrite t1_eq_t2.
+
+(* Rewrite in an assumption *)
+rewrite Eq in H.
+
+(* Rewrite in the goal and all assumptions *)
+rewrite HEq in *.
+
+(* Rewrite multiple values *)
+rewrite t1_eq_t2, &lt;- x_eq_y, ht_eq_ht.</code></pre>
+<h3 id="examples-3">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>x, y: nat
+H: x = y
+-------------------------
+x + y = y + y</code></pre>
+<pre class="coq"><code>rewrite H.</code></pre>
+<p>After</p>
+<pre class="coq"><code>x, y: nat
+H: x = y
+-------------------------
+y + y = y + y</code></pre>
+<p>Alternatively,</p>
+<pre class="coq"><code>rewrite &lt;- H.</code></pre>
+<pre class="coq"><code>x, y: nat
+H: x = y
+-------------------------
+x + x = x + x</code></pre>
+<h3 id="resources-3">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.rewrite">Reference Documentation</a></p>
+<hr>
+<h2 id="rename"><a href="/ctpe/Rewriting/rename.html">rename</a></h2>
+<p><code>rename</code> changes the name of an introduced variable or assumption.</p>
+<h3 id="syntax-4">Syntax</h3>
+<pre class="coq"><code>(* Simple example *)
+rename x into y.</code></pre>
+<h3 id="examples-4">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+-------------------------
+1/1
+n = n</code></pre>
+<pre class="coq"><code>rename n into x.</code></pre>
+<p>After</p>
+<pre class="coq"><code>x: nat
+-------------------------
+1/1
+x = x</code></pre>
+<h3 id="resources-4">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.rename">Reference Documentation</a></p>
+<hr>
+<h2 id="remember"><a href="/ctpe/Rewriting/remember.html">remember</a></h2>
+<p><code>remember</code> gives a name to complex terms. Specifically, <code>remember t</code> (where <code>t</code> has type <code>T</code>) introduces an assumption that there exists a member of type <code>T</code>, gives it a name such as <code>t0</code>, and provides another assumption that <code>t = t0</code>.</p>
+<h3 id="syntax-5">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+remember (5 + x).
+
+(* Provide a name for the remembered term *)
+remember (&quot;hello world&quot;) as s.</code></pre>
+<h3 id="examples-5">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>x, y: nat
+H: x + y = x
+-------------------------
+1/1
+y = 0</code></pre>
+<pre class="coq"><code>remember (x + y) as sum.</code></pre>
+<p>After</p>
+<pre class="coq"><code>x, y, sum: nat
+Heqsum: sum = x + y
+H: sum = x
+-------------------------
+1/1
+y = 0</code></pre>
+<h3 id="resources-5">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.remember">Reference Documentation</a></p>
 <hr>
 <hr>
 <h1 id="case-analysis"><a href="/ctpe/CaseAnalysis/index.html">Case Analysis</a></h1>
 <p>Summary</p>
 <h2 id="destruct"><a href="/ctpe/CaseAnalysis/destruct.html">destruct</a></h2>
 <p><code>destruct</code> allows for case analysis on inductive terms or assumptions. It can be used to split assumptions with conjunctions and disjunctions, as well as existential assumptions. The arguments of <code>destruct</code> are <a href="/ctpe/glossary.html#pattern">patterns</a>.</p>
-<h3 id="syntax-2">Syntax</h3>
+<h3 id="syntax-6">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 destruct H.
 
@@ -244,7 +374,7 @@ destruct x as [| x0 x1], H as [[H1 H0] H2].
 
 (* Providing names for newly-introduced terms in different generated subgoals *)
 destruct H as [H1 | H2].</code></pre>
-<h3 id="examples-2">Examples</h3>
+<h3 id="examples-6">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
 -------------------------
@@ -290,16 +420,16 @@ Proof.
     - left. assumption.
     - right. left. assumption.
 Qed. </code></pre>
-<h3 id="resources-2">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference Documentation</a></p>
+<h3 id="resources-6">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.destruct">Reference Documentation</a></p>
 <hr>
 <h2 id="inversion"><a href="/ctpe/CaseAnalysis/inversion.html">inversion</a></h2>
 <p><code>inversion</code> looks at a given piece of structural evidence and draws conclusions from it. If there are multiple sets of conclusions, <code>inversion</code> will generate a new proof obligation for each one. Informally, <code>inversion</code> is doing a more specific form of the case analysis provided by <a href="destruct.html"><code>destruct</code></a> - where <code>destruct</code> essentially says &ldquo;I don&rsquo;t know what this term is, so I&rsquo;ll prove a property for all of the possible forms of it,&rdquo; <code>inversion</code> says &ldquo;I know exactly what terms could construct this hypothesis because of its definition, so I&rsquo;ll only prove a property for those terms.&rdquo;</p>
 <p>This tactic often generates many trivial equality assumptions that may clutter the assumption space. I recommend almost always following <code>inversion</code> with <a href="/"><code>subst</code></a> to immediately substitute away these equalities.</p>
-<h3 id="syntax-3">Syntax</h3>
+<h3 id="syntax-7">Syntax</h3>
 <pre class="coq"><code>(* Standard usage *)
 inversion H.</code></pre>
-<h3 id="examples-3">Examples</h3>
+<h3 id="examples-7">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
 H: n &lt;= 1
@@ -349,7 +479,7 @@ Proof.
     - left. repeat split.
     - right. repeat split.
 Qed.</code></pre>
-<h3 id="resources-3">Resources</h3>
+<h3 id="resources-7">Resources</h3>
 <p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.inversion">Reference Documentation</a></p>
 <hr>
 <h2 id="induction"><a href="/ctpe/CaseAnalysis/induction.html">induction</a></h2>
@@ -357,7 +487,7 @@ Qed.</code></pre>
 <p>If the goal still contains named impliciations, <code>induction</code> can be used before introducing them with <a href="/ctpe/Generalization/intros.html">intros</a>. In this case, if the argument to <code>induction</code> is not the first impliciation in the chain, all implications before it will be introduced to the goal&rsquo;s assumption space.</p>
 <p><code>induction</code> can act similarly to <code>inversion</code> under specific circumstances. If you induct over an object that already contains subterms, you can <a href="/ctpe/Rewriting/remember.html">remember</a> the subterm(s) and induct on the root object. Then, by an easy <code>inversion</code> on the hypothesis generated by <code>remember</code>, all cases that don&rsquo;t match the required form generated by the case analysis will be automatically solved by the <a href="/ctpe/glossary.html#explosion">principle of explosion</a>.</p>
 <p>Sometimes, the automatically-generated induction principles for a type are not sufficient to prove some properties about terms with that type. In this case, it is possible to write a custom induction principle for a type and then use it with the <code>induction</code> tactic.</p>
-<h3 id="syntax-4">Syntax</h3>
+<h3 id="syntax-8">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 induction n.
 
@@ -369,7 +499,7 @@ induction n as [| n&#39; IHn&#39; ].
 
 (* Using a custom induction principle *)
 induction z using peano_ind.</code></pre>
-<h3 id="examples-4">Examples</h3>
+<h3 id="examples-8">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
 -------------------------
@@ -408,8 +538,8 @@ Proof.
       rewrite Z.add_comm. rewrite &lt;- Z.add_pred_l.
       rewrite Z.add_comm. reflexivity.
 Qed. </code></pre>
-<h3 id="resources-4">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference Documentation</a></p>
+<h3 id="resources-8">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.induction">Reference Documentation</a></p>
 <hr>
 <hr>
 <hr>

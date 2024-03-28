@@ -120,6 +120,8 @@ body {
 <h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
 <p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
 <p>More specifically, <code>intros</code> <a href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking for <a href="/ctpe/glossary.html#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
+<p><code>intros</code> will not introduce variables that are contained in opaque/wrapped definitions.</p>
+<p>A simpler tactic, <code>intro</code>, acts similarly but can only introduce one assumption, and will introduce variables contained in opaque/wrapped definitions.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage - introduces all named assumptions *)
 intros.
@@ -144,12 +146,28 @@ x + 0 = x</code></pre>
 forall (A B C : Prop), A /\ B -&gt; C -&gt; A /\ C</code></pre>
 <pre class="coq"><code>intros A B C [ATrue BTrue].</code></pre>
 <p>After</p>
-<pre class="coq"><code>A, B, C : Prop
-ATrue : A
-BTrue : B
+<pre class="coq"><code>A, B, C: Prop
+ATrue: A
+BTrue: B
 -------------------------
 1/1
 C -&gt; A /\ C</code></pre>
+<p>Before (assume <code>P := forall (n : nat), n = n</code>)</p>
+<pre class="coq"><code>-------------------------
+1/1
+P</code></pre>
+<pre class="coq"><code>intros.</code></pre>
+<p>After</p>
+<pre class="coq"><code>-------------------------
+1/1
+P</code></pre>
+<p>Alternatively,</p>
+<pre class="coq"><code>intro.</code></pre>
+<p>After</p>
+<pre class="coq"><code>n: nat
+-------------------------
+1/1
+n = n</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference Documentation</a></p>
 <hr>

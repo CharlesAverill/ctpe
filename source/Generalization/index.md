@@ -7,3 +7,5 @@ title: Generalization - CTPE
 Summary
 
 #include intros.md
+
+#include clear.md
