@@ -25,6 +25,8 @@ def compile_markdown(file_path, docs_dir, depth, use_absolute_path):
         else:
             line = line.replace("(glossary.md", "(" + ('/ctpe/' if not use_absolute_path else '/') + 'glossary.html')
             compiled_lines.append(line)
+
+    compiled_lines.extend(["\n", "<hr>", "\n"])
     
     with open(file_path, 'w') as file:
         file.writelines(compiled_lines)

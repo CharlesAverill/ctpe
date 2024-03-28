@@ -47,3 +47,5 @@ After
 TODO : Below link should be updated with the `master` version once it makes its way into the tree
 
 [Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl)
+
+<hr>

@@ -1,17 +1,11 @@
 ---
-title: Evidence Analysis - CTPE
----
-
-# [Evidence Analysis](/ctpe/EvidenceAnalysis/index.html)
-Summary
-
----
 title: inversion - CTPE
 ---
 
-## [inversion](/ctpe/EvidenceAnalysis/inversion.html)
+## [inversion](/ctpe/CaseAnalysis/inversion.html)
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.
 If there are multiple sets of conclusions, `inversion` will generate a new proof obligation for each one.
+Informally, `inversion` is doing a more specific form of the case analysis provided by [`destruct`](destruct.html) - where `destruct` essentially says "I don't know what this term is, so I'll prove a property for all of the possible forms of it," `inversion` says "I know exactly what terms could construct this hypothesis because of its definition, so I'll only prove a property for those terms."
 
 This tactic often generates many trivial equality assumptions that may clutter the assumption space. 
 I recommend almost always following `inversion` with [`subst`](/) to immediately substitute away these equalities.
@@ -56,7 +50,7 @@ m: nat
 H1: n <= 0
 H0: m = 0
 -------------------------
-2/2
+1/1
 n = 0 \/ n = 1
 ```
 
@@ -95,3 +89,5 @@ Qed.
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.inversion)
+
+<hr>

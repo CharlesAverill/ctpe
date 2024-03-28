@@ -18,3 +18,5 @@ For these reasons, I've decided to compile a reference document of every tactic 
 3. Entries will include syntax *examples* rather than BNF grammars
 4. Entries will contain multiple examples, including goal states before and after executing the tactics. Small MRE Coq scripts may be included.
 5. As a fallback, links to other resources, at minimum the official documentation, will be included in each entry.
+
+<hr>

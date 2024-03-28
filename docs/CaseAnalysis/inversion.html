@@ -36,7 +36,11 @@ a:hover {
     color: var(--light-blue);
 }
 
-h1, h2, h3 {
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
     text-align: left;
 }
 
@@ -77,15 +81,44 @@ body {
     <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
     <script src="/ctpe/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
 </head>
 <body>
     <!-- Home Button -->
-    <h3 class="home"><a href="/ctpe/">Home</a> <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
+    <h3 class="home"><a href="/ctpe/">Home</a>
+        <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Tactic Name">
+        <button type="submit" id="submitButton">Tactic Search</button>
+    </form>
 
     <!-- Content -->
     <div class="container">
-<h2 id="inversion"><a href="/ctpe/EvidenceAnalysis/inversion.html">inversion</a></h2>
-<p><code>inversion</code> looks at a given piece of structural evidence and draws conclusions from it. If there are multiple sets of conclusions, <code>inversion</code> will generate a new proof obligation for each one.</p>
+<h2 id="inversion"><a href="/ctpe/CaseAnalysis/inversion.html">inversion</a></h2>
+<p><code>inversion</code> looks at a given piece of structural evidence and draws conclusions from it. If there are multiple sets of conclusions, <code>inversion</code> will generate a new proof obligation for each one. Informally, <code>inversion</code> is doing a more specific form of the case analysis provided by <a href="destruct.html"><code>destruct</code></a> - where <code>destruct</code> essentially says &ldquo;I don&rsquo;t know what this term is, so I&rsquo;ll prove a property for all of the possible forms of it,&rdquo; <code>inversion</code> says &ldquo;I know exactly what terms could construct this hypothesis because of its definition, so I&rsquo;ll only prove a property for those terms.&rdquo;</p>
 <p>This tactic often generates many trivial equality assumptions that may clutter the assumption space. I recommend almost always following <code>inversion</code> with <a href="/"><code>subst</code></a> to immediately substitute away these equalities.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Standard usage *)
@@ -112,7 +145,7 @@ m: nat
 H1: n &lt;= 0
 H0: m = 0
 -------------------------
-2/2
+1/1
 n = 0 \/ n = 1</code></pre>
 <p>Script</p>
 <pre class="coq"><code>Theorem inversion_example1 : 
@@ -142,6 +175,7 @@ Proof.
 Qed.</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.inversion">Reference Documentation</a></p>
+<hr>
     </div>
 </body>
 </html>

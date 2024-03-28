@@ -36,7 +36,11 @@ a:hover {
     color: var(--light-blue);
 }
 
-h1, h2, h3 {
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
     text-align: left;
 }
 
@@ -77,10 +81,39 @@ body {
     <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
     <script src="/ctpe/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
 </head>
 <body>
     <!-- Home Button -->
-    <h3 class="home"><a href="/ctpe/">Home</a> <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
+    <h3 class="home"><a href="/ctpe/">Home</a>
+        <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Tactic Name">
+        <button type="submit" id="submitButton">Tactic Search</button>
+    </form>
 
     <!-- Content -->
     <div class="container">
@@ -119,6 +152,7 @@ BTrue : B
 C -&gt; A /\ C</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference Documentation</a></p>
+<hr>
     </div>
 </body>
 </html>

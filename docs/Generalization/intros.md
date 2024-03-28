@@ -66,3 +66,5 @@ C -> A /\ C
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros)
+
+<hr>

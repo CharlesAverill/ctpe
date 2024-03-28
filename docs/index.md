@@ -23,11 +23,19 @@ For these reasons, I've decided to compile a reference document of every tactic 
 4. Entries will contain multiple examples, including goal states before and after executing the tactics. Small MRE Coq scripts may be included.
 5. As a fallback, links to other resources, at minimum the official documentation, will be included in each entry.
 
+<hr>
+
+<hr>
+
 # Table of Contents
 
 1. [Generalization](#generalization)
 2. [Simplification](#simplification)
-3. [Evidence Analysis](#evidence-analysis)
+3. [Case Analysis](#case-analysis)
+
+<hr>
+
+<hr>
 
 ---
 title: Generalization - CTPE
@@ -105,6 +113,10 @@ C -> A /\ C
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros)
 
+<hr>
+
+<hr>
+
 ---
 title: Simplification - CTPE
 ---
@@ -162,20 +174,115 @@ TODO : Below link should be updated with the `master` version once it makes its 
 
 [Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl)
 
+<hr>
+
+<hr>
+
 ---
-title: Evidence Analysis - CTPE
+title: Case Analysis - CTPE
 ---
 
-# [Evidence Analysis](/ctpe/EvidenceAnalysis/index.html)
+# [Case Analysis](/ctpe/CaseAnalysis/index.html)
 Summary
+
+---
+title: destruct - CTPE
+---
+
+## [destruct](/ctpe/CaseAnalysis/destruct.html)
+`destruct` allows for case analysis on terms, including assumptions.
+It can be used to split assumptions with conjunctions, as well as existential assumptions.
+The arguments of `destruct` are [patterns](/ctpe/glossary.html#pattern).
+
+### Syntax
+
+```coq
+(* Simple usage *)
+destruct H.
+
+(* Destruct a term and introduce a hypothesis E showing its equivalence to the form it took *)
+destruct n eqn:E.
+
+(* Providing names for newly-introduced terms *)
+destruct H as [H0 [H1 H2]].
+
+(* Providing only some names for newly-introduced terms *)
+destruct H as [H0 [? H1]].
+
+(* Destructing multiple terms/hypotheses *)
+destruct x as [| x0 x1], H as [[H1 H0] H2].
+```
+
+### Examples
+
+Before
+```coq
+n: nat
+-------------------------
+n = 0 \/ 1 <= n
+```
+
+```coq
+destruct n as [| n'] eqn:E.
+```
+
+After (first goal generated)
+```coq
+n: nat
+E: n = 0
+-------------------------
+1/2
+0 = 0 \/ 1 <= 0
+```
+
+After (second goal generated)
+```coq
+n, n': nat
+E: n = S n'
+-------------------------
+1/1
+S n' = 0 \/ 1 <= S n'
+```
+
+Script
+```coq
+Theorem destruct_example1 : forall n : nat,
+    n = 0 \/ 1 <= n.
+Proof.
+    intros. destruct n as [| n'] eqn:E.
+    - left. reflexivity.
+    - right. apply le_n_S, le_0_n.
+Qed.
+```
+
+Script
+```coq
+Theorem destruct_example2 : forall (P Q R : Prop),
+    ((P /\ Q) /\ R) -> P /\ (Q /\ R).
+Proof.
+    intros P Q R H.
+    destruct H as [[PTrue QTrue] RTrue]. split.
+    - apply PTrue.
+    - split. 
+        -- apply QTrue.
+        -- apply RTrue.
+Qed.
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic)
+
+<hr>
 
 ---
 title: inversion - CTPE
 ---
 
-## [inversion](/ctpe/EvidenceAnalysis/inversion.html)
+## [inversion](/ctpe/CaseAnalysis/inversion.html)
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.
 If there are multiple sets of conclusions, `inversion` will generate a new proof obligation for each one.
+Informally, `inversion` is doing a more specific form of the case analysis provided by [`destruct`](destruct.html) - where `destruct` essentially says "I don't know what this term is, so I'll prove a property for all of the possible forms of it," `inversion` says "I know exactly what terms could construct this hypothesis because of its definition, so I'll only prove a property for those terms."
 
 This tactic often generates many trivial equality assumptions that may clutter the assumption space. 
 I recommend almost always following `inversion` with [`subst`](/) to immediately substitute away these equalities.
@@ -220,7 +327,7 @@ m: nat
 H1: n <= 0
 H0: m = 0
 -------------------------
-2/2
+1/1
 n = 0 \/ n = 1
 ```
 
@@ -259,3 +366,9 @@ Qed.
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.inversion)
+
+<hr>
+
+<hr>
+
+<hr>
