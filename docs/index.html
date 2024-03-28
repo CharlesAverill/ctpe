@@ -59,36 +59,29 @@ C -&gt; A /\ C</code></pre>
 <h1 id="simplification"><a href="/ctpe/Simplification/index.html">Simplification</a></h1>
 <p>Summary</p>
 <h2 id="simpl"><a href="/ctpe/Simplification/simpl.html">simpl</a></h2>
-<p>A short summary of what the tactic does, starting the most generally and ending the most specifically.</p>
+<p><code>simpl</code> evaluates terms that are constructed of constant values - not variables. <code>simpl</code> can also partially evaluate partially-constant values.</p>
 <h3 id="syntax-1">Syntax</h3>
-<pre class="coq"><code>(* Example 1 *)
-tactic argument in H with x.
+<pre class="coq"><code>(* Simplify the goal as much as possible *)
+simpl.
 
-(* Example 2 *)
-tactic -&gt; t.</code></pre>
+(* Simplify a hypothesis *)
+simpl in H.
+
+(* Simplify in the entire proof state *)
+simpl in *.
+
+(* Only simplify a specific term in a specific hypothesis *)
+simpl (2 + 2) in H.</code></pre>
 <h3 id="examples-1">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>n: nat
--------------------------
-1/2
-False
--------------------------
-2/2
-True</code></pre>
-<pre class="coq"><code>tactic n.</code></pre>
+<pre class="coq"><code>-------------------------
+1/1
+2 + 2 = 1 + 3</code></pre>
+<pre class="coq"><code>simpl (2 + 2).</code></pre>
 <p>After</p>
-<pre class="coq"><code>n: nat
--------------------------
+<pre class="coq"><code>-------------------------
 1/2
-True
--------------------------
-2/2
-True</code></pre>
-<p>Script</p>
-<pre class="coq"><code>Theorem test : 
-    forall (n : nat), False /\ True.
-Proof.
-    tactic n. all: auto.
-Qed.</code></pre>
+4 = 1 + 3</code></pre>
 <h3 id="resources-1">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference Documentation</a></p>
+<p>TODO : Below link should be updated with the <code>master</code> version once it makes its way into the tree</p>
+<p><a href="https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl">Reference Documentation</a></p>

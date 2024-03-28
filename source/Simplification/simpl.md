@@ -1,54 +1,46 @@
 ## simpl
 
-A short summary of what the tactic does, starting the most generally and ending the most specifically.
+`simpl` evaluates terms that are constructed of constant values - not variables.
+`simpl` can also partially evaluate partially-constant values.
 
 ### Syntax
 
 ```coq
-(* Example 1 *)
-tactic argument in H with x.
+(* Simplify the goal as much as possible *)
+simpl.
 
-(* Example 2 *)
-tactic -> t.
+(* Simplify a hypothesis *)
+simpl in H.
+
+(* Simplify in the entire proof state *)
+simpl in *.
+
+(* Only simplify a specific term in a specific hypothesis *)
+simpl (2 + 2) in H.
 ```
 
 ### Examples
 
 Before
 ```coq
-n: nat
 -------------------------
-1/2
-False
--------------------------
-2/2
-True
+1/1
+2 + 2 = 1 + 3
 ```
 
 ```coq
-tactic n.
+simpl (2 + 2).
 ```
 
 After
 ```coq
-n: nat
 -------------------------
 1/2
-True
--------------------------
-2/2
-True
-```
-
-Script
-```coq
-Theorem test : 
-    forall (n : nat), False /\ True.
-Proof.
-    tactic n. all: auto.
-Qed.
+4 = 1 + 3
 ```
 
 ### Resources
 
-[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic)
+TODO : Below link should be updated with the `master` version once it makes its way into the tree
+
+[Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl)
