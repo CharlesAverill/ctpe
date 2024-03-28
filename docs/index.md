@@ -19,6 +19,7 @@ For these reasons, I've decided to compile a reference document of every tactic 
 
 1. [Generalization](#generalization)
 2. [Simplification](#simplification)
+3. [Evidence Analysis](#evidence-analysis)
 
 # [Generalization](/ctpe/Generalization/index.html)
 Summary

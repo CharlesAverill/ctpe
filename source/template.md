@@ -4,6 +4,7 @@
 
 1. [Generalization](#generalization)
 2. [Simplification](#simplification)
+3. [Evidence Analysis](#evidence-analysis)
 
 #include Generalization/index.md
 
