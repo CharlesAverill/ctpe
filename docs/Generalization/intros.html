@@ -5,15 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>intros - CTPE</title>
     <style>
+:root {
+    --blue: #0000FF;
+    --light-blue: #1e90ff;
+  }
+
 body {
     font-family: Garamond;
-    text-align: justify;
-    margin-left: 25%;
-    margin-right: 25%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--light-blue);
 }
 
 .home {
     text-align: right;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 8; /* Margin for mobile devices */
+    }
+}
+
+/* Media query for devices with a minimum width of 769px (typical desktops and above) */
+@media only screen and (min-width: 769px) {
+    body {
+        margin-left: 25%; /* Margin for desktop devices */
+        margin-right: 25%;
+        text-align: justify;
+    }
 }
     </style>
 
