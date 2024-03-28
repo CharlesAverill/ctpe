@@ -1,4 +1,5 @@
-# [Coq Tactics in Plain English](/ctpe/prologue.html)
+# Coq Tactics in Plain English
+
 If you're like me, one of the biggest shortcomings of the Coq ecosystem is the abysmally-complicated [tactic reference documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html).
 It is exhaustive (which is better than lacking), but I have a few specific issues with it:
 
