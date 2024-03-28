@@ -8,3 +8,5 @@
 #include Generalization/index.md
 
 #include Simplification/index.md
+
+#include Evidence Analysis/index.md
