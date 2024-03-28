@@ -2,7 +2,7 @@
 
 cp -r templates/highlight docs/highlight
 
-python compile_html_template.py test templates/pd_template.html templates/style.css sub_template.html
+python compile_html_template.py $1 templates/pd_template.html templates/style.css sub_template.html
 
 # Convert Markdown files to HTML using Pandoc
 for md_file in $(find docs -type f -name "*.md"); do
