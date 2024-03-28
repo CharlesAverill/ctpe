@@ -10,8 +10,9 @@ title: Coq Tactics in Plain English
 
 1. [Generalization](#generalization)
 2. [Simplification](#simplification)
-3. [Rewriting](#rewriting)
-4. [Case Analysis](#case-analysis)
+3. [Specific Solvers](#specific-solvers)
+4. [Rewriting](#rewriting)
+5. [Case Analysis](#case-analysis)
 
 <hr>
 
@@ -20,6 +21,8 @@ title: Coq Tactics in Plain English
 #include Generalization/index.md
 
 #include Simplification/index.md
+
+#include SpecificSolvers/index.md
 
 #include Rewriting/index.md
 

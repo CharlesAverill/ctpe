@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Embed Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="discriminate - CTPE">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
+    <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
+    <meta property="article:author" content="Charles Averill">
+    <meta property="article:section" content="Technology">
+    <meta property="article:tag" content="coq">
+    <meta property="article:tag" content="proof">
+    <meta property="article:tag" content="formal verification">
+    <meta property="article:tag" content="tactic">
+
+    <title>discriminate - CTPE</title>
+    <style>
+:root {
+    --blue: #0000FF;
+    --light-blue: #1e90ff;
+  }
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: left;
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.home {
+    text-align: right;
+}
+
+body {
+    font-family: Garamond;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 8;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 769px) {
+    body {
+        margin-left: 25%;
+        margin-right: 25%;
+        text-align: justify;
+    }
+}
+    </style>
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
+</head>
+<body>
+    <!-- Home Button -->
+    <h3 class="home"><a href="/ctpe/">Home</a>
+        <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Tactic Name">
+        <button type="submit" id="submitButton">Tactic Search</button>
+    </form>
+
+    <!-- Content -->
+    <div class="container">
+<h2 id="discriminate"><a href="/ctpe/SpecificSolvers/discriminate.html">discriminate</a></h2>
+<p><code>discriminate</code> solves goals that are trivial inequalities (something of the form <code>x &lt;&gt; y</code>). This tactic will fail if the goal is not an inequality or is non-trivial.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+discriminate.</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>-------------------------
+1/1
+1 &lt;&gt; 2</code></pre>
+<pre class="coq"><code>discriminate.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<p>Before</p>
+<pre class="coq"><code>-------------------------
+1/1
+&quot;hello&quot; &lt;&gt; &quot;world&quot;</code></pre>
+<pre class="coq"><code>discriminate.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.discriminate">Reference Documentation</a></p>
+<hr>
+    </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Embed Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Specific Solvers - CTPE">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
+    <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
+    <meta property="article:author" content="Charles Averill">
+    <meta property="article:section" content="Technology">
+    <meta property="article:tag" content="coq">
+    <meta property="article:tag" content="proof">
+    <meta property="article:tag" content="formal verification">
+    <meta property="article:tag" content="tactic">
+
+    <title>Specific Solvers - CTPE</title>
+    <style>
+:root {
+    --blue: #0000FF;
+    --light-blue: #1e90ff;
+  }
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: left;
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.home {
+    text-align: right;
+}
+
+body {
+    font-family: Garamond;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 8;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 769px) {
+    body {
+        margin-left: 25%;
+        margin-right: 25%;
+        text-align: justify;
+    }
+}
+    </style>
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
+</head>
+<body>
+    <!-- Home Button -->
+    <h3 class="home"><a href="/ctpe/">Home</a>
+        <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Tactic Name">
+        <button type="submit" id="submitButton">Tactic Search</button>
+    </form>
+
+    <!-- Content -->
+    <div class="container">
+<h1 id="specific-solvers"><a href="/ctpe/SpecificSolvers/index.html">Specific Solvers</a></h1>
+<p>Summary</p>
+<h2 id="reflexivity"><a href="/ctpe/SpecificSolvers/reflexivity.html">reflexivity</a></h2>
+<p><code>reflexivity</code> solves goals which state that a term is equal to itself. <code>reflexivity</code> has some simplification power, but not as much as <a href="/ctpe/Simplification/simpl.html"><code>simpl</code></a>. This tactic will fail if it cannot solve the goal.</p>
+<p><code>reflexivity</code> makes an attempt to simplify the goal and then <code>apply eq_refl</code>, where <code>eq_refl</code> is the sole constructor of the <code>eq</code> Inductive Proposition, stating that <code>forall {A : Type} (a : A), eq a a</code>.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+reflexivity.</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+-------------------------
+1/1
+n = n</code></pre>
+<pre class="coq"><code>reflexivity.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html?highlight=reflexivity#coq:tacn.reflexivity">Reference Documentation</a></p>
+<hr>
+<h2 id="assumption"><a href="/ctpe/SpecificSolvers/assumption.html">assumption</a></h2>
+<p><code>assumption</code> solves goals in which there exists an assumption that directly proves the goal (no simplification). This tactic will fail if there does not exist such an assumption.</p>
+<h3 id="syntax-1">Syntax</h3>
+<pre class="coq"><code>(* Simpl usage *)
+assumption.</code></pre>
+<h3 id="examples-1">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>P: Prop
+H: P
+-------------------------
+1/1
+P</code></pre>
+<pre class="coq"><code>assumption</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<h3 id="resources-1">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html?highlight=assumption#coq:tacn.assumption">Reference Documentation</a></p>
+<hr>
+<h2 id="discriminate"><a href="/ctpe/SpecificSolvers/discriminate.html">discriminate</a></h2>
+<p><code>discriminate</code> solves goals that are trivial inequalities (something of the form <code>x &lt;&gt; y</code>). This tactic will fail if the goal is not an inequality or is non-trivial.</p>
+<h3 id="syntax-2">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+discriminate.</code></pre>
+<h3 id="examples-2">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>-------------------------
+1/1
+1 &lt;&gt; 2</code></pre>
+<pre class="coq"><code>discriminate.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<p>Before</p>
+<pre class="coq"><code>-------------------------
+1/1
+&quot;hello&quot; &lt;&gt; &quot;world&quot;</code></pre>
+<pre class="coq"><code>discriminate.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<h3 id="resources-2">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.discriminate">Reference Documentation</a></p>
+<hr>
+<h2 id="exact"><a href="/ctpe/SpecificSolvers/exact.html">exact</a></h2>
+<p><code>exact</code> allows users to solve goals by providing a proof object directly. This tactic will fail if the provided proof object does not prove the goal.</p>
+<h3 id="syntax-3">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+exact I.</code></pre>
+<h3 id="examples-3">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>-------------------------
+1/1
+True</code></pre>
+<pre class="coq"><code>exact I.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+-------------------------
+1/1
+n + 5 = n + 5</code></pre>
+<pre class="coq"><code>exact (eq_refl (n + 5)).</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<h3 id="resources-3">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html?highlight=assumption#coq:tacn.exact">Reference Documentation</a></p>
+<hr>
+<h2 id="contradiction"><a href="/ctpe/SpecificSolvers/contradiction.html">contradiction</a></h2>
+<p><code>contradiction</code> solves goals in which there exist contradictory hypotheses. These contradictions generally take the form of a <code>False</code> hypothesis or a pair of hypotheses that state <code>P</code> and <code>~ P</code> for some proposition. This tactic will fail if no such contradictions exist.</p>
+<h3 id="syntax-4">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+contradiction.</code></pre>
+<h3 id="examples-4">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>H: False
+-------------------------
+1/1
+False</code></pre>
+<pre class="coq"><code>contradiction.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<p>Before</p>
+<pre class="coq"><code>x, y: nat
+H: x = y
+H0: x &lt;&gt; y
+-------------------------
+1/1
+x = x + y</code></pre>
+<pre class="coq"><code>contradiction.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<h3 id="resources-4">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html?highlight=assumption#coq:tacn.contradiction">Reference Documentation</a></p>
+<hr>
+<hr>
+    </div>
+</body>
+</html>
