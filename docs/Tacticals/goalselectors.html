@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Prologue - CTPE">
+    <meta property="og:title" content="Goal Selectors - CTPE">
     <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
@@ -16,7 +16,7 @@
     <meta property="article:tag" content="formal verification">
     <meta property="article:tag" content="tactic">
 
-    <title>Prologue - CTPE</title>
+    <title>Goal Selectors - CTPE</title>
     <style>
 :root {
     --blue: #0000FF;
@@ -137,32 +137,41 @@ body {
 
     <!-- Content -->
     <div class="container">
-<h1 id="coq-tactics-in-plain-english"><a href="/ctpe/prologue.html">Coq Tactics in Plain English</a></h1>
-<p>If you&rsquo;re like me, one of the biggest shortcomings of the Coq ecosystem is the abysmally-complicated <a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html">tactic reference documentation</a>. It is exhaustive (which is better than lacking), but I have a few specific issues with it:</p>
-<ol type="1">
-<li>Entries are far too verbose. I usually don&rsquo;t <em>need</em> an exhaustive explanation of what a tactic does.</li>
-<li>Documentation specifics become out-of-date due to the sheer number of tactics and how many ways they can interact with a goal state.</li>
-<li>BNF grammar is not that easy to read. This one might be more controversial, but I would rather have <strong>examples</strong> of syntax than a homework problem.</li>
-<li>There are not enough examples of tactics being used, and the examples that do exist are too often not representative of what a beginner might see.</li>
-</ol>
-<p>For these reasons, I&rsquo;ve decided to compile a reference document of every tactic that I&rsquo;ve ever used, addressing the problems above via the following solutions.</p>
-<ol type="1">
-<li>Entries will be written at an undergraduate level, assuming a basic understanding of the Coq system. Sometimes, this will require reading the pages for other tactics before the one you really want to know about, but I think that&rsquo;s a fair compromise. Explanations will focus on what configurations of goal states the tactic is useful or not useful for.</li>
-<li>Entries will start general and become more specific as one reads on. This will ensure minimal maintenance is necessary as tactics change over time.</li>
-<li>Entries will include syntax <em>examples</em> rather than BNF grammars</li>
-<li>Entries will contain multiple examples, including goal states before and after executing the tactics. Small MRE Coq scripts may be included.</li>
-<li>As a fallback, links to other resources, at minimum the official documentation, will be included in each entry.</li>
-</ol>
-<p>This guide doesn&rsquo;t aim to replace the reference documentation, it aims to be a stepping stone into the reference documentation that reduces the apprehension of those new to Coq.</p>
-<p>There are many other guides to Coq tactics, you should check them out too if I don&rsquo;t have what you need:</p>
+<h2 id="goal-selectors"><a href="/ctpe/Tacticals/goalselectors.html">Goal Selectors</a></h2>
+<p>Goal selectors are a category of tacticals that apply a tactic to a specific goal or goals.</p>
+<p>There are a number of goal selectors:</p>
 <ul>
-<li><a href="https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html">Coq Tactics Cheatsheet</a></li>
-<li><a href="https://softwarefoundations.cis.upenn.edu/lf-current/Tactics.html">More Basic Tactics - Software Foundations</a></li>
-<li><a href="http://flint.cs.yale.edu/cs428/coq/doc/Reference-Manual012.html">Detailed examples of tactics</a></li>
-<li><a href="https://le.qun.ch/en/blog/coq/">Coq Tricks for Beginners with Too Many Examples</a></li>
-<li><a href="https://julesjacobs.com/notes/coq-cheatsheet/coq-cheatsheet.pdf">Coq Cheatsheet</a></li>
-<li><a href="https://www.inf.ed.ac.uk/teaching/courses/tspl/cheatsheet.pdf">Coq cheat sheet</a></li>
+<li><code>all</code>: Applies the tactic to all goals in focus <strong>in series</strong></li>
+<li><code>!</code>: If only one goal is in focus, apply the tactic. If not, this tactic fails</li>
+<li><code>par</code>: Applies the tactic to all goals in focus <strong>in parallel</strong>. The tactic provided must solve all goals or do nothing, otherwise this tactic fails</li>
+<li><code>n-m</code>: Applies the tactic to goals with indices between <code>n</code> and <code>m</code>, inclusive</li>
 </ul>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>all: simpl.
+
+par: simpl; reflexivity; auto.
+
+!: discriminate.
+
+2-3: auto.</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>-------------------------
+1/2
+True
+-------------------------
+2/2
+True</code></pre>
+<pre class="coq"><code>all: exact I.
+(* or *)
+1-2: exact I.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<p>Alternatively,</p>
+<pre class="coq"><code>!: exact I.</code></pre>
+<pre class="after"><code>Error: Expected a single focused goal but 2 goals are focused.</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a href="https://coq.inria.fr/doc/V8.18.0/refman/proof-engine/ltac.html#goal-selectors">Reference Documentation</a></p>
 <hr>
     </div>
 </body>

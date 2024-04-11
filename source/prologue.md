@@ -20,6 +20,8 @@ For these reasons, I've decided to compile a reference document of every tactic 
 4. Entries will contain multiple examples, including goal states before and after executing the tactics. Small MRE Coq scripts may be included.
 5. As a fallback, links to other resources, at minimum the official documentation, will be included in each entry.
 
+This guide doesn't aim to replace the reference documentation, it aims to be a stepping stone into the reference documentation that reduces the apprehension of those new to Coq.
+
 There are many other guides to Coq tactics, you should check them out too if I don't have what you need:
 
 - [Coq Tactics Cheatsheet](https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html)

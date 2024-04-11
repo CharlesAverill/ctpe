@@ -4,7 +4,12 @@ title: Tacticals - CTPE
 
 # [Tacticals](/ctpe/Tacticals/index.html)
 This category refers to tactics that modify the behavior of other tactics.
+Important phrasing note for this section: a tactical is only a tactical when it doesn't have all of its arguments. A tactical with all of its arguments is a tactic.
 Tacticals are heavily utilized in automation because they broaden the capabilities of the tactic language significantly, making it much more expressive.
+
+For an interesting perspective on automation - and good examples of building "one shot proofs" (proofs that only contain one tactic) - check out [this post by Adam Chlipala](http://adam.chlipala.net/cpdt/html/Large.html).
+
+<!-- #include try.md -->
 
 ---
 title: ; - CTPE
@@ -94,12 +99,127 @@ Inductive or (A B : Prop) : Prop :=
 
 <hr>
 
-<!-- #include selectors.md -->
+---
+title: Goal Selectors - CTPE
+---
+
+## [Goal Selectors](/ctpe/Tacticals/goalselectors.html)
+Goal selectors are a category of tacticals that apply a tactic to a specific goal or goals.
+
+There are a number of goal selectors:
+
+- `all`: Applies the tactic to all goals in focus **in series**
+- `!`: If only one goal is in focus, apply the tactic. If not, this tactic fails
+- `par`: Applies the tactic to all goals in focus **in parallel**. The tactic provided must solve all goals or do nothing, otherwise this tactic fails
+- `n-m`: Applies the tactic to goals with indices between `n` and `m`, inclusive
+
+### Syntax
+
+```coq
+all: simpl.
+
+par: simpl; reflexivity; auto.
+
+!: discriminate.
+
+2-3: auto.
+```
+
+### Examples
+
+Before
+```coq
+-------------------------
+1/2
+True
+-------------------------
+2/2
+True
+```
+
+```coq
+all: exact I.
+(* or *)
+1-2: exact I.
+```
+
+After
+```coq
+Proof finished
+```
+
+Alternatively,
+
+```coq
+!: exact I.
+```
+
+```After
+Error: Expected a single focused goal but 2 goals are focused.
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/V8.18.0/refman/proof-engine/ltac.html#goal-selectors)
+
+<hr>
+
+---
+title: repeat - CTPE
+---
+
+## [repeat](/ctpe/Tacticals/repeat.html)
+The `repeat` tactical repeatedly executes a tactic until it either fails or causes no change in the goal.
+If the tactic provided succeeds, it will be recursively applied to each generated subgoal.
+
+### Syntax
+
+```coq
+(* Simple usage *)
+repeat split.
+```
+
+### Examples
+
+Before
+```coq
+P, Q, R, S: Prop
+-------------------------
+1/1
+P /\ Q /\ R /\ S
+```
+
+```coq
+repeat split.
+```
+
+After
+```coq
+P, Q, R, S: Prop
+-------------------------
+1/4
+P
+-------------------------
+2/4
+Q
+-------------------------
+3/4
+R
+-------------------------
+4/4
+S
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#coq:tacn.repeat)
+
+<hr>
 
 <!-- #include brackets.md -->
 
-<!-- #include repeat.md -->
-
 <!-- #include or.md -->
+
+<!-- #include do.md -->
 
 <hr>
