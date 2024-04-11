@@ -13,6 +13,7 @@ title: Coq Tactics in Plain English
 3. [Specific Solvers](#specific-solvers)
 4. [Rewriting](#rewriting)
 5. [Case Analysis](#case-analysis)
+6. [Automation](#automation)
 
 <hr>
 
@@ -27,3 +28,5 @@ title: Coq Tactics in Plain English
 #include Rewriting/index.md
 
 #include CaseAnalysis/index.md
+
+#include Automation/index.md

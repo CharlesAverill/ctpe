@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="simpl - CTPE">
+    <meta property="og:title" content="auto - CTPE">
     <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
@@ -16,7 +16,7 @@
     <meta property="article:tag" content="formal verification">
     <meta property="article:tag" content="tactic">
 
-    <title>simpl - CTPE</title>
+    <title>auto - CTPE</title>
     <style>
 :root {
     --blue: #0000FF;
@@ -137,32 +137,37 @@ body {
 
     <!-- Content -->
     <div class="container">
-<h2 id="simpl"><a href="/ctpe/Simplification/simpl.html">simpl</a></h2>
-<p><code>simpl</code> evaluates terms that are constructed of constant values - not variables. <code>simpl</code> can also partially evaluate partially-constant values.</p>
+<h2 id="auto"><a href="/ctpe/Automation/auto.html">auto</a></h2>
+<p><code>auto</code> does a recursive search through a specified knowledge base in order to solve goals. If <code>auto</code> cannot completely solve a goal, it succeeds with no changes to the goal.</p>
+<p>The knowledge bases that <code>auto</code> uses are called <a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases"><strong>Hint Databases</strong></a>. Hint databases are provided by the standard library, and can also be created and added to by users. Hint databases can contain a variety of hint types, including but not limited to: - <code>Constructors</code>: <code>auto</code> will now try to apply each of the constructors for a given <code>Inductive</code> type - <code>Unfold</code>: <code>auto</code> will now try to unfold a given definition - helpful when trivial simplification isn&rsquo;t enough - <code>Resolve</code>: <code>auto</code> will now try to <code>simple apply</code> a given lemma</p>
+<p>The default hint database used by <code>auto</code> when no other database is specified is <code>core</code>.</p>
 <h3 id="syntax">Syntax</h3>
-<pre class="coq"><code>(* Simplify the goal as much as possible *)
-simpl.
+<pre class="coq"><code>(* Simple usage *)
+auto.
 
-(* Simplify a hypothesis *)
-simpl in H.
+(* Use a specific database *)
+auto with bool.
 
-(* Simplify in the entire proof state *)
-simpl in *.
-
-(* Only simplify a specific term in a specific hypothesis *)
-simpl (2 + 2) in H.</code></pre>
+(* Use a specific lemma *)
+auto using example.</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>-------------------------
 1/1
-2 + 2 = 1 + 3</code></pre>
-<pre class="coq"><code>simpl (2 + 2).</code></pre>
+0 = 0</code></pre>
+<pre class="coq"><code>auto.</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
-1/1
-4 = 1 + 3</code></pre>
+<pre class="coq"><code>Proof finished</code></pre>
+<p>Script</p>
+<pre class="coq"><code>Create HintDb automation.
+Lemma add_0_r : forall n, n * 1 = n. 
+Proof. induction n. auto. simpl. now rewrite IHn. Qed.
+Hint Resolve add_0_r : automation.
+
+Lemma x : (forall n, n * 1 = n) /\ (true = true). auto with automation. Qed.</code></pre>
 <h3 id="resources">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.simpl">Reference Documentation</a></p>
+<p><a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto">Reference Documentation</a></p>
+<p><a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases">Hint Databases</a></p>
 <hr>
     </div>
 </body>

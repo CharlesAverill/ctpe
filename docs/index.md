@@ -43,6 +43,7 @@ There are many other guides to Coq tactics, you should check them out too if I d
 3. [Specific Solvers](#specific-solvers)
 4. [Rewriting](#rewriting)
 5. [Case Analysis](#case-analysis)
+6. [Automation](#automation)
 
 <hr>
 
@@ -272,9 +273,7 @@ After
 
 ### Resources
 
-TODO : Below link should be updated with the `master` version once it makes its way into the tree
-
-[Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl)
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.simpl)
 
 <hr>
 
@@ -347,9 +346,7 @@ false
 
 ### Resources
 
-TODO : Below link should be updated with the `master` version once it makes its way into the tree
-
-[Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.unfold)
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.unfold)
 
 <hr>
 
@@ -1091,6 +1088,82 @@ Qed.
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.induction)
+
+<hr>
+
+<hr>
+
+---
+title: Automation - CTPE
+---
+
+# [Automation](/ctpe/Automation/index.html)
+This is basically a catch-all category for tactics that do a lot of things at once.
+This category of tactics generally intends to solve a large category of simple goals to reduce the load of the proof writer.
+
+---
+title: auto - CTPE
+---
+
+## [auto](/ctpe/Automation/auto.html)
+`auto` does a recursive search through a specified knowledge base in order to solve goals.
+If `auto` cannot completely solve a goal, it succeeds with no changes to the goal.
+
+The knowledge bases that `auto` uses are called [**Hint Databases**](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases).
+Hint databases are provided by the standard library, and can also be created and added to by users.
+Hint databases can contain a variety of hint types, including but not limited to:
+- `Constructors`: `auto` will now try to apply each of the constructors for a given `Inductive` type
+- `Unfold`: `auto` will now try to unfold a given definition - helpful when trivial simplification isn't enough
+- `Resolve`: `auto` will now try to `simple apply` a given lemma 
+
+The default hint database used by `auto` when no other database is specified is `core`.
+
+### Syntax
+
+```coq
+(* Simple usage *)
+auto.
+
+(* Use a specific database *)
+auto with bool.
+
+(* Use a specific lemma *)
+auto using example.
+```
+
+### Examples
+
+Before
+```coq
+-------------------------
+1/1
+0 = 0
+```
+
+```coq
+auto.
+```
+
+After
+```coq
+Proof finished
+```
+
+Script
+```coq
+Create HintDb automation.
+Lemma add_0_r : forall n, n * 1 = n. 
+Proof. induction n. auto. simpl. now rewrite IHn. Qed.
+Hint Resolve add_0_r : automation.
+
+Lemma x : (forall n, n * 1 = n) /\ (true = true). auto with automation. Qed.
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto)
+
+[Hint Databases](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases)
 
 <hr>
 

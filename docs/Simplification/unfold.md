@@ -67,8 +67,6 @@ false
 
 ### Resources
 
-TODO : Below link should be updated with the `master` version once it makes its way into the tree
-
-[Reference Documentation](https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.unfold)
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.unfold)
 
 <hr>
