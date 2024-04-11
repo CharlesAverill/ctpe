@@ -139,7 +139,12 @@ body {
     <div class="container">
 <h2 id="auto"><a href="/ctpe/Automation/auto.html">auto</a></h2>
 <p><code>auto</code> does a recursive search through a specified knowledge base in order to solve goals. If <code>auto</code> cannot completely solve a goal, it succeeds with no changes to the goal.</p>
-<p>The knowledge bases that <code>auto</code> uses are called <a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases"><strong>Hint Databases</strong></a>. Hint databases are provided by the standard library, and can also be created and added to by users. Hint databases can contain a variety of hint types, including but not limited to: - <code>Constructors</code>: <code>auto</code> will now try to apply each of the constructors for a given <code>Inductive</code> type - <code>Unfold</code>: <code>auto</code> will now try to unfold a given definition - helpful when trivial simplification isn&rsquo;t enough - <code>Resolve</code>: <code>auto</code> will now try to <code>simple apply</code> a given lemma</p>
+<p>The knowledge bases that <code>auto</code> uses are called <a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases"><strong>Hint Databases</strong></a>. Hint databases are provided by the standard library, and can also be created and added to by users. Hint databases can contain a variety of hint types, including but not limited to:</p>
+<ul>
+<li><code>Constructors</code>: <code>auto</code> will now try to apply each of the constructors for a given <code>Inductive</code> type</li>
+<li><code>Unfold</code>: <code>auto</code> will now try to unfold a given definition - helpful when trivial simplification isn&rsquo;t enough</li>
+<li><code>Resolve</code>: <code>auto</code> will now try to <code>simple apply</code> a given lemma</li>
+</ul>
 <p>The default hint database used by <code>auto</code> when no other database is specified is <code>core</code>.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)

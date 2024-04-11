@@ -9,6 +9,7 @@ If `auto` cannot completely solve a goal, it succeeds with no changes to the goa
 The knowledge bases that `auto` uses are called [**Hint Databases**](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases).
 Hint databases are provided by the standard library, and can also be created and added to by users.
 Hint databases can contain a variety of hint types, including but not limited to:
+
 - `Constructors`: `auto` will now try to apply each of the constructors for a given `Inductive` type
 - `Unfold`: `auto` will now try to unfold a given definition - helpful when trivial simplification isn't enough
 - `Resolve`: `auto` will now try to `simple apply` a given lemma 
