@@ -61,7 +61,7 @@ This tactic will fail if there does not exist such an assumption.
 ### Syntax
 
 ```coq
-(* Simpl usage *)
+(* Simple usage *)
 assumption.
 ```
 
