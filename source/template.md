@@ -14,6 +14,7 @@ title: Coq Tactics in Plain English
 4. [Rewriting](#rewriting)
 5. [Case Analysis](#case-analysis)
 6. [Automation](#automation)
+7. [Tacticals](#tacticals)
 
 <hr>
 
@@ -30,3 +31,5 @@ title: Coq Tactics in Plain English
 #include CaseAnalysis/index.md
 
 #include Automation/index.md
+
+#include Tacticals/index.md
