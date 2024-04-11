@@ -1220,7 +1220,45 @@ Tacticals are heavily utilized in automation because they broaden the capabiliti
 
 For an interesting perspective on automation - and good examples of building "one shot proofs" (proofs that only contain one tactic) - check out [this post by Adam Chlipala](http://adam.chlipala.net/cpdt/html/Large.html).
 
-<!-- #include try.md -->
+---
+title: try - CTPE
+---
+
+## [try](/ctpe/Tacticals/try.html)
+The `try` tactical executes a provided tactic, catching any errors and always succeeding.
+
+### Syntax
+
+```coq
+(* Simple usage *)
+try reflexivity.
+```
+
+### Examples
+
+Before
+```coq
+-------------------------
+1/1
+1 = 2
+```
+
+```coq
+try reflexivity.
+```
+
+After
+```coq
+-------------------------
+1/1
+1 = 2
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#coq:tacn.try)
+
+<hr>
 
 ---
 title: ; - CTPE
@@ -1427,9 +1465,46 @@ S
 
 <hr>
 
-<!-- #include brackets.md -->
+---
+title: || - CTPE
+---
 
-<!-- #include or.md -->
+## [||](/ctpe/Tacticals/or.html)
+The infix `||` tactical tries the first tactic and only tries the second if the first failed.
+In other words, `||` executes the first tactic that makes progress on the goal.
+
+### Syntax
+
+```coq
+(* Simple usage *)
+reflexivity || assumption.
+```
+
+### Examples
+
+Before
+```coq
+P: Prop
+H: P
+-------------------------
+1/1
+P
+```
+
+```coq
+reflexivity || assumption.
+```
+
+After
+```coq
+Proof finished
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#first-tactic-to-make-progress)
+
+<hr>
 
 <!-- #include do.md -->
 

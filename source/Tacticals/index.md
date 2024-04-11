@@ -10,7 +10,7 @@ Tacticals are heavily utilized in automation because they broaden the capabiliti
 
 For an interesting perspective on automation - and good examples of building "one shot proofs" (proofs that only contain one tactic) - check out [this post by Adam Chlipala](http://adam.chlipala.net/cpdt/html/Large.html).
 
-<!-- #include try.md -->
+#include try.md
 
 #include semicolon.md
 
@@ -18,8 +18,6 @@ For an interesting perspective on automation - and good examples of building "on
 
 #include repeat.md
 
-<!-- #include brackets.md -->
-
-<!-- #include or.md -->
+#include or.md
 
 <!-- #include do.md -->
