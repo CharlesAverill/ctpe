@@ -11,7 +11,6 @@ If you're like me, one of the biggest shortcomings of the Coq ecosystem is the a
 It is exhaustive (which is better than lacking), but I have a few specific issues with it:
 
 1. Entries are far too verbose. I usually don't _need_ an exhaustive explanation of what a tactic does.
-2. Documentation specifics become out-of-date due to the sheer number of tactics and how many ways they can interact with a goal state.
 3. BNF grammar is not that easy to read. This one might be more controversial, but I would rather have **examples** of syntax than a homework problem.
 4. There are not enough examples of tactics being used, and the examples that do exist are too often not representative of what a beginner might see.
 
