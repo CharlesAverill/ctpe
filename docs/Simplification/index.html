@@ -36,6 +36,23 @@ a:hover {
     color: var(--light-blue);
 }
 
+table {
+    width: 100%;
+    text-align: center;
+}
+
+/* td {
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: left;
+}
+
+tr td:last-child {
+    text-align: right;
+} */
+
 h1 {
     text-align: center;
 }
@@ -53,7 +70,7 @@ pre {
 }
 
 .home {
-    text-align: right;
+    text-align: center;
 }
 
 body {
@@ -107,13 +124,16 @@ body {
     </script>
 </head>
 <body>
-    <!-- Home Button -->
-    <h3 class="home"><a href="/ctpe/">Home</a>
-        <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
-    <form id="searchForm">
-        <input type="text" id="searchInput" placeholder="Tactic Name">
-        <button type="submit" id="submitButton">Tactic Search</button>
-    </form>
+    <table>
+        <tr>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3></td>
+            <td><form style="text-align: right" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Tactic Name">
+                <button type="submit" id="submitButton">Tactic Search</button>
+            </form></td>
+        </tr>
+    </table>
 
     <!-- Content -->
     <div class="container">
@@ -146,6 +166,55 @@ simpl (2 + 2) in H.</code></pre>
 <h3 id="resources">Resources</h3>
 <p>TODO : Below link should be updated with the <code>master</code> version once it makes its way into the tree</p>
 <p><a href="https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.simpl">Reference Documentation</a></p>
+<hr>
+<h2 id="unfold"><a href="/ctpe/Simplification/unfold.html">unfold</a></h2>
+<p><code>unfold</code> replaces definition identifiers with the definition&rsquo;s contents, simplifying along the way.</p>
+<h3 id="syntax-1">Syntax</h3>
+<pre class="coq"><code>(* Simple example *)
+unfold plus.
+
+(* Unfolding a definition in a hypothesis *)
+unfold X in H.
+
+(* Unfolding a definition in all hypotheses and the goal *)
+unfold X in *.</code></pre>
+<h3 id="examples-1">Examples</h3>
+<p>Given</p>
+<pre class="coq"><code>Fixpoint bitlist (n : nat) : list bool :=
+    match n with
+    | O =&gt;    true  :: nil
+    | S n&#39; =&gt; false :: (bitlist n&#39;)
+    end.</code></pre>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+l: list bool
+H: bitlist (S (S n)) = false :: false :: l
+-------------------------
+1/1
+bitlist (S n) = false :: l</code></pre>
+<pre class="coq"><code>unfold bitlist in *.</code></pre>
+<p>After</p>
+<pre class="coq"><code>n: nat
+l: list bool
+H: false
+     :: false
+        :: (fix bitlist (n : nat) : list bool :=
+              match n with
+              | 0 =&gt; true :: nil
+              | S n&#39; =&gt; false :: bitlist n&#39;
+              end) n =
+    false :: false :: l
+-------------------------
+1/1
+false
+ :: (fix bitlist (n0 : nat) : list bool :=
+       match n0 with
+       | 0 =&gt; true :: nil
+       | S n&#39; =&gt; false :: bitlist n&#39;
+       end) n = false :: l</code></pre>
+<h3 id="resources-1">Resources</h3>
+<p>TODO : Below link should be updated with the <code>master</code> version once it makes its way into the tree</p>
+<p><a href="https://coq.inria.fr/doc/V8.11.0/refman/proof-engine/tactics.html#coq:tacn.unfold">Reference Documentation</a></p>
 <hr>
 <hr>
     </div>

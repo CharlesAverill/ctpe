@@ -16,6 +16,23 @@ a:hover {
     color: var(--light-blue);
 }
 
+table {
+    width: 100%;
+    text-align: center;
+}
+
+/* td {
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: left;
+}
+
+tr td:last-child {
+    text-align: right;
+} */
+
 h1 {
     text-align: center;
 }
@@ -33,7 +50,7 @@ pre {
 }
 
 .home {
-    text-align: right;
+    text-align: center;
 }
 
 body {

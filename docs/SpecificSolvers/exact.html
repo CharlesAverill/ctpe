@@ -36,6 +36,23 @@ a:hover {
     color: var(--light-blue);
 }
 
+table {
+    width: 100%;
+    text-align: center;
+}
+
+/* td {
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: left;
+}
+
+tr td:last-child {
+    text-align: right;
+} */
+
 h1 {
     text-align: center;
 }
@@ -53,7 +70,7 @@ pre {
 }
 
 .home {
-    text-align: right;
+    text-align: center;
 }
 
 body {
@@ -107,13 +124,16 @@ body {
     </script>
 </head>
 <body>
-    <!-- Home Button -->
-    <h3 class="home"><a href="/ctpe/">Home</a>
-        <a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3>
-    <form id="searchForm">
-        <input type="text" id="searchInput" placeholder="Tactic Name">
-        <button type="submit" id="submitButton">Tactic Search</button>
-    </form>
+    <table>
+        <tr>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3></td>
+            <td><form style="text-align: right" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Tactic Name">
+                <button type="submit" id="submitButton">Tactic Search</button>
+            </form></td>
+        </tr>
+    </table>
 
     <!-- Content -->
     <div class="container">
