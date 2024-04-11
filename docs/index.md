@@ -1124,10 +1124,10 @@ The default hint database used by `auto` when no other database is specified is 
 (* Simple usage *)
 auto.
 
-(* Use a specific database *)
+(* Using a specific database *)
 auto with bool.
 
-(* Use a specific lemma *)
+(* Using a specific lemma *)
 auto using example.
 ```
 
@@ -1156,7 +1156,8 @@ Lemma add_0_r : forall n, n * 1 = n.
 Proof. induction n. auto. simpl. now rewrite IHn. Qed.
 Hint Resolve add_0_r : automation.
 
-Lemma x : (forall n, n * 1 = n) /\ (true = true). auto with automation. Qed.
+Lemma x : (forall n, n * 1 = n) /\ (true = true). 
+Proof. auto with automation. Qed.
 ```
 
 ### Resources
@@ -1164,6 +1165,41 @@ Lemma x : (forall n, n * 1 = n) /\ (true = true). auto with automation. Qed.
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto)
 
 [Hint Databases](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases)
+
+<hr>
+
+---
+title: trivial - CTPE
+---
+
+## [trivial](/ctpe/Automation/trivial.html)
+`trivial` is essentially a non-recursive [`auto`](/ctpe/Automation/auto.html).
+`trivial` is best utilized when a lemma that exactly matches the goal already exists in the hint database.
+
+### Syntax
+
+```coq
+(* Simple usage *)
+trivial.
+
+(* Using a specific database *)
+trivial with bool.
+```
+
+### Examples
+
+Script
+```coq
+Theorem trivial_example : forall {X : Type} (n : X), 
+    n = n.
+Proof.
+    trivial.
+Qed.
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.trivial)
 
 <hr>
 

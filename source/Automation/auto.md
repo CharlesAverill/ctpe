@@ -22,10 +22,10 @@ The default hint database used by `auto` when no other database is specified is 
 (* Simple usage *)
 auto.
 
-(* Use a specific database *)
+(* Using a specific database *)
 auto with bool.
 
-(* Use a specific lemma *)
+(* Using a specific lemma *)
 auto using example.
 ```
 
@@ -54,7 +54,8 @@ Lemma add_0_r : forall n, n * 1 = n.
 Proof. induction n. auto. simpl. now rewrite IHn. Qed.
 Hint Resolve add_0_r : automation.
 
-Lemma x : (forall n, n * 1 = n) /\ (true = true). auto with automation. Qed.
+Lemma x : (forall n, n * 1 = n) /\ (true = true). 
+Proof. auto with automation. Qed.
 ```
 
 ### Resources
