@@ -138,17 +138,17 @@ body {
     <!-- Content -->
     <div class="container">
 <h1 id="coq-tactics-in-plain-english"><a href="/ctpe/prologue.html">Coq Tactics in Plain English</a></h1>
-<p>If you&rsquo;re like me, one of the biggest shortcomings of the Coq ecosystem is the abysmally-complicated <a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html">tactic reference documentation</a>. It is exhaustive (which is better than lacking), but I have a few specific issues with it:</p>
+<p>If you&rsquo;re like me, one of the biggest shortcomings of the Coq ecosystem is the fairly complicated <a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html">tactic reference documentation</a>. It is exhaustive (which is better than lacking), but I have a few specific issues with it:</p>
 <ol type="1">
-<li>Entries are far too verbose. I usually don&rsquo;t <em>need</em> an exhaustive explanation of what a tactic does.</li>
-<li>BNF grammar is not that easy to read. This one might be more controversial, but I would rather have <strong>examples</strong> of syntax than a homework problem.</li>
+<li>Entries are too verbose. I usually don&rsquo;t <em>need</em> an exhaustive explanation of what a tactic does.</li>
+<li>BNF grammar is not that easy to read. This one might be more controversial, but I would rather have <strong>examples</strong> of syntax.</li>
 <li>There are not enough examples of tactics being used, and the examples that do exist are too often not representative of what a beginner might see.</li>
 </ol>
 <p>For these reasons, I&rsquo;ve decided to compile a reference document of every tactic that I&rsquo;ve ever used, addressing the problems above via the following solutions.</p>
 <ol type="1">
 <li>Entries will be written at an undergraduate level, assuming a basic understanding of the Coq system. Sometimes, this will require reading the pages for other tactics before the one you really want to know about, but I think that&rsquo;s a fair compromise. Explanations will focus on what configurations of goal states the tactic is useful or not useful for.</li>
 <li>Entries will start general and become more specific as one reads on. This will ensure minimal maintenance is necessary as tactics change over time.</li>
-<li>Entries will include syntax <em>examples</em> rather than BNF grammars</li>
+<li>Entries will include syntax <em>examples</em> rather than BNF grammars.</li>
 <li>Entries will contain multiple examples, including goal states before and after executing the tactics. Small MRE Coq scripts may be included.</li>
 <li>As a fallback, links to other resources, at minimum the official documentation, will be included in each entry.</li>
 </ol>
