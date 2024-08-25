@@ -159,7 +159,7 @@ clear - x z c.</code></pre>
 <pre class="coq"><code>n: nat
 H, Hr1, Hr2: n = 0
 IHn: n = 1
--------------------------
+=========================
 1/1
 True</code></pre>
 <pre class="coq"><code>clear Hr1 Hr2.</code></pre>
@@ -167,20 +167,20 @@ True</code></pre>
 <pre class="coq"><code>n: nat
 H: n = 0
 IHn: n = 1
--------------------------
+=========================
 1/1
 True</code></pre>
 <p>Before</p>
 <pre class="coq"><code>a, b, c, x, y, z: nat
 H: a = z
--------------------------
+=========================
 1/1
 True</code></pre>
 <pre class="coq"><code>clear - a x H.</code></pre>
 <p>After</p>
 <pre class="coq"><code>a, x, z: nat
 H: a = z
--------------------------
+=========================
 1/1
 True</code></pre>
 <h3 id="resources">Resources</h3>

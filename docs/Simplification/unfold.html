@@ -161,7 +161,7 @@ unfold X in *.</code></pre>
 <pre class="coq"><code>n: nat
 l: list bool
 H: bitlist (S (S n)) = false :: false :: l
--------------------------
+=========================
 1/1
 bitlist (S n) = false :: l</code></pre>
 <pre class="coq"><code>unfold bitlist in *.</code></pre>
@@ -176,7 +176,7 @@ H: false
               | S n&#39; =&gt; false :: bitlist n&#39;
               end) n =
     false :: false :: l
--------------------------
+=========================
 1/1
 false
  :: (fix bitlist (n0 : nat) : list bool :=

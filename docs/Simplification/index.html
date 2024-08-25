@@ -161,12 +161,12 @@ simpl in *.
 simpl (2 + 2) in H.</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 2 + 2 = 1 + 3</code></pre>
 <pre class="coq"><code>simpl (2 + 2).</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 4 = 1 + 3</code></pre>
 <h3 id="resources">Resources</h3>
@@ -198,7 +198,7 @@ unfold X in *.</code></pre>
 <pre class="coq"><code>n: nat
 l: list bool
 H: bitlist (S (S n)) = false :: false :: l
--------------------------
+=========================
 1/1
 bitlist (S n) = false :: l</code></pre>
 <pre class="coq"><code>unfold bitlist in *.</code></pre>
@@ -213,7 +213,7 @@ H: false
               | S n&#39; =&gt; false :: bitlist n&#39;
               end) n =
     false :: false :: l
--------------------------
+=========================
 1/1
 false
  :: (fix bitlist (n0 : nat) : list bool :=
@@ -246,15 +246,15 @@ tactic</a>).</p>
 <pre class="coq"><code>split.</code></pre>
 <h3 id="examples-2">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 True /\ False</code></pre>
 <pre class="coq"><code>split.</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/2
 True
--------------------------
+=========================
 2/2
 False</code></pre>
 <h3 id="resources-2">Resources</h3>

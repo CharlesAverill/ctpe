@@ -169,39 +169,39 @@ intros n m x.
 intros [A B].</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 forall (n : nat), n + 0 = n</code></pre>
 <pre class="coq"><code>intros x.</code></pre>
 <p>After</p>
 <pre class="coq"><code>x: nat
--------------------------
+=========================
 1/1
 x + 0 = x</code></pre>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 forall (A B C : Prop), A /\ B -&gt; C -&gt; A /\ C</code></pre>
 <pre class="coq"><code>intros A B C [ATrue BTrue].</code></pre>
 <p>After</p>
 <pre class="coq"><code>A, B, C: Prop
 ATrue: A
 BTrue: B
--------------------------
+=========================
 1/1
 C -&gt; A /\ C</code></pre>
 <p>Before (assume <code>P := forall (n : nat), n = n</code>)</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 P</code></pre>
 <pre class="coq"><code>intros.</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 P</code></pre>
 <p>Alternatively,</p>
 <pre class="coq"><code>intro.</code></pre>
 <p>After</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 1/1
 n = n</code></pre>
 <h3 id="resources">Resources</h3>

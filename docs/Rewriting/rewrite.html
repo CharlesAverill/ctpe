@@ -163,19 +163,19 @@ rewrite t1_eq_t2, &lt;- x_eq_y, ht_eq_ht.</code></pre>
 <p>Before</p>
 <pre class="coq"><code>x, y: nat
 H: x = y
--------------------------
+=========================
 x + y = y + y</code></pre>
 <pre class="coq"><code>rewrite H.</code></pre>
 <p>After</p>
 <pre class="coq"><code>x, y: nat
 H: x = y
--------------------------
+=========================
 y + y = y + y</code></pre>
 <p>Alternatively,</p>
 <pre class="coq"><code>rewrite &lt;- H.</code></pre>
 <pre class="coq"><code>x, y: nat
 H: x = y
--------------------------
+=========================
 x + x = x + x</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a

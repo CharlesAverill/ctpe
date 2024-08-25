@@ -35,7 +35,7 @@ Before
 n: nat
 l: list bool
 H: bitlist (S (S n)) = false :: false :: l
--------------------------
+=========================
 1/1
 bitlist (S n) = false :: l
 ```
@@ -56,7 +56,7 @@ H: false
               | S n' => false :: bitlist n'
               end) n =
     false :: false :: l
--------------------------
+=========================
 1/1
 false
  :: (fix bitlist (n0 : nat) : list bool :=

@@ -37,7 +37,7 @@ induction z using peano_ind.
 Before
 ```coq
 n: nat
--------------------------
+=========================
 n + 0 = n
 ```
 
@@ -47,7 +47,7 @@ induction n as [| n' IHn' ].
 
 After (first goal generated)
 ```coq
--------------------------
+=========================
 1/2
 0 + 0 = 0
 ```
@@ -56,7 +56,7 @@ After (second goal generated)
 ```coq
 n': nat
 IHn' : n' + 0 = n'
--------------------------
+=========================
 1/1
 S n' + 0 = S n'
 ```

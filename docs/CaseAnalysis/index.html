@@ -173,19 +173,19 @@ destruct H as [H1 | H2].</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 n = 0 \/ 1 &lt;= n</code></pre>
 <pre class="coq"><code>destruct n as [| n&#39;] eqn:E.</code></pre>
 <p>After (first goal generated)</p>
 <pre class="coq"><code>n: nat
 E: n = 0
--------------------------
+=========================
 1/2
 0 = 0 \/ 1 &lt;= 0</code></pre>
 <p>After (second goal generated)</p>
 <pre class="coq"><code>n, n&#39;: nat
 E: n = S n&#39;
--------------------------
+=========================
 1/1
 S n&#39; = 0 \/ 1 &lt;= S n&#39;</code></pre>
 <p>Script</p>
@@ -245,7 +245,7 @@ inversion H.</code></pre>
 <p>Before</p>
 <pre class="coq"><code>n: nat
 H: n &lt;= 1
--------------------------
+=========================
 1/1
 n = 0 \/ n = 1</code></pre>
 <pre class="coq"><code>inversion H.</code></pre>
@@ -253,7 +253,7 @@ n = 0 \/ n = 1</code></pre>
 <pre class="coq"><code>n: nat
 H: n &lt;= 1
 H0: n = 1
--------------------------
+=========================
 1/2
 1 = 0 \/ 1 = 1</code></pre>
 <p>After (second goal generated)</p>
@@ -262,7 +262,7 @@ H: n &lt;= 1
 m: nat
 H1: n &lt;= 0
 H0: m = 0
--------------------------
+=========================
 1/1
 n = 0 \/ n = 1</code></pre>
 <p>Script</p>
@@ -337,17 +337,17 @@ induction z using peano_ind.</code></pre>
 <h3 id="examples-2">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 n + 0 = n</code></pre>
 <pre class="coq"><code>induction n as [| n&#39; IHn&#39; ].</code></pre>
 <p>After (first goal generated)</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/2
 0 + 0 = 0</code></pre>
 <p>After (second goal generated)</p>
 <pre class="coq"><code>n&#39;: nat
 IHn&#39; : n&#39; + 0 = n&#39;
--------------------------
+=========================
 1/1
 S n&#39; + 0 = S n&#39;</code></pre>
 <p>Script</p>

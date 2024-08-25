@@ -254,39 +254,39 @@ intros n m x.
 intros [A B].</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 forall (n : nat), n + 0 = n</code></pre>
 <pre class="coq"><code>intros x.</code></pre>
 <p>After</p>
 <pre class="coq"><code>x: nat
--------------------------
+=========================
 1/1
 x + 0 = x</code></pre>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 forall (A B C : Prop), A /\ B -&gt; C -&gt; A /\ C</code></pre>
 <pre class="coq"><code>intros A B C [ATrue BTrue].</code></pre>
 <p>After</p>
 <pre class="coq"><code>A, B, C: Prop
 ATrue: A
 BTrue: B
--------------------------
+=========================
 1/1
 C -&gt; A /\ C</code></pre>
 <p>Before (assume <code>P := forall (n : nat), n = n</code>)</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 P</code></pre>
 <pre class="coq"><code>intros.</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 P</code></pre>
 <p>Alternatively,</p>
 <pre class="coq"><code>intro.</code></pre>
 <p>After</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 1/1
 n = n</code></pre>
 <h3 id="resources">Resources</h3>
@@ -316,7 +316,7 @@ clear - x z c.</code></pre>
 <pre class="coq"><code>n: nat
 H, Hr1, Hr2: n = 0
 IHn: n = 1
--------------------------
+=========================
 1/1
 True</code></pre>
 <pre class="coq"><code>clear Hr1 Hr2.</code></pre>
@@ -324,20 +324,20 @@ True</code></pre>
 <pre class="coq"><code>n: nat
 H: n = 0
 IHn: n = 1
--------------------------
+=========================
 1/1
 True</code></pre>
 <p>Before</p>
 <pre class="coq"><code>a, b, c, x, y, z: nat
 H: a = z
--------------------------
+=========================
 1/1
 True</code></pre>
 <pre class="coq"><code>clear - a x H.</code></pre>
 <p>After</p>
 <pre class="coq"><code>a, x, z: nat
 H: a = z
--------------------------
+=========================
 1/1
 True</code></pre>
 <h3 id="resources-1">Resources</h3>
@@ -370,12 +370,12 @@ simpl in *.
 simpl (2 + 2) in H.</code></pre>
 <h3 id="examples-2">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 2 + 2 = 1 + 3</code></pre>
 <pre class="coq"><code>simpl (2 + 2).</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 4 = 1 + 3</code></pre>
 <h3 id="resources-2">Resources</h3>
@@ -407,7 +407,7 @@ unfold X in *.</code></pre>
 <pre class="coq"><code>n: nat
 l: list bool
 H: bitlist (S (S n)) = false :: false :: l
--------------------------
+=========================
 1/1
 bitlist (S n) = false :: l</code></pre>
 <pre class="coq"><code>unfold bitlist in *.</code></pre>
@@ -422,7 +422,7 @@ H: false
               | S n&#39; =&gt; false :: bitlist n&#39;
               end) n =
     false :: false :: l
--------------------------
+=========================
 1/1
 false
  :: (fix bitlist (n0 : nat) : list bool :=
@@ -455,15 +455,15 @@ tactic</a>).</p>
 <pre class="coq"><code>split.</code></pre>
 <h3 id="examples-4">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 True /\ False</code></pre>
 <pre class="coq"><code>split.</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/2
 True
--------------------------
+=========================
 2/2
 False</code></pre>
 <h3 id="resources-4">Resources</h3>
@@ -497,7 +497,7 @@ reflexivity.</code></pre>
 <h3 id="examples-5">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 1/1
 n = n</code></pre>
 <pre class="coq"><code>reflexivity.</code></pre>
@@ -520,7 +520,7 @@ assumption.</code></pre>
 <p>Before</p>
 <pre class="coq"><code>P: Prop
 H: P
--------------------------
+=========================
 1/1
 P</code></pre>
 <pre class="coq"><code>assumption</code></pre>
@@ -541,14 +541,14 @@ if the goal is not an inequality or is non-trivial.</p>
 discriminate.</code></pre>
 <h3 id="examples-7">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 1 &lt;&gt; 2</code></pre>
 <pre class="coq"><code>discriminate.</code></pre>
 <p>After</p>
 <pre class="coq"><code>Proof finished</code></pre>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 &quot;hello&quot; &lt;&gt; &quot;world&quot;</code></pre>
 <pre class="coq"><code>discriminate.</code></pre>
@@ -568,7 +568,7 @@ not prove the goal.</p>
 exact I.</code></pre>
 <h3 id="examples-8">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 True</code></pre>
 <pre class="coq"><code>exact I.</code></pre>
@@ -576,7 +576,7 @@ True</code></pre>
 <pre class="coq"><code>Proof finished</code></pre>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 1/1
 n + 5 = n + 5</code></pre>
 <pre class="coq"><code>exact (eq_refl (n + 5)).</code></pre>
@@ -600,7 +600,7 @@ contradiction.</code></pre>
 <h3 id="examples-9">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>H: False
--------------------------
+=========================
 1/1
 False</code></pre>
 <pre class="coq"><code>contradiction.</code></pre>
@@ -610,7 +610,7 @@ False</code></pre>
 <pre class="coq"><code>x, y: nat
 H: x = y
 H0: x &lt;&gt; y
--------------------------
+=========================
 1/1
 x = x + y</code></pre>
 <pre class="coq"><code>contradiction.</code></pre>
@@ -653,19 +653,19 @@ rewrite t1_eq_t2, &lt;- x_eq_y, ht_eq_ht.</code></pre>
 <p>Before</p>
 <pre class="coq"><code>x, y: nat
 H: x = y
--------------------------
+=========================
 x + y = y + y</code></pre>
 <pre class="coq"><code>rewrite H.</code></pre>
 <p>After</p>
 <pre class="coq"><code>x, y: nat
 H: x = y
--------------------------
+=========================
 y + y = y + y</code></pre>
 <p>Alternatively,</p>
 <pre class="coq"><code>rewrite &lt;- H.</code></pre>
 <pre class="coq"><code>x, y: nat
 H: x = y
--------------------------
+=========================
 x + x = x + x</code></pre>
 <h3 id="resources-10">Resources</h3>
 <p><a
@@ -681,13 +681,13 @@ rename x into y.</code></pre>
 <h3 id="examples-11">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 1/1
 n = n</code></pre>
 <pre class="coq"><code>rename n into x.</code></pre>
 <p>After</p>
 <pre class="coq"><code>x: nat
--------------------------
+=========================
 1/1
 x = x</code></pre>
 <h3 id="resources-11">Resources</h3>
@@ -712,7 +712,7 @@ remember (&quot;hello world&quot;) as s.</code></pre>
 <p>Before</p>
 <pre class="coq"><code>x, y: nat
 H: x + y = x
--------------------------
+=========================
 1/1
 y = 0</code></pre>
 <pre class="coq"><code>remember (x + y) as sum.</code></pre>
@@ -720,7 +720,7 @@ y = 0</code></pre>
 <pre class="coq"><code>x, y, sum: nat
 Heqsum: sum = x + y
 H: sum = x
--------------------------
+=========================
 1/1
 y = 0</code></pre>
 <h3 id="resources-12">Resources</h3>
@@ -743,12 +743,12 @@ symmetry in H.
 symmetry in H1, H2.</code></pre>
 <h3 id="examples-13">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 5 = 2 + 3</code></pre>
 <pre class="coq"><code>symmetry.</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 2 + 3 = 5</code></pre>
 <h3 id="resources-13">Resources</h3>
@@ -793,19 +793,19 @@ destruct H as [H1 | H2].</code></pre>
 <h3 id="examples-14">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 n = 0 \/ 1 &lt;= n</code></pre>
 <pre class="coq"><code>destruct n as [| n&#39;] eqn:E.</code></pre>
 <p>After (first goal generated)</p>
 <pre class="coq"><code>n: nat
 E: n = 0
--------------------------
+=========================
 1/2
 0 = 0 \/ 1 &lt;= 0</code></pre>
 <p>After (second goal generated)</p>
 <pre class="coq"><code>n, n&#39;: nat
 E: n = S n&#39;
--------------------------
+=========================
 1/1
 S n&#39; = 0 \/ 1 &lt;= S n&#39;</code></pre>
 <p>Script</p>
@@ -865,7 +865,7 @@ inversion H.</code></pre>
 <p>Before</p>
 <pre class="coq"><code>n: nat
 H: n &lt;= 1
--------------------------
+=========================
 1/1
 n = 0 \/ n = 1</code></pre>
 <pre class="coq"><code>inversion H.</code></pre>
@@ -873,7 +873,7 @@ n = 0 \/ n = 1</code></pre>
 <pre class="coq"><code>n: nat
 H: n &lt;= 1
 H0: n = 1
--------------------------
+=========================
 1/2
 1 = 0 \/ 1 = 1</code></pre>
 <p>After (second goal generated)</p>
@@ -882,7 +882,7 @@ H: n &lt;= 1
 m: nat
 H1: n &lt;= 0
 H0: m = 0
--------------------------
+=========================
 1/1
 n = 0 \/ n = 1</code></pre>
 <p>Script</p>
@@ -957,17 +957,17 @@ induction z using peano_ind.</code></pre>
 <h3 id="examples-16">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 n + 0 = n</code></pre>
 <pre class="coq"><code>induction n as [| n&#39; IHn&#39; ].</code></pre>
 <p>After (first goal generated)</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/2
 0 + 0 = 0</code></pre>
 <p>After (second goal generated)</p>
 <pre class="coq"><code>n&#39;: nat
 IHn&#39; : n&#39; + 0 = n&#39;
--------------------------
+=========================
 1/1
 S n&#39; + 0 = S n&#39;</code></pre>
 <p>Script</p>
@@ -1035,7 +1035,7 @@ auto with bool.
 auto using example.</code></pre>
 <h3 id="examples-17">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 0 = 0</code></pre>
 <pre class="coq"><code>auto.</code></pre>
@@ -1110,7 +1110,7 @@ hypotheses with conjunctions)</p></li>
 <p>Before</p>
 <pre class="coq"><code>P: Prop
 H: P
--------------------------
+=========================
 1/1
 True /\ 42 = 14 * 3 /\ P</code></pre>
 <pre class="coq"><code>easy.</code></pre>
@@ -1142,12 +1142,12 @@ any errors and always succeeding.</p>
 try reflexivity.</code></pre>
 <h3 id="examples-20">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 1 = 2</code></pre>
 <pre class="coq"><code>try reflexivity.</code></pre>
 <p>After</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 1 = 2</code></pre>
 <h3 id="resources-20">Resources</h3>
@@ -1217,7 +1217,7 @@ split; (split; auto).</code></pre>
 <p>Before</p>
 <pre class="coq"><code>P, Q: Prop
 H: Q
--------------------------
+=========================
 1/1
 P \/ Q</code></pre>
 <pre class="coq"><code>constructor; assumption.</code></pre>
@@ -1254,10 +1254,10 @@ par: simpl; reflexivity; auto.
 2-3: auto.</code></pre>
 <h3 id="examples-22">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/2
 True
--------------------------
+=========================
 2/2
 True</code></pre>
 <pre class="coq"><code>all: exact I.
@@ -1283,22 +1283,22 @@ repeat split.</code></pre>
 <h3 id="examples-23">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>P, Q, R, S: Prop
--------------------------
+=========================
 1/1
 P /\ Q /\ R /\ S</code></pre>
 <pre class="coq"><code>repeat split.</code></pre>
 <p>After</p>
 <pre class="coq"><code>P, Q, R, S: Prop
--------------------------
+=========================
 1/4
 P
--------------------------
+=========================
 2/4
 Q
--------------------------
+=========================
 3/4
 R
--------------------------
+=========================
 4/4
 S</code></pre>
 <h3 id="resources-22">Resources</h3>
@@ -1317,7 +1317,7 @@ reflexivity || assumption.</code></pre>
 <p>Before</p>
 <pre class="coq"><code>P: Prop
 H: P
--------------------------
+=========================
 1/1
 P</code></pre>
 <pre class="coq"><code>reflexivity || assumption.</code></pre>
@@ -1336,7 +1336,7 @@ href="/ctpe/Automation/easy.html"><code>easy</code> tactic</a>).</p>
 <pre class="coq"><code>now split.</code></pre>
 <h3 id="examples-25">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 True /\ 42 = 14 * 3</code></pre>
 <pre class="coq"><code>now split.</code></pre>
@@ -1365,7 +1365,7 @@ from being altered.</p>
 <pre class="coq"><code>do 3 (split; [reflexivity | idtac]).</code></pre>
 <h3 id="examples-26">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/1
 1 = 1 /\ 2 = 2 /\ 3 = 3 /\ 4 = 4</code></pre>
 <pre class="coq"><code>do 3 (split; [reflexivity | idtac]).</code></pre>

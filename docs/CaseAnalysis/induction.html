@@ -178,17 +178,17 @@ induction z using peano_ind.</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
--------------------------
+=========================
 n + 0 = n</code></pre>
 <pre class="coq"><code>induction n as [| n&#39; IHn&#39; ].</code></pre>
 <p>After (first goal generated)</p>
-<pre class="coq"><code>-------------------------
+<pre class="coq"><code>=========================
 1/2
 0 + 0 = 0</code></pre>
 <p>After (second goal generated)</p>
 <pre class="coq"><code>n&#39;: nat
 IHn&#39; : n&#39; + 0 = n&#39;
--------------------------
+=========================
 1/1
 S n&#39; + 0 = S n&#39;</code></pre>
 <p>Script</p>
