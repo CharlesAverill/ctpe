@@ -2,12 +2,24 @@ import os
 import shutil
 import sys
 
-def compile_markdown(file_path, docs_dir, depth, use_absolute_path):
+def compile_markdown(file_path, docs_dir, depth, use_absolute_path, is_root=False):
     with open(file_path, 'r') as file:
         lines = file.readlines()
     
     compiled_lines = []
+    inside_yaml = False
+    yaml_block = []
+
     for line in lines:
+        if line.strip() == "---":
+            inside_yaml = not inside_yaml
+            yaml_block.append(line)
+            continue
+
+        if inside_yaml:
+            yaml_block.append(line)
+            continue
+
         if line.startswith("#include"):
             included_file_path = line.split("#include")[1].strip()
             if included_file_path.startswith('/'):
@@ -18,10 +30,10 @@ def compile_markdown(file_path, docs_dir, depth, use_absolute_path):
             tokens = line.split(" ")
             title = (" ".join(tokens[1:])).strip()
             if use_absolute_path:
-                fp = file_path[len("docs/"):file_path.rindex('.')]
+                fp = "/" + file_path[len("docs/"):file_path.rindex('.')]
             else:
                 fp = "/ctpe/" + file_path[len("docs/"):file_path.rindex('.')]
-            compiled_lines.extend(f"{tokens[0]} [{title}]({fp}.html)")
+            compiled_lines.extend(f"{tokens[0]} [{title}]({fp}.html)\n")
         else:
             line = line.replace("(glossary.md", "(" + ('/ctpe/' if not use_absolute_path else '/') + 'glossary.html')
             if use_absolute_path:
@@ -29,9 +41,11 @@ def compile_markdown(file_path, docs_dir, depth, use_absolute_path):
             compiled_lines.append(line)
 
     compiled_lines.extend(["\n", "<hr>", "\n"])
-    
+
+    # Write back to file if this is not the root page, including the YAML block
+    #if not is_root:
     with open(file_path, 'w') as file:
-        file.writelines(compiled_lines)
+        file.writelines(yaml_block + compiled_lines)
     
     return compiled_lines
 
@@ -54,7 +68,8 @@ if __name__ == "__main__":
     copy_source_to_docs(source_dir, docs_dir)
     
     template_path = os.path.join(docs_dir, "template.md")
-    compile_markdown(template_path, docs_dir, 0, len(sys.argv) > 1 and sys.argv[1] == "test")
+    compile_markdown(template_path, docs_dir, 0, len(sys.argv) > 1 and sys.argv[1] == "test", is_root=True)
     rename_template_to_index(docs_dir)
     
     print("Compilation complete. Output written to docs/index.md")
+

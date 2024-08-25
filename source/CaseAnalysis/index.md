@@ -1,5 +1,5 @@
 ---
-title: Case Analysis - CTPE
+title: "Case Analysis - CTPE"
 ---
 
 # Case Analysis

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
     <meta property="og:title" content="auto - CTPE">
-    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:url" content="https://charlesaverill.github.io/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
     <meta property="article:author" content="Charles Averill">
@@ -95,8 +95,8 @@ body {
     </style>
 
     <!-- Syntax Highlighting -->
-    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
-    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="/highlight/styles/school-book.css">
+    <script src="/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
     <script>
@@ -126,8 +126,8 @@ body {
 <body>
     <table>
         <tr>
-            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
-            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3></td>
+            <td><h3 class="home"><a href="/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/">Github</a></h3></td>
             <td><form style="text-align: right" id="searchForm">
                 <input type="text" id="searchInput" placeholder="Tactic Name">
                 <button type="submit" id="submitButton">Tactic Search</button>
@@ -137,15 +137,25 @@ body {
 
     <!-- Content -->
     <div class="container">
-<h2 id="auto"><a href="/ctpe/Automation/auto.html">auto</a></h2>
-<p><code>auto</code> does a recursive search through a specified knowledge base in order to solve goals. If <code>auto</code> cannot completely solve a goal, it succeeds with no changes to the goal.</p>
-<p>The knowledge bases that <code>auto</code> uses are called <a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases"><strong>Hint Databases</strong></a>. Hint databases are provided by the standard library, and can also be created and added to by users. Hint databases can contain a variety of hint types, including but not limited to:</p>
+<h2 id="auto"><a href="/Automation/auto.html">auto</a></h2>
+<p><code>auto</code> does a recursive search through a specified
+knowledge base in order to solve goals. If <code>auto</code> cannot
+completely solve a goal, it succeeds with no changes to the goal.</p>
+<p>The knowledge bases that <code>auto</code> uses are called <a
+href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases"><strong>Hint
+Databases</strong></a>. Hint databases are provided by the standard
+library, and can also be created and added to by users. Hint databases
+can contain a variety of hint types, including but not limited to:</p>
 <ul>
-<li><code>Constructors</code>: <code>auto</code> will now try to apply each of the constructors for a given <code>Inductive</code> type</li>
-<li><code>Unfold</code>: <code>auto</code> will now try to unfold a given definition - helpful when trivial simplification isn&rsquo;t enough</li>
-<li><code>Resolve</code>: <code>auto</code> will now try to <code>simple apply</code> a given lemma</li>
+<li><code>Constructors</code>: <code>auto</code> will now try to apply
+each of the constructors for a given <code>Inductive</code> type</li>
+<li><code>Unfold</code>: <code>auto</code> will now try to unfold a
+given definition - helpful when trivial simplification isn&#x2019;t enough</li>
+<li><code>Resolve</code>: <code>auto</code> will now try to
+<code>simple apply</code> a given lemma</li>
 </ul>
-<p>The default hint database used by <code>auto</code> when no other database is specified is <code>core</code>.</p>
+<p>The default hint database used by <code>auto</code> when no other
+database is specified is <code>core</code>.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 auto.
@@ -165,15 +175,19 @@ auto using example.</code></pre>
 <pre class="coq"><code>Proof finished</code></pre>
 <p>Script</p>
 <pre class="coq"><code>Create HintDb automation.
-Lemma add_0_r : forall n, n * 1 = n. 
+Lemma mul_1_r : forall n, n * 1 = n. 
 Proof. induction n. auto. simpl. now rewrite IHn. Qed.
-Hint Resolve add_0_r : automation.
+Hint Resolve mul_1_r : automation.
 
 Lemma x : (forall n, n * 1 = n) /\ (true = true). 
 Proof. auto with automation. Qed.</code></pre>
 <h3 id="resources">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto">Reference Documentation</a></p>
-<p><a href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases">Hint Databases</a></p>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto">Reference
+Documentation</a></p>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases">Hint
+Databases</a></p>
 <hr>
     </div>
 </body>

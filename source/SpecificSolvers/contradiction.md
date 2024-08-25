@@ -1,5 +1,5 @@
 ---
-title: contradiction - CTPE
+title: "contradiction - CTPE"
 ---
 
 ## contradiction

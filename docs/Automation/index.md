@@ -1,16 +1,15 @@
 ---
-title: Automation - CTPE
+title: "Automation - CTPE"
 ---
 
-# [Automation](/ctpe/Automation/index.html)
+# [Automation](/Automation/index.html)
+
 This is basically a catch-all category for tactics that do a lot of things at once.
 This category of tactics generally intends to solve a large category of simple goals to reduce the load of the proof writer.
 
----
-title: auto - CTPE
----
 
-## [auto](/ctpe/Automation/auto.html)
+## [auto](/Automation/auto.html)
+
 `auto` does a recursive search through a specified knowledge base in order to solve goals.
 If `auto` cannot completely solve a goal, it succeeds with no changes to the goal.
 
@@ -58,9 +57,9 @@ Proof finished
 Script
 ```coq
 Create HintDb automation.
-Lemma add_0_r : forall n, n * 1 = n. 
+Lemma mul_1_r : forall n, n * 1 = n. 
 Proof. induction n. auto. simpl. now rewrite IHn. Qed.
-Hint Resolve add_0_r : automation.
+Hint Resolve mul_1_r : automation.
 
 Lemma x : (forall n, n * 1 = n) /\ (true = true). 
 Proof. auto with automation. Qed.
@@ -74,12 +73,10 @@ Proof. auto with automation. Qed.
 
 <hr>
 
----
-title: trivial - CTPE
----
 
-## [trivial](/ctpe/Automation/trivial.html)
-`trivial` is essentially a non-recursive [`auto`](/ctpe/Automation/auto.html).
+## [trivial](/Automation/trivial.html)
+
+`trivial` is essentially a non-recursive [`auto`](/Automation/auto.html).
 `trivial` is best utilized when a lemma that exactly matches the goal already exists in the hint database.
 
 ### Syntax
@@ -106,6 +103,60 @@ Qed.
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.trivial)
+
+<hr>
+
+
+## [easy](/Automation/easy.html)
+
+`easy` throws many common "closing tactics" at a goal to solve a large category of simple problems.
+`easy` will attempt to use:
+
+- [`trivial`](/Automation/trivial.html)
+
+- [`reflexivity`](/SpecificSolvers/reflexivity.html)
+
+- [`symmetry`](/Rewriting/symmetry.html)
+
+- [`contradiction`](/SpecificSolvers/contradiction.html)
+
+- [`inversion`](/CaseAnalysis/inversion.html)
+
+- [`intros`](/Generalization/intros.html)
+
+- [`split`](/Simplification/split.html) (this begins a recursive call of `easy`)
+
+- [`destruct`](/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
+
+### Syntax
+
+```coq
+easy.
+```
+
+### Examples
+
+Before
+```coq
+P: Prop
+H: P
+-------------------------
+1/1
+True /\ 42 = 14 * 3 /\ P
+```
+
+```coq
+easy.
+```
+
+After
+```coq
+No more goals.
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.easy)
 
 <hr>
 

@@ -1,5 +1,5 @@
 ---
-title: discriminate - CTPE
+title: "discriminate - CTPE"
 ---
 
 ## discriminate

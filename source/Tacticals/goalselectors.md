@@ -1,5 +1,5 @@
 ---
-title: Goal Selectors - CTPE
+title: "Goal Selectors - CTPE"
 ---
 
 ## Goal Selectors

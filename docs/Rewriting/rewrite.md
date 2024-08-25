@@ -1,8 +1,9 @@
 ---
-title: rewrite - CTPE
+title: "rewrite - CTPE"
 ---
 
-## [rewrite](/ctpe/Rewriting/rewrite.html)
+## [rewrite](/Rewriting/rewrite.html)
+
 `rewrite` takes an equivalence proof as input, like `t1 = t2`, and replaces all occurances of `t1` with `t2`.
 Replacement of `t2` with `t1` can be achieved with the variant `rewrite <-` (rewrite backwards).
 Multiple rewrites can be chained with one tactic via a list of comma-separated equivalence proofs.

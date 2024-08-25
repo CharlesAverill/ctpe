@@ -1,5 +1,5 @@
 ---
-title: destruct - CTPE
+title: "destruct - CTPE"
 ---
 
 ## destruct

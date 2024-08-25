@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
     <meta property="og:title" content="">
-    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:url" content="https://charlesaverill.github.io/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
     <meta property="article:author" content="Charles Averill">
@@ -95,8 +95,8 @@ body {
     </style>
 
     <!-- Syntax Highlighting -->
-    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
-    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="/highlight/styles/school-book.css">
+    <script src="/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
     <script>
@@ -126,8 +126,8 @@ body {
 <body>
     <table>
         <tr>
-            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
-            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3></td>
+            <td><h3 class="home"><a href="/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/">Github</a></h3></td>
             <td><form style="text-align: right" id="searchForm">
                 <input type="text" id="searchInput" placeholder="Tactic Name">
                 <button type="submit" id="submitButton">Tactic Search</button>
@@ -138,15 +138,22 @@ body {
     <!-- Content -->
     <div class="container">
 <h2 id="subresource-integrity">Subresource Integrity</h2>
-<p>If you are loading Highlight.js via CDN you may wish to use <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> to guarantee that you are using a legimitate build of the library.</p>
-<p>To do this you simply need to add the <code>integrity</code> attribute for each JavaScript file you download via CDN. These digests are used by the browser to confirm the files downloaded have not been modified.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">&lt;script</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="ot">  src=</span><span class="st">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js&quot;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="ot">  integrity=</span><span class="st">&quot;sha384-9mu2JKpUImscOMmwjm1y6MA2YsW3amSoFNYwKeUHxaXYKQ1naywWmamEGMdviEen&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co">&lt;!-- including any other grammars you might need to load --&gt;</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">&lt;script</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="ot">  src=</span><span class="st">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js&quot;</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="ot">  integrity=</span><span class="st">&quot;sha384-WmGkHEmwSI19EhTfO1nrSk3RziUQKRWg3vO0Ur3VYZjWvJRdRnX4/scQg+S2w1fI&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a></code></pre></div>
+<p>If you are loading Highlight.js via CDN you may wish to use <a
+href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource
+Integrity</a> to guarantee that you are using a legimitate build of the
+library.</p>
+<p>To do this you simply need to add the <code>integrity</code>
+attribute for each JavaScript file you download via CDN. These digests
+are used by the browser to confirm the files downloaded have not been
+modified.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  src</span><span class="op">=</span><span class="st">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  integrity</span><span class="op">=</span><span class="st">&quot;sha384-9mu2JKpUImscOMmwjm1y6MA2YsW3amSoFNYwKeUHxaXYKQ1naywWmamEGMdviEen&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- including any other grammars you might need to load --&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ot">  src</span><span class="op">=</span><span class="st">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ot">  integrity</span><span class="op">=</span><span class="st">&quot;sha384-WmGkHEmwSI19EhTfO1nrSk3RziUQKRWg3vO0Ur3VYZjWvJRdRnX4/scQg+S2w1fI&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>The full list of digests for every file can be found below.</p>
 <h3 id="digests">Digests</h3>
 <pre><code>sha384-GKjp3Sn3AqyzCb5mF/Nnvs6KSMJUafdTv/3KlgvFf6B4LIXy7NeMoumvPeWDZnBs /es/languages/coq.js

@@ -1,5 +1,5 @@
 ---
-title: Simplification - CTPE
+title: "Simplification - CTPE"
 ---
 
 # Simplification
@@ -10,3 +10,5 @@ They will not solve a goal, only convert it into what is a structurally smaller 
 #include simpl.md
 
 #include unfold.md
+
+#include split.md

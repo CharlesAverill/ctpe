@@ -1,5 +1,5 @@
 ---
-title: Generalization - CTPE
+title: "Generalization - CTPE"
 ---
 
 # Generalization

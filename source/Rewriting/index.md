@@ -1,5 +1,5 @@
 ---
-title: Rewriting - CTPE
+title: "Rewriting - CTPE"
 ---
 
 # Rewriting
@@ -12,3 +12,5 @@ Rewriting in all of its forms is an efficient way to bring together previously-i
 #include rename.md
 
 #include remember.md
+
+#include symmetry.md

@@ -1,8 +1,9 @@
 ---
-title: Goal Selectors - CTPE
+title: "Goal Selectors - CTPE"
 ---
 
-## [Goal Selectors](/ctpe/Tacticals/goalselectors.html)
+## [Goal Selectors](/Tacticals/goalselectors.html)
+
 Goal selectors are a category of tacticals that apply a tactic to a specific goal or goals.
 
 There are a number of goal selectors:

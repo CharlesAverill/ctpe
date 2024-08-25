@@ -1,5 +1,5 @@
 ---
-title: Automation - CTPE
+title: "Automation - CTPE"
 ---
 
 # Automation
@@ -10,3 +10,5 @@ This category of tactics generally intends to solve a large category of simple g
 #include auto.md
 
 #include trivial.md
+
+#include easy.md

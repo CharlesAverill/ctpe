@@ -1,16 +1,15 @@
 ---
-title: Rewriting - CTPE
+title: "Rewriting - CTPE"
 ---
 
-# [Rewriting](/ctpe/Rewriting/index.html)
+# [Rewriting](/Rewriting/index.html)
+
 This group of tactics is very frequently used in the middles of proofs.
 Rewriting in all of its forms is an efficient way to bring together previously-independent parts of a goal.
 
----
-title: rewrite - CTPE
----
 
-## [rewrite](/ctpe/Rewriting/rewrite.html)
+## [rewrite](/Rewriting/rewrite.html)
+
 `rewrite` takes an equivalence proof as input, like `t1 = t2`, and replaces all occurances of `t1` with `t2`.
 Replacement of `t2` with `t1` can be achieved with the variant `rewrite <-` (rewrite backwards).
 Multiple rewrites can be chained with one tactic via a list of comma-separated equivalence proofs.
@@ -74,11 +73,9 @@ x + x = x + x
 
 <hr>
 
----
-title: rename - CTPE
----
 
-## [rename](/ctpe/Rewriting/rename.html)
+## [rename](/Rewriting/rename.html)
+
 `rename` changes the name of an introduced variable or assumption.
 
 ### Syntax
@@ -115,11 +112,9 @@ x = x
 
 <hr>
 
----
-title: remember - CTPE
----
 
-## [remember](/ctpe/Rewriting/remember.html)
+## [remember](/Rewriting/remember.html)
+
 `remember` gives a name to complex terms.
 Specifically, `remember t` (where `t` has type `T`) introduces an assumption that there exists a member of type `T`, gives it a name such as `t0`, and provides another assumption that `t = t0`.
 
@@ -161,6 +156,50 @@ y = 0
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.remember)
+
+<hr>
+
+
+## [symmetry](/Rewriting/symmetry.html)
+
+`symmetry` is used to swap the left and right sides of an equality.
+
+`symmetry` can be used on either the goal or a list of hypotheses.
+
+### Syntax
+
+```coq
+(* Usage on goal *)
+symmetry.
+
+(* Usage on hypotheses *)
+symmetry in H.
+symmetry in H1, H2.
+```
+
+### Examples
+
+Before
+```coq
+-------------------------
+1/1
+5 = 2 + 3
+```
+
+```coq
+symmetry.
+```
+
+After
+```coq
+-------------------------
+1/1
+2 + 3 = 5
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.symmetry)
 
 <hr>
 

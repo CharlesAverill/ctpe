@@ -1,5 +1,5 @@
 ---
-title: Tacticals - CTPE
+title: "Tacticals - CTPE"
 ---
 
 # Tacticals
@@ -19,5 +19,7 @@ For an interesting perspective on automation - and good examples of building "on
 #include repeat.md
 
 #include or.md
+
+#include now.md
 
 <!-- #include do.md -->

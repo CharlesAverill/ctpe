@@ -1,5 +1,5 @@
 ---
-title: trivial - CTPE
+title: "trivial - CTPE"
 ---
 
 ## trivial

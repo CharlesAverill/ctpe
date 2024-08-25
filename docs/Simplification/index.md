@@ -1,16 +1,15 @@
 ---
-title: Simplification - CTPE
+title: "Simplification - CTPE"
 ---
 
-# [Simplification](/ctpe/Simplification/index.html)
+# [Simplification](/Simplification/index.html)
+
 This group of tactic aims to reduce the complexity of terms in a goal. 
 They will not solve a goal, only convert it into what is a structurally smaller (although maybe not lexically smaller!) form of the original goal.
 
----
-title: simpl - CTPE
----
 
-## [simpl](/ctpe/Simplification/simpl.html)
+## [simpl](/Simplification/simpl.html)
+
 `simpl` evaluates terms that are constructed of constant values - not variables.
 `simpl` can also partially evaluate partially-constant values.
 
@@ -56,11 +55,9 @@ After
 
 <hr>
 
----
-title: unfold - CTPE
----
 
-## [unfold](/ctpe/Simplification/unfold.html)
+## [unfold](/Simplification/unfold.html)
+
 `unfold` replaces definition identifiers with the definition's contents, simplifying along the way.
 
 ### Syntax
@@ -126,6 +123,55 @@ false
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.unfold)
+
+<hr>
+
+
+## [split](/Simplification/split.html)
+
+`split` is primarily used to break a single goal of the form `A /\ B` into two new goals `A` and `B`.
+
+You will often notice that `split` seems to solve some of the subgoals that it generates.
+This is because `split` is just shorthand for `constructor 1` (see the [`constructor` tactic](/CaseAnalysis/constructor.html)).
+
+Looking at the definition of `/\` (or `and`):
+```coq
+Inductive and (A B : Prop) : Prop :=  conj : A -> B -> A /\ B.
+```
+we can see that `and` has a single constructor called `conj` - so `constructor 1` simply reduces to `apply conj`, which would give us goals `A` and `B` due to the impliciations that it carries.
+
+### Syntax
+
+```coq
+split.
+```
+
+### Examples
+
+Before
+```coq
+-------------------------
+1/1
+True /\ False
+```
+
+```coq
+split.
+```
+
+After
+```coq
+-------------------------
+1/2
+True
+-------------------------
+2/2
+False
+```
+
+### Resources
+
+[Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.split)
 
 <hr>
 

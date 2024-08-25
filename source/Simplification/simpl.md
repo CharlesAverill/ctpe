@@ -1,5 +1,5 @@
 ---
-title: simpl - CTPE
+title: "simpl - CTPE"
 ---
 
 ## simpl

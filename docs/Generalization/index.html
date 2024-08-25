@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Generalization - CTPE">
-    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:url" content="https://charlesaverill.github.io/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
     <meta property="article:author" content="Charles Averill">
@@ -95,8 +95,8 @@ body {
     </style>
 
     <!-- Syntax Highlighting -->
-    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
-    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="/highlight/styles/school-book.css">
+    <script src="/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
     <script>
@@ -126,8 +126,8 @@ body {
 <body>
     <table>
         <tr>
-            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
-            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3></td>
+            <td><h3 class="home"><a href="/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/">Github</a></h3></td>
             <td><form style="text-align: right" id="searchForm">
                 <input type="text" id="searchInput" placeholder="Tactic Name">
                 <button type="submit" id="submitButton">Tactic Search</button>
@@ -137,13 +137,34 @@ body {
 
     <!-- Content -->
     <div class="container">
-<h1 id="generalization"><a href="/ctpe/Generalization/index.html">Generalization</a></h1>
-<p>This group of tactics is often found at the beginnings of proofs. Generalization and its counterpart Specialization (both are included here) are concepts used to fine-tune how strong of a theorem is needed to continue. Theorems that are too strong (specific) aren&rsquo;t useful for many different kinds of goals. Theorems that are too weak (general) are frequently unprovable (even if their specified counterparts are!) and those that are provable are frequently harder to prove!</p>
-<h2 id="intros"><a href="/ctpe/Generalization/intros.html">intros</a></h2>
-<p>Typically the first tactic a Coq user ever utilizes. <code>intros</code> looks for assumptions in your goal and moves them to the goal&rsquo;s assumption space.</p>
-<p>More specifically, <code>intros</code> <a href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking for <a href="/ctpe/glossary.html#type_inhabitation">type inhabitation</a> and proposition assumptions and moving them into the assumption space. For example, if you write <code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is acting as an assumption that there is a value of type <code>nat</code> that we can call <code>n</code>. Calling <code>intros</code> here will provide you an assumption <code>n</code> that there is a value of type <code>nat</code>.</p>
-<p><code>intros</code> will not introduce variables that are contained in opaque/wrapped definitions.</p>
-<p>A simpler tactic, <code>intro</code>, acts similarly but can only introduce one assumption, and will introduce variables contained in opaque/wrapped definitions.</p>
+<h1 id="generalization"><a
+href="/Generalization/index.html">Generalization</a></h1>
+<p>This group of tactics is often found at the beginnings of proofs.
+Generalization and its counterpart Specialization (both are included
+here) are concepts used to fine-tune how strong of a theorem is needed
+to continue. Theorems that are too strong (specific) aren&#x2019;t useful for
+many different kinds of goals. Theorems that are too weak (general) are
+frequently unprovable (even if their specified counterparts are!) and
+those that are provable are frequently harder to prove!</p>
+<h2 id="intros"><a href="/Generalization/intros.html">intros</a></h2>
+<p>Typically the first tactics a Coq user ever utilizes.
+<code>intros</code> looks for assumptions in your goal and moves them to
+the goal&#x2019;s assumption space.</p>
+<p>More specifically, <code>intros</code> <a
+href="/glossary.html#specialize">specializes</a> a goal by looking for
+<a href="/glossary.html#type_inhabitation">type inhabitation</a> and
+proposition assumptions and moving them into the assumption space. For
+example, if you write <code>forall (n : nat), n + 0 = n</code>, the
+<code>forall</code> is acting as an assumption that there is a value of
+type <code>nat</code> that we can call <code>n</code>. Calling
+<code>intros</code> here will provide you an assumption <code>n</code>
+that there is a value of type <code>nat</code>.</p>
+<p><code>intros</code> will not introduce variables that are contained
+in opaque/wrapped definitions - <b>unless</b> an explicit name is
+provided for them.</p>
+<p>A simpler tactic, <code>intro</code>, acts similarly but can only
+introduce one assumption, and will introduce variables contained in
+opaque/wrapped definitions.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage - introduces all named assumptions *)
 intros.
@@ -191,10 +212,16 @@ P</code></pre>
 1/1
 n = n</code></pre>
 <h3 id="resources">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference Documentation</a></p>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference
+Documentation</a></p>
 <hr>
-<h2 id="clear"><a href="/ctpe/Generalization/clear.html">clear</a></h2>
-<p><code>clear</code> erases assumptions from the assumption space. Multiple assumptions may be erased in one tactic via a space-separated list of assumptions. <code>clear</code> will fail if an assumption passed into it contains as subterms other variables that still exist in the goal state.</p>
+<h2 id="clear"><a href="/Generalization/clear.html">clear</a></h2>
+<p><code>clear</code> erases assumptions from the assumption space.
+Multiple assumptions may be erased in one tactic via a space-separated
+list of assumptions. <code>clear</code> will fail if an assumption
+passed into it contains as subterms other variables that still exist in
+the goal state.</p>
 <h3 id="syntax-1">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 clear H.
@@ -218,7 +245,9 @@ IHn: n = 1
 1/1
 False</code></pre>
 <h3 id="resources-1">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference Documentation</a></p>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference
+Documentation</a></p>
 <hr>
 <hr>
     </div>

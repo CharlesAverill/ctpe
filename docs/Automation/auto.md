@@ -1,8 +1,9 @@
 ---
-title: auto - CTPE
+title: "auto - CTPE"
 ---
 
-## [auto](/ctpe/Automation/auto.html)
+## [auto](/Automation/auto.html)
+
 `auto` does a recursive search through a specified knowledge base in order to solve goals.
 If `auto` cannot completely solve a goal, it succeeds with no changes to the goal.
 
@@ -50,9 +51,9 @@ Proof finished
 Script
 ```coq
 Create HintDb automation.
-Lemma add_0_r : forall n, n * 1 = n. 
+Lemma mul_1_r : forall n, n * 1 = n. 
 Proof. induction n. auto. simpl. now rewrite IHn. Qed.
-Hint Resolve add_0_r : automation.
+Hint Resolve mul_1_r : automation.
 
 Lemma x : (forall n, n * 1 = n) /\ (true = true). 
 Proof. auto with automation. Qed.

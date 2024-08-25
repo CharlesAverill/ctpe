@@ -1,8 +1,9 @@
 ---
-title: inversion - CTPE
+title: "inversion - CTPE"
 ---
 
-## [inversion](/ctpe/CaseAnalysis/inversion.html)
+## [inversion](/CaseAnalysis/inversion.html)
+
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.
 If there are multiple sets of conclusions, `inversion` will generate a new proof obligation for each one.
 Informally, `inversion` is doing a more specific form of the case analysis provided by [`destruct`](destruct.html) - where `destruct` essentially says "I don't know what this term is, so I'll prove a property for all of the possible forms of it," `inversion` says "I know exactly what terms could construct this hypothesis because of its definition, so I'll only prove a property for those terms."

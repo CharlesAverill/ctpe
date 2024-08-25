@@ -1,8 +1,9 @@
 ---
-title: clear - CTPE
+title: "clear - CTPE"
 ---
 
-## [clear](/ctpe/Generalization/clear.html)
+## [clear](/Generalization/clear.html)
+
 `clear` erases assumptions from the assumption space.
 Multiple assumptions may be erased in one tactic via a space-separated list of assumptions.
 `clear` will fail if an assumption passed into it contains as subterms other variables that still exist in the goal state.

@@ -1,17 +1,17 @@
 ---
-title: intros - CTPE
+title: "intros - CTPE"
 ---
 
 ## intros
 
-Typically the first tactic a Coq user ever utilizes.
+Typically the first tactics a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 
 More specifically, `intros` [specializes](glossary.md#specialize) a goal by looking for [type inhabitation](glossary.md#type_inhabitation) and proposition assumptions and moving them into the assumption space.
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
 Calling `intros` here will provide you an assumption `n` that there is a value of type `nat`.
 
-`intros` will not introduce variables that are contained in opaque/wrapped definitions.
+`intros` will not introduce variables that are contained in opaque/wrapped definitions - <b>unless</b> an explicit name is provided for them.
 
 A simpler tactic, `intro`, acts similarly but can only introduce one assumption, and will introduce variables contained in opaque/wrapped definitions.
 

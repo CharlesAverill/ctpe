@@ -1,5 +1,5 @@
 ---
-title: Glossary - CTPE
+title: "Glossary - CTPE"
 ---
 
 # Specialize

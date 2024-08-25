@@ -1,26 +1,25 @@
 ---
-title: Generalization - CTPE
+title: "Generalization - CTPE"
 ---
 
-# [Generalization](/ctpe/Generalization/index.html)
+# [Generalization](/Generalization/index.html)
+
 This group of tactics is often found at the beginnings of proofs. 
 Generalization and its counterpart Specialization (both are included here) are concepts used to fine-tune how strong of a theorem is needed to continue.
 Theorems that are too strong (specific) aren't useful for many different kinds of goals.
 Theorems that are too weak (general) are frequently unprovable (even if their specified counterparts are!) and those that are provable are frequently harder to prove!
 
----
-title: intros - CTPE
----
 
-## [intros](/ctpe/Generalization/intros.html)
-Typically the first tactic a Coq user ever utilizes.
+## [intros](/Generalization/intros.html)
+
+Typically the first tactics a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 
-More specifically, `intros` [specializes](/ctpe/glossary.html#specialize) a goal by looking for [type inhabitation](/ctpe/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
+More specifically, `intros` [specializes](/glossary.html#specialize) a goal by looking for [type inhabitation](/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
 Calling `intros` here will provide you an assumption `n` that there is a value of type `nat`.
 
-`intros` will not introduce variables that are contained in opaque/wrapped definitions.
+`intros` will not introduce variables that are contained in opaque/wrapped definitions - <b>unless</b> an explicit name is provided for them.
 
 A simpler tactic, `intro`, acts similarly but can only introduce one assumption, and will introduce variables contained in opaque/wrapped definitions.
 
@@ -115,11 +114,9 @@ n = n
 
 <hr>
 
----
-title: clear - CTPE
----
 
-## [clear](/ctpe/Generalization/clear.html)
+## [clear](/Generalization/clear.html)
+
 `clear` erases assumptions from the assumption space.
 Multiple assumptions may be erased in one tactic via a space-separated list of assumptions.
 `clear` will fail if an assumption passed into it contains as subterms other variables that still exist in the goal state.

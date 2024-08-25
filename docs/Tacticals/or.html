@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="">
-    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:title" content="|| - CTPE">
+    <meta property="og:url" content="https://charlesaverill.github.io/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
     <meta property="article:author" content="Charles Averill">
@@ -16,7 +16,7 @@
     <meta property="article:tag" content="formal verification">
     <meta property="article:tag" content="tactic">
 
-    <title></title>
+    <title>|| - CTPE</title>
     <style>
 :root {
     --blue: #0000FF;
@@ -95,8 +95,8 @@ body {
     </style>
 
     <!-- Syntax Highlighting -->
-    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
-    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="/highlight/styles/school-book.css">
+    <script src="/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
     <script>
@@ -126,8 +126,8 @@ body {
 <body>
     <table>
         <tr>
-            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
-            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Source</a></h3></td>
+            <td><h3 class="home"><a href="/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/">Github</a></h3></td>
             <td><form style="text-align: right" id="searchForm">
                 <input type="text" id="searchInput" placeholder="Tactic Name">
                 <button type="submit" id="submitButton">Tactic Search</button>
@@ -137,8 +137,10 @@ body {
 
     <!-- Content -->
     <div class="container">
-<h2 id="section"><a href="/ctpe/Tacticals/or.html">||</a></h2>
-<p>The infix <code>||</code> tactical tries the first tactic and only tries the second if the first failed. In other words, <code>||</code> executes the first tactic that makes progress on the goal.</p>
+<h2 id="section"><a href="/Tacticals/or.html">||</a></h2>
+<p>The infix <code>||</code> tactical tries the first tactic and only
+tries the second if the first failed. In other words, <code>||</code>
+executes the first tactic that makes progress on the goal.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 reflexivity || assumption.</code></pre>
@@ -153,7 +155,9 @@ P</code></pre>
 <p>After</p>
 <pre class="coq"><code>Proof finished</code></pre>
 <h3 id="resources">Resources</h3>
-<p><a href="https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#first-tactic-to-make-progress">Reference Documentation</a></p>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#first-tactic-to-make-progress">Reference
+Documentation</a></p>
 <hr>
     </div>
 </body>

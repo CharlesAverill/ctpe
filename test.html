@@ -1,0 +1,22 @@
+<h2 id="section"><a href="/ctpe/Tacticals/or.html">||</a></h2>
+<p>The infix <code>||</code> tactical tries the first tactic and only
+tries the second if the first failed. In other words, <code>||</code>
+executes the first tactic that makes progress on the goal.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+reflexivity || assumption.</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>P: Prop
+H: P
+==========================
+1/1
+P</code></pre>
+<pre class="coq"><code>reflexivity || assumption.</code></pre>
+<p>After</p>
+<pre class="coq"><code>Proof finished</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#first-tactic-to-make-progress">Reference
+Documentation</a></p>
+<hr>
