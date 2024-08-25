@@ -22,4 +22,4 @@ For an interesting perspective on automation - and good examples of building "on
 
 #include now.md
 
-<!-- #include do.md -->
+#include do.md

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Embed Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="do - CTPE">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
+    <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
+    <meta property="article:author" content="Charles Averill">
+    <meta property="article:section" content="Technology">
+    <meta property="article:tag" content="coq">
+    <meta property="article:tag" content="proof">
+    <meta property="article:tag" content="formal verification">
+    <meta property="article:tag" content="tactic">
+
+    <title>do - CTPE</title>
+    <style>
+:root {
+    --blue: #0000FF;
+    --light-blue: #1e90ff;
+  }
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+/* td {
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: left;
+}
+
+tr td:last-child {
+    text-align: right;
+} */
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: left;
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.home {
+    text-align: center;
+}
+
+body {
+    font-family: Garamond;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 8;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 769px) {
+    body {
+        margin-left: 25%;
+        margin-right: 25%;
+        text-align: justify;
+    }
+}
+    </style>
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Github</a></h3></td>
+            <td><form style="text-align: right" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Tactic Name">
+                <button type="submit" id="submitButton">Tactic Search</button>
+            </form></td>
+        </tr>
+    </table>
+
+    <!-- Content -->
+    <div class="container">
+<h2 id="do"><a href="/ctpe/Tacticals/do.html">do</a></h2>
+<p>The <code>do</code> tactical accepts a tactic <code>t</code> and a
+natural number <code>n</code>, applying <code>t</code> to the goal
+<code>n</code> times. <code>do</code> fails if one of the applications
+of <code>t</code> fails before <code>n</code> applications have
+occurred.</p>
+<p>In my opinion, <code>do</code> is a difficult tactic to justify. I
+find myself using it when using <a
+href="/ctpe/Tacticals/repeat.html"><code>repeat</code></a> tends to be
+overzealous. For example, if I have 100 goals and 30 of them can be
+solved the same way, I&#x2019;m more likely to use
+<code>do 30 &lt;tactic&gt;</code> than
+<code>repeat &lt;tactic&gt;</code> to prevent the remaining 70 goals
+from being altered.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>do 3 (split; [reflexivity | idtac]).</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>-------------------------
+1/1
+1 = 1 /\ 2 = 2 /\ 3 = 3 /\ 4 = 4</code></pre>
+<pre class="coq"><code>do 3 (split; [reflexivity | idtac]).</code></pre>
+<p>After</p>
+<pre class="coq"><code>No more goals.</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#coq:tacn.do">Reference
+Documentation</a></p>
+<hr>
+    </div>
+</body>
+</html>
