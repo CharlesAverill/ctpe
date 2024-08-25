@@ -2,12 +2,12 @@
 title: split - CTPE
 ---
 
-## [split](/Simplification/split.html)
+## [split](/ctpe/Simplification/split.html)
 
 `split` is primarily used to break a single goal of the form `A /\ B` into two new goals `A` and `B`.
 
 You will often notice that `split` seems to solve some of the subgoals that it generates.
-This is because `split` is just shorthand for `constructor 1` (see the [`constructor` tactic](/CaseAnalysis/constructor.html)).
+This is because `split` is just shorthand for `constructor 1` (see the [`constructor` tactic](/ctpe/CaseAnalysis/constructor.html)).
 
 Looking at the definition of `/\` (or `and`):
 ```coq

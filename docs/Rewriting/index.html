@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Rewriting - CTPE">
-    <meta property="og:url" content="https://charlesaverill.github.io/">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
     <meta property="article:author" content="Charles Averill">
@@ -95,8 +95,8 @@ body {
     </style>
 
     <!-- Syntax Highlighting -->
-    <link rel="stylesheet" href="/highlight/styles/school-book.css">
-    <script src="/highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
     <script>
@@ -126,8 +126,8 @@ body {
 <body>
     <table>
         <tr>
-            <td><h3 class="home"><a href="/">Home</a></h3></td>
-            <td><h3 class="home"><a href="https://github.com/CharlesAverill/">Github</a></h3></td>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Github</a></h3></td>
             <td><form style="text-align: right" id="searchForm">
                 <input type="text" id="searchInput" placeholder="Tactic Name">
                 <button type="submit" id="submitButton">Tactic Search</button>
@@ -137,11 +137,12 @@ body {
 
     <!-- Content -->
     <div class="container">
-<h1 id="rewriting"><a href="/Rewriting/index.html">Rewriting</a></h1>
+<h1 id="rewriting"><a
+href="/ctpe/Rewriting/index.html">Rewriting</a></h1>
 <p>This group of tactics is very frequently used in the middles of
 proofs. Rewriting in all of its forms is an efficient way to bring
 together previously-independent parts of a goal.</p>
-<h2 id="rewrite"><a href="/Rewriting/rewrite.html">rewrite</a></h2>
+<h2 id="rewrite"><a href="/ctpe/Rewriting/rewrite.html">rewrite</a></h2>
 <p><code>rewrite</code> takes an equivalence proof as input, like
 <code>t1 = t2</code>, and replaces all occurances of <code>t1</code>
 with <code>t2</code>. Replacement of <code>t2</code> with
@@ -186,7 +187,7 @@ x + x = x + x</code></pre>
 href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.rewrite">Reference
 Documentation</a></p>
 <hr>
-<h2 id="rename"><a href="/Rewriting/rename.html">rename</a></h2>
+<h2 id="rename"><a href="/ctpe/Rewriting/rename.html">rename</a></h2>
 <p><code>rename</code> changes the name of an introduced variable or
 assumption.</p>
 <h3 id="syntax-1">Syntax</h3>
@@ -209,7 +210,8 @@ x = x</code></pre>
 href="https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.rename">Reference
 Documentation</a></p>
 <hr>
-<h2 id="remember"><a href="/Rewriting/remember.html">remember</a></h2>
+<h2 id="remember"><a
+href="/ctpe/Rewriting/remember.html">remember</a></h2>
 <p><code>remember</code> gives a name to complex terms. Specifically,
 <code>remember t</code> (where <code>t</code> has type <code>T</code>)
 introduces an assumption that there exists a member of type
@@ -241,7 +243,8 @@ y = 0</code></pre>
 href="https://coq.inria.fr/doc/V8.13.2/refman/proof-engine/tactics.html#coq:tacn.remember">Reference
 Documentation</a></p>
 <hr>
-<h2 id="symmetry"><a href="/Rewriting/symmetry.html">symmetry</a></h2>
+<h2 id="symmetry"><a
+href="/ctpe/Rewriting/symmetry.html">symmetry</a></h2>
 <p><code>symmetry</code> is used to swap the left and right sides of an
 equality.</p>
 <p><code>symmetry</code> can be used on either the goal or a list of

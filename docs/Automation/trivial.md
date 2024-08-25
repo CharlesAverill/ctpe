@@ -2,9 +2,9 @@
 title: "trivial - CTPE"
 ---
 
-## [trivial](/Automation/trivial.html)
+## [trivial](/ctpe/Automation/trivial.html)
 
-`trivial` is essentially a non-recursive [`auto`](/Automation/auto.html).
+`trivial` is essentially a non-recursive [`auto`](/ctpe/Automation/auto.html).
 `trivial` is best utilized when a lemma that exactly matches the goal already exists in the hint database.
 
 ### Syntax

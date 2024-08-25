@@ -2,26 +2,26 @@
 title: easy - CTPE
 ---
 
-## [easy](/Automation/easy.html)
+## [easy](/ctpe/Automation/easy.html)
 
 `easy` throws many common "closing tactics" at a goal to solve a large category of simple problems.
 `easy` will attempt to use:
 
-- [`trivial`](/Automation/trivial.html)
+- [`trivial`](/ctpe/Automation/trivial.html)
 
-- [`reflexivity`](/SpecificSolvers/reflexivity.html)
+- [`reflexivity`](/ctpe/SpecificSolvers/reflexivity.html)
 
-- [`symmetry`](/Rewriting/symmetry.html)
+- [`symmetry`](/ctpe/Rewriting/symmetry.html)
 
-- [`contradiction`](/SpecificSolvers/contradiction.html)
+- [`contradiction`](/ctpe/SpecificSolvers/contradiction.html)
 
-- [`inversion`](/CaseAnalysis/inversion.html)
+- [`inversion`](/ctpe/CaseAnalysis/inversion.html)
 
-- [`intros`](/Generalization/intros.html)
+- [`intros`](/ctpe/Generalization/intros.html)
 
-- [`split`](/Simplification/split.html) (this begins a recursive call of `easy`)
+- [`split`](/ctpe/Simplification/split.html) (this begins a recursive call of `easy`)
 
-- [`destruct`](/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
+- [`destruct`](/ctpe/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
 
 ### Syntax
 

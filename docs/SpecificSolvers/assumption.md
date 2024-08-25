@@ -2,7 +2,7 @@
 title: "assumption - CTPE"
 ---
 
-## [assumption](/SpecificSolvers/assumption.html)
+## [assumption](/ctpe/SpecificSolvers/assumption.html)
 
 `assumption` solves goals in which there exists an assumption that directly proves the goal (no simplification).
 This tactic will fail if there does not exist such an assumption.

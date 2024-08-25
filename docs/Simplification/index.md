@@ -2,13 +2,13 @@
 title: "Simplification - CTPE"
 ---
 
-# [Simplification](/Simplification/index.html)
+# [Simplification](/ctpe/Simplification/index.html)
 
 This group of tactic aims to reduce the complexity of terms in a goal. 
 They will not solve a goal, only convert it into what is a structurally smaller (although maybe not lexically smaller!) form of the original goal.
 
 
-## [simpl](/Simplification/simpl.html)
+## [simpl](/ctpe/Simplification/simpl.html)
 
 `simpl` evaluates terms that are constructed of constant values - not variables.
 `simpl` can also partially evaluate partially-constant values.
@@ -56,7 +56,7 @@ After
 <hr>
 
 
-## [unfold](/Simplification/unfold.html)
+## [unfold](/ctpe/Simplification/unfold.html)
 
 `unfold` replaces definition identifiers with the definition's contents, simplifying along the way.
 
@@ -127,12 +127,12 @@ false
 <hr>
 
 
-## [split](/Simplification/split.html)
+## [split](/ctpe/Simplification/split.html)
 
 `split` is primarily used to break a single goal of the form `A /\ B` into two new goals `A` and `B`.
 
 You will often notice that `split` seems to solve some of the subgoals that it generates.
-This is because `split` is just shorthand for `constructor 1` (see the [`constructor` tactic](/CaseAnalysis/constructor.html)).
+This is because `split` is just shorthand for `constructor 1` (see the [`constructor` tactic](/ctpe/CaseAnalysis/constructor.html)).
 
 Looking at the definition of `/\` (or `and`):
 ```coq

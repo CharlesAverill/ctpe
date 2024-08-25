@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
     <meta property="og:title" content="clear - CTPE">
-    <meta property="og:url" content="https://charlesaverill.github.io/">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
     <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
     <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
     <meta property="article:author" content="Charles Averill">
@@ -95,8 +95,8 @@ body {
     </style>
 
     <!-- Syntax Highlighting -->
-    <link rel="stylesheet" href="/highlight/styles/school-book.css">
-    <script src="/highlight/highlight.min.js"></script>
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
     <script>
@@ -126,8 +126,8 @@ body {
 <body>
     <table>
         <tr>
-            <td><h3 class="home"><a href="/">Home</a></h3></td>
-            <td><h3 class="home"><a href="https://github.com/CharlesAverill/">Github</a></h3></td>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Github</a></h3></td>
             <td><form style="text-align: right" id="searchForm">
                 <input type="text" id="searchInput" placeholder="Tactic Name">
                 <button type="submit" id="submitButton">Tactic Search</button>
@@ -137,18 +137,23 @@ body {
 
     <!-- Content -->
     <div class="container">
-<h2 id="clear"><a href="/Generalization/clear.html">clear</a></h2>
+<h2 id="clear"><a href="/ctpe/Generalization/clear.html">clear</a></h2>
 <p><code>clear</code> erases assumptions from the assumption space.
 Multiple assumptions may be erased in one tactic via a space-separated
 list of assumptions. <code>clear</code> will fail if an assumption
 passed into it contains as subterms other variables that still exist in
 the goal state.</p>
+<p><code>clear - ...</code> can also be used to erase all assumptions
+<b>not depended on</b> by a provided set of assumptions.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 clear H.
 
 (* Clear multiple assumptions *)
-clear H Heq X Y n.</code></pre>
+clear H Heq X Y n.
+
+(* Clear anything that x, z, or c do not depend on *)
+clear - x z c.</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
 <pre class="coq"><code>n: nat
@@ -156,7 +161,7 @@ H, Hr1, Hr2: n = 0
 IHn: n = 1
 -------------------------
 1/1
-False</code></pre>
+True</code></pre>
 <pre class="coq"><code>clear Hr1 Hr2.</code></pre>
 <p>After</p>
 <pre class="coq"><code>n: nat
@@ -164,7 +169,20 @@ H: n = 0
 IHn: n = 1
 -------------------------
 1/1
-False</code></pre>
+True</code></pre>
+<p>Before</p>
+<pre class="coq"><code>a, b, c, x, y, z: nat
+H: a = z
+-------------------------
+1/1
+True</code></pre>
+<pre class="coq"><code>clear - a x H.</code></pre>
+<p>After</p>
+<pre class="coq"><code>a, x, z: nat
+H: a = z
+-------------------------
+1/1
+True</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a
 href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic">Reference

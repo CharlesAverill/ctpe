@@ -2,7 +2,7 @@
 title: "unfold - CTPE"
 ---
 
-## [unfold](/Simplification/unfold.html)
+## [unfold](/ctpe/Simplification/unfold.html)
 
 `unfold` replaces definition identifiers with the definition's contents, simplifying along the way.
 

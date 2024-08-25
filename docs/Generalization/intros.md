@@ -2,12 +2,12 @@
 title: "intros - CTPE"
 ---
 
-## [intros](/Generalization/intros.html)
+## [intros](/ctpe/Generalization/intros.html)
 
 Typically the first tactics a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 
-More specifically, `intros` [specializes](/glossary.html#specialize) a goal by looking for [type inhabitation](/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
+More specifically, `intros` [specializes](/ctpe/glossary.html#specialize) a goal by looking for [type inhabitation](/ctpe/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
 Calling `intros` here will provide you an assumption `n` that there is a value of type `nat`.
 

@@ -3,7 +3,7 @@ title: "Coq Tactics in Plain English"
 ---
 
 
-# [Coq Tactics in Plain English](/prologue.html)
+# [Coq Tactics in Plain English](/ctpe/prologue.html)
 
 If you're like me, one of the biggest shortcomings of the Coq ecosystem is the fairly complicated [tactic reference documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html).
 It is exhaustive (which is better than lacking), but I have a few specific issues with it:
@@ -50,7 +50,7 @@ There are many other guides to Coq tactics, you should check them out too if I d
 <hr>
 
 
-# [Generalization](/Generalization/index.html)
+# [Generalization](/ctpe/Generalization/index.html)
 
 This group of tactics is often found at the beginnings of proofs. 
 Generalization and its counterpart Specialization (both are included here) are concepts used to fine-tune how strong of a theorem is needed to continue.
@@ -58,12 +58,12 @@ Theorems that are too strong (specific) aren't useful for many different kinds o
 Theorems that are too weak (general) are frequently unprovable (even if their specified counterparts are!) and those that are provable are frequently harder to prove!
 
 
-## [intros](/Generalization/intros.html)
+## [intros](/ctpe/Generalization/intros.html)
 
 Typically the first tactics a Coq user ever utilizes.
 `intros` looks for assumptions in your goal and moves them to the goal's assumption space.
 
-More specifically, `intros` [specializes](/glossary.html#specialize) a goal by looking for [type inhabitation](/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
+More specifically, `intros` [specializes](/ctpe/glossary.html#specialize) a goal by looking for [type inhabitation](/ctpe/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
 Calling `intros` here will provide you an assumption `n` that there is a value of type `nat`.
 
@@ -163,11 +163,13 @@ n = n
 <hr>
 
 
-## [clear](/Generalization/clear.html)
+## [clear](/ctpe/Generalization/clear.html)
 
 `clear` erases assumptions from the assumption space.
 Multiple assumptions may be erased in one tactic via a space-separated list of assumptions.
 `clear` will fail if an assumption passed into it contains as subterms other variables that still exist in the goal state.
+
+`clear - ...` can also be used to erase all assumptions <b>not depended on</b> by a provided set of assumptions.
 
 ### Syntax
 
@@ -177,6 +179,9 @@ clear H.
 
 (* Clear multiple assumptions *)
 clear H Heq X Y n.
+
+(* Clear anything that x, z, or c do not depend on *)
+clear - x z c.
 ```
 
 ### Examples
@@ -188,7 +193,7 @@ H, Hr1, Hr2: n = 0
 IHn: n = 1
 -------------------------
 1/1
-False
+True
 ```
 
 ```coq
@@ -202,9 +207,30 @@ H: n = 0
 IHn: n = 1
 -------------------------
 1/1
-False
+True
 ```
 
+Before
+```coq
+a, b, c, x, y, z: nat
+H: a = z
+-------------------------
+1/1
+True
+```
+
+```coq
+clear - a x H.
+```
+
+After
+```coq
+a, x, z: nat
+H: a = z
+-------------------------
+1/1
+True
+```
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.tactic)
@@ -214,13 +240,13 @@ False
 <hr>
 
 
-# [Simplification](/Simplification/index.html)
+# [Simplification](/ctpe/Simplification/index.html)
 
 This group of tactic aims to reduce the complexity of terms in a goal. 
 They will not solve a goal, only convert it into what is a structurally smaller (although maybe not lexically smaller!) form of the original goal.
 
 
-## [simpl](/Simplification/simpl.html)
+## [simpl](/ctpe/Simplification/simpl.html)
 
 `simpl` evaluates terms that are constructed of constant values - not variables.
 `simpl` can also partially evaluate partially-constant values.
@@ -268,7 +294,7 @@ After
 <hr>
 
 
-## [unfold](/Simplification/unfold.html)
+## [unfold](/ctpe/Simplification/unfold.html)
 
 `unfold` replaces definition identifiers with the definition's contents, simplifying along the way.
 
@@ -339,12 +365,12 @@ false
 <hr>
 
 
-## [split](/Simplification/split.html)
+## [split](/ctpe/Simplification/split.html)
 
 `split` is primarily used to break a single goal of the form `A /\ B` into two new goals `A` and `B`.
 
 You will often notice that `split` seems to solve some of the subgoals that it generates.
-This is because `split` is just shorthand for `constructor 1` (see the [`constructor` tactic](/CaseAnalysis/constructor.html)).
+This is because `split` is just shorthand for `constructor 1` (see the [`constructor` tactic](/ctpe/CaseAnalysis/constructor.html)).
 
 Looking at the definition of `/\` (or `and`):
 ```coq
@@ -390,17 +416,17 @@ False
 <hr>
 
 
-# [Specific Solvers](/SpecificSolvers/index.html)
+# [Specific Solvers](/ctpe/SpecificSolvers/index.html)
 
 Each tactic in this group exists to solve a very specific kind of goal.
 They're fairly simple to learn about and use, because their goal targets are such small groups that there are hardly any degrees of freedom for automation to be required.
 Essentially all Coq proofs include some of these (whether they're written by the programmer or called by more complex tactics).
 
 
-## [reflexivity](/SpecificSolvers/reflexivity.html)
+## [reflexivity](/ctpe/SpecificSolvers/reflexivity.html)
 
 `reflexivity` solves goals which state that a term is equal to itself.
-`reflexivity` has some simplification power, but not as much as [`simpl`](/Simplification/simpl.html).
+`reflexivity` has some simplification power, but not as much as [`simpl`](/ctpe/Simplification/simpl.html).
 This tactic will fail if it cannot solve the goal.
 
 `reflexivity` makes an attempt to simplify the goal and then `apply eq_refl`, where `eq_refl` is the sole constructor of the `eq` Inductive Proposition, stating that `forall {A : Type} (a : A), eq a a`.
@@ -438,7 +464,7 @@ Proof finished
 <hr>
 
 
-## [assumption](/SpecificSolvers/assumption.html)
+## [assumption](/ctpe/SpecificSolvers/assumption.html)
 
 `assumption` solves goals in which there exists an assumption that directly proves the goal (no simplification).
 This tactic will fail if there does not exist such an assumption.
@@ -477,7 +503,7 @@ Proof finished
 <hr>
 
 
-## [discriminate](/SpecificSolvers/discriminate.html)
+## [discriminate](/ctpe/SpecificSolvers/discriminate.html)
 
 `discriminate` solves goals that are trivial inequalities (something of the form `x <> y`).
 This tactic will fail if the goal is not an inequality or is non-trivial.
@@ -530,7 +556,7 @@ Proof finished
 <hr>
 
 
-## [exact](/SpecificSolvers/exact.html)
+## [exact](/ctpe/SpecificSolvers/exact.html)
 
 `exact` allows users to solve goals by providing a proof object directly.
 This tactic will fail if the provided proof object does not prove the goal.
@@ -584,7 +610,7 @@ Proof finished
 <hr>
 
 
-## [contradiction](/SpecificSolvers/contradiction.html)
+## [contradiction](/ctpe/SpecificSolvers/contradiction.html)
 
 `contradiction` solves goals in which there exist contradictory hypotheses.
 These contradictions generally take the form of a `False` hypothesis or a pair of hypotheses that state `P` and `~ P` for some proposition.
@@ -644,13 +670,13 @@ Proof finished
 <hr>
 
 
-# [Rewriting](/Rewriting/index.html)
+# [Rewriting](/ctpe/Rewriting/index.html)
 
 This group of tactics is very frequently used in the middles of proofs.
 Rewriting in all of its forms is an efficient way to bring together previously-independent parts of a goal.
 
 
-## [rewrite](/Rewriting/rewrite.html)
+## [rewrite](/ctpe/Rewriting/rewrite.html)
 
 `rewrite` takes an equivalence proof as input, like `t1 = t2`, and replaces all occurances of `t1` with `t2`.
 Replacement of `t2` with `t1` can be achieved with the variant `rewrite <-` (rewrite backwards).
@@ -716,7 +742,7 @@ x + x = x + x
 <hr>
 
 
-## [rename](/Rewriting/rename.html)
+## [rename](/ctpe/Rewriting/rename.html)
 
 `rename` changes the name of an introduced variable or assumption.
 
@@ -755,7 +781,7 @@ x = x
 <hr>
 
 
-## [remember](/Rewriting/remember.html)
+## [remember](/ctpe/Rewriting/remember.html)
 
 `remember` gives a name to complex terms.
 Specifically, `remember t` (where `t` has type `T`) introduces an assumption that there exists a member of type `T`, gives it a name such as `t0`, and provides another assumption that `t = t0`.
@@ -802,7 +828,7 @@ y = 0
 <hr>
 
 
-## [symmetry](/Rewriting/symmetry.html)
+## [symmetry](/ctpe/Rewriting/symmetry.html)
 
 `symmetry` is used to swap the left and right sides of an equality.
 
@@ -848,18 +874,18 @@ After
 <hr>
 
 
-# [Case Analysis](/CaseAnalysis/index.html)
+# [Case Analysis](/ctpe/CaseAnalysis/index.html)
 
 Case analysis is a core aspect of constructivist logic.
 Although for many kinds of problems it is a low-level tool, it is ubiquitous among the foundations of all problems formalized in the Coq system.
 The core idea is: "if I want to prove a property P holds for a term t, I can do so by writing multiple sub-proofs stating that for each form that t can have, P holds."
 
 
-## [destruct](/CaseAnalysis/destruct.html)
+## [destruct](/ctpe/CaseAnalysis/destruct.html)
 
 `destruct` allows for case analysis on inductive terms or assumptions.
 It can be used to split assumptions with conjunctions and disjunctions, as well as existential assumptions.
-The arguments of `destruct` are [patterns](/glossary.html#pattern).
+The arguments of `destruct` are [patterns](/ctpe/glossary.html#pattern).
 
 ### Syntax
 
@@ -958,7 +984,7 @@ Qed.
 <hr>
 
 
-## [inversion](/CaseAnalysis/inversion.html)
+## [inversion](/ctpe/CaseAnalysis/inversion.html)
 
 `inversion` looks at a given piece of structural evidence and draws conclusions from it.
 If there are multiple sets of conclusions, `inversion` will generate a new proof obligation for each one.
@@ -1050,16 +1076,16 @@ Qed.
 <hr>
 
 
-## [induction](/CaseAnalysis/induction.html)
+## [induction](/ctpe/CaseAnalysis/induction.html)
 
 `induction` is an extension of `destruct` that allows for case analysis on inductive terms, gaining an inductive hypothesis for each recursive subterm generated by the term destruction.
-The arguments of `induction` are [patterns](/glossary.html#pattern).
+The arguments of `induction` are [patterns](/ctpe/glossary.html#pattern).
 
-If the goal still contains named impliciations, `induction` can be used before introducing them with [intros](/Generalization/intros.html).
+If the goal still contains named impliciations, `induction` can be used before introducing them with [intros](/ctpe/Generalization/intros.html).
 In this case, if the argument to `induction` is not the first impliciation in the chain, all implications before it will be introduced to the goal's assumption space.
 
 `induction` can act similarly to `inversion` under specific circumstances.
-If you induct over an object that already contains subterms, you can [remember](/Rewriting/remember.html) the subterm(s) and induct on the root object. Then, by an easy `inversion` on the hypothesis generated by `remember`, all cases that don't match the required form generated by the case analysis will be automatically solved by the [principle of explosion](/glossary.html#explosion).
+If you induct over an object that already contains subterms, you can [remember](/ctpe/Rewriting/remember.html) the subterm(s) and induct on the root object. Then, by an easy `inversion` on the hypothesis generated by `remember`, all cases that don't match the required form generated by the case analysis will be automatically solved by the [principle of explosion](/ctpe/glossary.html#explosion).
 
 Sometimes, the automatically-generated induction principles for a type are not sufficient to prove some properties about terms with that type. 
 In this case, it is possible to write a custom induction principle for a type and then use it with the `induction` tactic.
@@ -1147,13 +1173,13 @@ Qed.
 <hr>
 
 
-# [Automation](/Automation/index.html)
+# [Automation](/ctpe/Automation/index.html)
 
 This is basically a catch-all category for tactics that do a lot of things at once.
 This category of tactics generally intends to solve a large category of simple goals to reduce the load of the proof writer.
 
 
-## [auto](/Automation/auto.html)
+## [auto](/ctpe/Automation/auto.html)
 
 `auto` does a recursive search through a specified knowledge base in order to solve goals.
 If `auto` cannot completely solve a goal, it succeeds with no changes to the goal.
@@ -1219,9 +1245,9 @@ Proof. auto with automation. Qed.
 <hr>
 
 
-## [trivial](/Automation/trivial.html)
+## [trivial](/ctpe/Automation/trivial.html)
 
-`trivial` is essentially a non-recursive [`auto`](/Automation/auto.html).
+`trivial` is essentially a non-recursive [`auto`](/ctpe/Automation/auto.html).
 `trivial` is best utilized when a lemma that exactly matches the goal already exists in the hint database.
 
 ### Syntax
@@ -1252,26 +1278,26 @@ Qed.
 <hr>
 
 
-## [easy](/Automation/easy.html)
+## [easy](/ctpe/Automation/easy.html)
 
 `easy` throws many common "closing tactics" at a goal to solve a large category of simple problems.
 `easy` will attempt to use:
 
-- [`trivial`](/Automation/trivial.html)
+- [`trivial`](/ctpe/Automation/trivial.html)
 
-- [`reflexivity`](/SpecificSolvers/reflexivity.html)
+- [`reflexivity`](/ctpe/SpecificSolvers/reflexivity.html)
 
-- [`symmetry`](/Rewriting/symmetry.html)
+- [`symmetry`](/ctpe/Rewriting/symmetry.html)
 
-- [`contradiction`](/SpecificSolvers/contradiction.html)
+- [`contradiction`](/ctpe/SpecificSolvers/contradiction.html)
 
-- [`inversion`](/CaseAnalysis/inversion.html)
+- [`inversion`](/ctpe/CaseAnalysis/inversion.html)
 
-- [`intros`](/Generalization/intros.html)
+- [`intros`](/ctpe/Generalization/intros.html)
 
-- [`split`](/Simplification/split.html) (this begins a recursive call of `easy`)
+- [`split`](/ctpe/Simplification/split.html) (this begins a recursive call of `easy`)
 
-- [`destruct`](/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
+- [`destruct`](/ctpe/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
 
 ### Syntax
 
@@ -1308,7 +1334,7 @@ No more goals.
 <hr>
 
 
-# [Tacticals](/Tacticals/index.html)
+# [Tacticals](/ctpe/Tacticals/index.html)
 
 This category refers to tactics that modify the behavior of other tactics.
 Important phrasing note for this section: a tactical is only a tactical when it doesn't have all of its arguments. A tactical with all of its arguments is a tactic.
@@ -1317,7 +1343,7 @@ Tacticals are heavily utilized in automation because they broaden the capabiliti
 For an interesting perspective on automation - and good examples of building "one shot proofs" (proofs that only contain one tactic) - check out [this post by Adam Chlipala](http://adam.chlipala.net/cpdt/html/Large.html).
 
 
-## [try](/Tacticals/try.html)
+## [try](/ctpe/Tacticals/try.html)
 
 The `try` tactical executes a provided tactic, catching any errors and always succeeding.
 
@@ -1355,7 +1381,7 @@ After
 <hr>
 
 
-## [;](/Tacticals/semicolon.html)
+## [;](/ctpe/Tacticals/semicolon.html)
 
 The infix `;` tactical is the sequencing tactical.
 It applies the right tactic to all of the goals generated by the left tactic.
@@ -1397,7 +1423,7 @@ Also keep in mind that this behavior is extremely versatile, the above tree "sho
 
 Compare this tactical with [Prolog's semicolon tactical](https://www.swi-prolog.org/pldoc/man?predicate=%3B/2) and revel at some neat similarities!
 For example, in Coq, `A;B` will backtrack if `B` fails and `A` can succeed in a *different way*.
-The primary example of a tactic being able to succeed in multiple ways is the [`constructor`](/CaseAnalysis/constructor.html) tactic.
+The primary example of a tactic being able to succeed in multiple ways is the [`constructor`](/ctpe/CaseAnalysis/constructor.html) tactic.
 
 ### Syntax
 
@@ -1441,7 +1467,7 @@ Inductive or (A B : Prop) : Prop :=
 <hr>
 
 
-## [Goal Selectors](/Tacticals/goalselectors.html)
+## [Goal Selectors](/ctpe/Tacticals/goalselectors.html)
 
 Goal selectors are a category of tacticals that apply a tactic to a specific goal or goals.
 
@@ -1504,7 +1530,7 @@ Error: Expected a single focused goal but 2 goals are focused.
 <hr>
 
 
-## [repeat](/Tacticals/repeat.html)
+## [repeat](/ctpe/Tacticals/repeat.html)
 
 The `repeat` tactical repeatedly executes a tactic until it either fails or causes no change in the goal.
 If the tactic provided succeeds, it will be recursively applied to each generated subgoal.
@@ -1554,7 +1580,7 @@ S
 <hr>
 
 
-## [||](/Tacticals/or.html)
+## [||](/ctpe/Tacticals/or.html)
 
 The infix `||` tactical tries the first tactic and only tries the second if the first failed.
 In other words, `||` executes the first tactic that makes progress on the goal.
@@ -1593,9 +1619,9 @@ Proof finished
 <hr>
 
 
-## [now](/Tacticals/now.html)
+## [now](/ctpe/Tacticals/now.html)
 
-`now tactic` is simply notation for `tactic; easy` ([`easy` tactic](/Automation/easy.html)).
+`now tactic` is simply notation for `tactic; easy` ([`easy` tactic](/ctpe/Automation/easy.html)).
 
 ### Syntax
 

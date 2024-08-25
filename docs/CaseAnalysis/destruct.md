@@ -2,11 +2,11 @@
 title: "destruct - CTPE"
 ---
 
-## [destruct](/CaseAnalysis/destruct.html)
+## [destruct](/ctpe/CaseAnalysis/destruct.html)
 
 `destruct` allows for case analysis on inductive terms or assumptions.
 It can be used to split assumptions with conjunctions and disjunctions, as well as existential assumptions.
-The arguments of `destruct` are [patterns](/glossary.html#pattern).
+The arguments of `destruct` are [patterns](/ctpe/glossary.html#pattern).
 
 ### Syntax
 

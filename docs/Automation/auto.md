@@ -2,7 +2,7 @@
 title: "auto - CTPE"
 ---
 
-## [auto](/Automation/auto.html)
+## [auto](/ctpe/Automation/auto.html)
 
 `auto` does a recursive search through a specified knowledge base in order to solve goals.
 If `auto` cannot completely solve a goal, it succeeds with no changes to the goal.

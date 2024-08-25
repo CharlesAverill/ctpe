@@ -2,13 +2,13 @@
 title: "Automation - CTPE"
 ---
 
-# [Automation](/Automation/index.html)
+# [Automation](/ctpe/Automation/index.html)
 
 This is basically a catch-all category for tactics that do a lot of things at once.
 This category of tactics generally intends to solve a large category of simple goals to reduce the load of the proof writer.
 
 
-## [auto](/Automation/auto.html)
+## [auto](/ctpe/Automation/auto.html)
 
 `auto` does a recursive search through a specified knowledge base in order to solve goals.
 If `auto` cannot completely solve a goal, it succeeds with no changes to the goal.
@@ -74,9 +74,9 @@ Proof. auto with automation. Qed.
 <hr>
 
 
-## [trivial](/Automation/trivial.html)
+## [trivial](/ctpe/Automation/trivial.html)
 
-`trivial` is essentially a non-recursive [`auto`](/Automation/auto.html).
+`trivial` is essentially a non-recursive [`auto`](/ctpe/Automation/auto.html).
 `trivial` is best utilized when a lemma that exactly matches the goal already exists in the hint database.
 
 ### Syntax
@@ -107,26 +107,26 @@ Qed.
 <hr>
 
 
-## [easy](/Automation/easy.html)
+## [easy](/ctpe/Automation/easy.html)
 
 `easy` throws many common "closing tactics" at a goal to solve a large category of simple problems.
 `easy` will attempt to use:
 
-- [`trivial`](/Automation/trivial.html)
+- [`trivial`](/ctpe/Automation/trivial.html)
 
-- [`reflexivity`](/SpecificSolvers/reflexivity.html)
+- [`reflexivity`](/ctpe/SpecificSolvers/reflexivity.html)
 
-- [`symmetry`](/Rewriting/symmetry.html)
+- [`symmetry`](/ctpe/Rewriting/symmetry.html)
 
-- [`contradiction`](/SpecificSolvers/contradiction.html)
+- [`contradiction`](/ctpe/SpecificSolvers/contradiction.html)
 
-- [`inversion`](/CaseAnalysis/inversion.html)
+- [`inversion`](/ctpe/CaseAnalysis/inversion.html)
 
-- [`intros`](/Generalization/intros.html)
+- [`intros`](/ctpe/Generalization/intros.html)
 
-- [`split`](/Simplification/split.html) (this begins a recursive call of `easy`)
+- [`split`](/ctpe/Simplification/split.html) (this begins a recursive call of `easy`)
 
-- [`destruct`](/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
+- [`destruct`](/ctpe/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
 
 ### Syntax
 

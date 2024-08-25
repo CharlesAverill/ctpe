@@ -2,7 +2,7 @@
 title: "repeat - CTPE"
 ---
 
-## [repeat](/Tacticals/repeat.html)
+## [repeat](/ctpe/Tacticals/repeat.html)
 
 The `repeat` tactical repeatedly executes a tactic until it either fails or causes no change in the goal.
 If the tactic provided succeeds, it will be recursively applied to each generated subgoal.

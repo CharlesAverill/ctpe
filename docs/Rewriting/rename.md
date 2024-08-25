@@ -2,7 +2,7 @@
 title: "rename - CTPE"
 ---
 
-## [rename](/Rewriting/rename.html)
+## [rename](/ctpe/Rewriting/rename.html)
 
 `rename` changes the name of an introduced variable or assumption.
 

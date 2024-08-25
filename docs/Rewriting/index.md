@@ -2,13 +2,13 @@
 title: "Rewriting - CTPE"
 ---
 
-# [Rewriting](/Rewriting/index.html)
+# [Rewriting](/ctpe/Rewriting/index.html)
 
 This group of tactics is very frequently used in the middles of proofs.
 Rewriting in all of its forms is an efficient way to bring together previously-independent parts of a goal.
 
 
-## [rewrite](/Rewriting/rewrite.html)
+## [rewrite](/ctpe/Rewriting/rewrite.html)
 
 `rewrite` takes an equivalence proof as input, like `t1 = t2`, and replaces all occurances of `t1` with `t2`.
 Replacement of `t2` with `t1` can be achieved with the variant `rewrite <-` (rewrite backwards).
@@ -74,7 +74,7 @@ x + x = x + x
 <hr>
 
 
-## [rename](/Rewriting/rename.html)
+## [rename](/ctpe/Rewriting/rename.html)
 
 `rename` changes the name of an introduced variable or assumption.
 
@@ -113,7 +113,7 @@ x = x
 <hr>
 
 
-## [remember](/Rewriting/remember.html)
+## [remember](/ctpe/Rewriting/remember.html)
 
 `remember` gives a name to complex terms.
 Specifically, `remember t` (where `t` has type `T`) introduces an assumption that there exists a member of type `T`, gives it a name such as `t0`, and provides another assumption that `t = t0`.
@@ -160,7 +160,7 @@ y = 0
 <hr>
 
 
-## [symmetry](/Rewriting/symmetry.html)
+## [symmetry](/ctpe/Rewriting/symmetry.html)
 
 `symmetry` is used to swap the left and right sides of an equality.
 
