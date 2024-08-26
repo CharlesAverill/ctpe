@@ -169,7 +169,7 @@ n + 0 = n</code></pre>
 1/1
 n + 0 = n</code></pre>
 <p>Alternatively,</p>
-<pre class="coq"><code>try auto.</code></pre>
+<pre class="coq"><code>try apply add_0_r.</code></pre>
 <pre class="coq"><code>No more goals.</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a
@@ -219,7 +219,7 @@ A;(B;C)             /*  Call A  */
 above tree &#x201C;shortening&#x201D; use is only one example.</p>
 <p>Compare this tactical with <a
 href="https://www.swi-prolog.org/pldoc/man?predicate=%3B/2">Prolog&#x2019;s
-semicolon tactical</a> and revel at some neat similarities! For example,
+semicolon operator</a> and revel at some neat similarities! For example,
 in Coq, <code>A;B</code> will backtrack if <code>B</code> fails and
 <code>A</code> can succeed in a <em>different way</em>. The primary
 example of a tactic being able to succeed in multiple ways is the <a

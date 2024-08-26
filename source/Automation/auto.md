@@ -34,9 +34,11 @@ auto using example.
 
 Before
 ```coq
+P: Prop
+H: P
 =========================
 1/1
-0 = 0
+0 = 0 /\ True /\ P
 ```
 
 ```coq
@@ -64,7 +66,9 @@ Proof. auto with automation. Qed.
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto)
 
 ["More Automation" - Logical Foundations](https://softwarefoundations.cis.upenn.edu/lf-current/Auto.html)
+
 ["A Streamlined Treatment of Automation" - Logical Foundations](https://softwarefoundations.cis.upenn.edu/lf-current/AltAuto.html)
+
 ["Theory and Practice of Automation in Coq Proofs" - Programming Language Foundations](https://softwarefoundations.cis.upenn.edu/plf-current/UseAuto.html)
 
 [Hint Databases](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases)

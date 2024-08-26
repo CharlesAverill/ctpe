@@ -249,14 +249,19 @@ H: n &lt;= 1
 1/1
 n = 0 \/ n = 1</code></pre>
 <pre class="coq"><code>inversion H.</code></pre>
-<p>After (first goal generated)</p>
+<p>After (first goal generated):</p>
+<p>Note: this is the case of <code>n &lt;= 1</code> where
+<code>n = 1</code>, hence <code>H0</code>.</p>
 <pre class="coq"><code>n: nat
 H: n &lt;= 1
 H0: n = 1
 =========================
 1/2
 1 = 0 \/ 1 = 1</code></pre>
-<p>After (second goal generated)</p>
+<p>After (second goal generated):</p>
+<p>Note: this is the case of <code>n &lt;= 1</code> where
+<code>n &lt; 1</code>, equivalent to <code>n &lt;= 0</code>, hence
+<code>H1</code>.</p>
 <pre class="coq"><code>n: nat
 H: n &lt;= 1
 m: nat

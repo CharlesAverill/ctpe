@@ -143,7 +143,9 @@ n = 0 \/ n = 1
 inversion H.
 ```
 
-After (first goal generated)
+After (first goal generated):
+
+Note: this is the case of `n <= 1` where `n = 1`, hence `H0`.
 ```coq
 n: nat
 H: n <= 1
@@ -153,7 +155,9 @@ H0: n = 1
 1 = 0 \/ 1 = 1
 ```
 
-After (second goal generated)
+After (second goal generated):
+
+Note: this is the case of `n <= 1` where `n < 1`, equivalent to `n <= 0`, hence `H1`.
 ```coq
 n: nat
 H: n <= 1

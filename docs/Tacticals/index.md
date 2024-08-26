@@ -47,7 +47,7 @@ n + 0 = n
 Alternatively,
 
 ```coq
-try auto.
+try apply add_0_r.
 ```
 
 ```coq
@@ -101,7 +101,7 @@ A;(B;C)             /*  Call A  */
 
 Also keep in mind that this behavior is extremely versatile, the above tree "shortening" use is only one example.
 
-Compare this tactical with [Prolog's semicolon tactical](https://www.swi-prolog.org/pldoc/man?predicate=%3B/2) and revel at some neat similarities!
+Compare this tactical with [Prolog's semicolon operator](https://www.swi-prolog.org/pldoc/man?predicate=%3B/2) and revel at some neat similarities!
 For example, in Coq, `A;B` will backtrack if `B` fails and `A` can succeed in a *different way*.
 The primary example of a tactic being able to succeed in multiple ways is the [`constructor`](/ctpe/CaseAnalysis/constructor.html) tactic.
 

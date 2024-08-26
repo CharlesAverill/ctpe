@@ -38,7 +38,7 @@ n + 0 = n
 Alternatively,
 
 ```coq
-try auto.
+try apply add_0_r.
 ```
 
 ```coq

@@ -1016,7 +1016,9 @@ n = 0 \/ n = 1
 inversion H.
 ```
 
-After (first goal generated)
+After (first goal generated):
+
+Note: this is the case of `n <= 1` where `n = 1`, hence `H0`.
 ```coq
 n: nat
 H: n <= 1
@@ -1026,7 +1028,9 @@ H0: n = 1
 1 = 0 \/ 1 = 1
 ```
 
-After (second goal generated)
+After (second goal generated):
+
+Note: this is the case of `n <= 1` where `n < 1`, equivalent to `n <= 0`, hence `H1`.
 ```coq
 n: nat
 H: n <= 1
@@ -1214,9 +1218,11 @@ auto using example.
 
 Before
 ```coq
+P: Prop
+H: P
 =========================
 1/1
-0 = 0
+0 = 0 /\ True /\ P
 ```
 
 ```coq
@@ -1244,7 +1250,9 @@ Proof. auto with automation. Qed.
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto)
 
 ["More Automation" - Logical Foundations](https://softwarefoundations.cis.upenn.edu/lf-current/Auto.html)
+
 ["A Streamlined Treatment of Automation" - Logical Foundations](https://softwarefoundations.cis.upenn.edu/lf-current/AltAuto.html)
+
 ["Theory and Practice of Automation in Coq Proofs" - Programming Language Foundations](https://softwarefoundations.cis.upenn.edu/plf-current/UseAuto.html)
 
 [Hint Databases](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases)
@@ -1388,7 +1396,7 @@ n + 0 = n
 Alternatively,
 
 ```coq
-try auto.
+try apply add_0_r.
 ```
 
 ```coq
@@ -1442,7 +1450,7 @@ A;(B;C)             /*  Call A  */
 
 Also keep in mind that this behavior is extremely versatile, the above tree "shortening" use is only one example.
 
-Compare this tactical with [Prolog's semicolon tactical](https://www.swi-prolog.org/pldoc/man?predicate=%3B/2) and revel at some neat similarities!
+Compare this tactical with [Prolog's semicolon operator](https://www.swi-prolog.org/pldoc/man?predicate=%3B/2) and revel at some neat similarities!
 For example, in Coq, `A;B` will backtrack if `B` fails and `A` can succeed in a *different way*.
 The primary example of a tactic being able to succeed in multiple ways is the [`constructor`](/ctpe/CaseAnalysis/constructor.html) tactic.
 
