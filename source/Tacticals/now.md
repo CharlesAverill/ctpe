@@ -4,7 +4,7 @@ title: now - CTPE
 
 ## now
 
-`now tactic` is simply notation for `tactic; easy` ([`easy` tactic](/ctpe/Automation/easy.html)).
+`now tactic` is simply notation for `tactic;` [`easy`](/ctpe/Automation/easy.html).
 
 ### Syntax
 

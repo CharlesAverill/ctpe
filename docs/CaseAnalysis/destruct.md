@@ -57,7 +57,7 @@ After (second goal generated)
 n, n': nat
 E: n = S n'
 =========================
-1/1
+2/2
 S n' = 0 \/ 1 <= S n'
 ```
 

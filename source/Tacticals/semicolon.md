@@ -76,7 +76,7 @@ constructor; assumption.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 Note the definition of `or`:
 ```coq

@@ -29,7 +29,7 @@ exact I.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Before
@@ -46,7 +46,7 @@ exact (eq_refl (n + 5)).
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources

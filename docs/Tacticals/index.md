@@ -8,7 +8,7 @@ This category refers to tactics that modify the behavior of other tactics.
 Important phrasing note for this section: a tactical is only a tactical when it doesn't have all of its arguments. A tactical with all of its arguments is a tactic.
 Tacticals are heavily utilized in automation because they broaden the capabilities of the tactic language significantly, making it much more expressive.
 
-For an interesting perspective on automation - and good examples of building "one shot proofs" (proofs that only contain one tactic) - check out [this post by Adam Chlipala](http://adam.chlipala.net/cpdt/html/Large.html).
+For an interesting perspective on automation - and good examples of building "one shot proofs" (proofs that utilize tacticals to contain only one proof step) - check out [this post by Adam Chlipala](http://adam.chlipala.net/cpdt/html/Large.html).
 
 
 ## [try](/ctpe/Tacticals/try.html)
@@ -26,9 +26,10 @@ try reflexivity.
 
 Before
 ```coq
+n: nat
 =========================
 1/1
-1 = 2
+n + 0 = n
 ```
 
 ```coq
@@ -37,9 +38,20 @@ try reflexivity.
 
 After
 ```coq
+n: nat
 =========================
 1/1
-1 = 2
+n + 0 = n
+```
+
+Alternatively,
+
+```coq
+try auto.
+```
+
+```coq
+No more goals.
 ```
 
 ### Resources
@@ -123,7 +135,7 @@ constructor; assumption.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 Note the definition of `or`:
 ```coq
@@ -178,7 +190,7 @@ all: exact I.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Alternatively,
@@ -202,6 +214,9 @@ Error: Expected a single focused goal but 2 goals are focused.
 
 The `repeat` tactical repeatedly executes a tactic until it either fails or causes no change in the goal.
 If the tactic provided succeeds, it will be recursively applied to each generated subgoal.
+
+Be careful: if the input tactic never fails, `repeat` will cause an infinite loop!
+For example, `repeat symmetry` or `repeat idtac` will always result in an infinite loop.
 
 ### Syntax
 
@@ -277,7 +292,7 @@ reflexivity || assumption.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources
@@ -289,7 +304,7 @@ Proof finished
 
 ## [now](/ctpe/Tacticals/now.html)
 
-`now tactic` is simply notation for `tactic; easy` ([`easy` tactic](/ctpe/Automation/easy.html)).
+`now tactic` is simply notation for `tactic;` [`easy`](/ctpe/Automation/easy.html).
 
 ### Syntax
 
@@ -328,9 +343,9 @@ The `do` tactical accepts a tactic `t` and a natural number `n`, applying `t` to
 `do` fails if one of the applications of `t` fails before `n` applications have occurred.
 
 In my opinion, `do` is a difficult tactic to justify. I find myself using it when using [`repeat`](/ctpe/Tacticals/repeat.html)
-tends to be overzealous. For example, if I have 100 goals and 30 of them can be solved the same way,
-I'm more likely to use `do 30 <tactic>` than `repeat <tactic>` to prevent the remaining 70 goals from
-being altered.
+tends to be overzealous. For example, if I have a goal with 100 subterms, and I'd like to apply a tactic `t`
+only to 30 of the subterms (assuming `t` works on individual subterms and not the whole goal), I'm more
+likely to use `do 30 t` than `repeat t` to prevent the remaining 70 subterms from being affected.
 
 ### Syntax
 

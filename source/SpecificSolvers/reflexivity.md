@@ -33,7 +33,7 @@ reflexivity.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources

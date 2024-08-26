@@ -146,9 +146,10 @@ of its arguments is a tactic. Tacticals are heavily utilized in
 automation because they broaden the capabilities of the tactic language
 significantly, making it much more expressive.</p>
 <p>For an interesting perspective on automation - and good examples of
-building &#x201C;one shot proofs&#x201D; (proofs that only contain one tactic) - check
-out <a href="http://adam.chlipala.net/cpdt/html/Large.html">this post by
-Adam Chlipala</a>.</p>
+building &#x201C;one shot proofs&#x201D; (proofs that utilize tacticals to contain
+only one proof step) - check out <a
+href="http://adam.chlipala.net/cpdt/html/Large.html">this post by Adam
+Chlipala</a>.</p>
 <h2 id="try"><a href="/ctpe/Tacticals/try.html">try</a></h2>
 <p>The <code>try</code> tactical executes a provided tactic, catching
 any errors and always succeeding.</p>
@@ -157,14 +158,19 @@ any errors and always succeeding.</p>
 try reflexivity.</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>=========================
+<pre class="coq"><code>n: nat
+=========================
 1/1
-1 = 2</code></pre>
+n + 0 = n</code></pre>
 <pre class="coq"><code>try reflexivity.</code></pre>
 <p>After</p>
-<pre class="coq"><code>=========================
+<pre class="coq"><code>n: nat
+=========================
 1/1
-1 = 2</code></pre>
+n + 0 = n</code></pre>
+<p>Alternatively,</p>
+<pre class="coq"><code>try auto.</code></pre>
+<pre class="coq"><code>No more goals.</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a
 href="https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#coq:tacn.try">Reference
@@ -237,7 +243,7 @@ H: Q
 P \/ Q</code></pre>
 <pre class="coq"><code>constructor; assumption.</code></pre>
 <p>After</p>
-<pre class="coq"><code>Proof finished</code></pre>
+<pre class="coq"><code>No more goals.</code></pre>
 <p>Note the definition of <code>or</code>:</p>
 <pre class="coq"><code>Inductive or (A B : Prop) : Prop :=
 | or_introl : A -&gt; A \/ B 
@@ -279,7 +285,7 @@ True</code></pre>
 (* or *)
 1-2: exact I.</code></pre>
 <p>After</p>
-<pre class="coq"><code>Proof finished</code></pre>
+<pre class="coq"><code>No more goals.</code></pre>
 <p>Alternatively,</p>
 <pre class="coq"><code>!: exact I.</code></pre>
 <pre class="after"><code>Error: Expected a single focused goal but 2 goals are focused.</code></pre>
@@ -292,6 +298,9 @@ Documentation</a></p>
 <p>The <code>repeat</code> tactical repeatedly executes a tactic until
 it either fails or causes no change in the goal. If the tactic provided
 succeeds, it will be recursively applied to each generated subgoal.</p>
+<p>Be careful: if the input tactic never fails, <code>repeat</code> will
+cause an infinite loop! For example, <code>repeat symmetry</code> or
+<code>repeat idtac</code> will always result in an infinite loop.</p>
 <h3 id="syntax-3">Syntax</h3>
 <pre class="coq"><code>(* Simple usage *)
 repeat split.</code></pre>
@@ -337,16 +346,15 @@ H: P
 P</code></pre>
 <pre class="coq"><code>reflexivity || assumption.</code></pre>
 <p>After</p>
-<pre class="coq"><code>Proof finished</code></pre>
+<pre class="coq"><code>No more goals.</code></pre>
 <h3 id="resources-3">Resources</h3>
 <p><a
 href="https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#first-tactic-to-make-progress">Reference
 Documentation</a></p>
 <hr>
 <h2 id="now"><a href="/ctpe/Tacticals/now.html">now</a></h2>
-<p><code>now tactic</code> is simply notation for
-<code>tactic; easy</code> (<a
-href="/ctpe/Automation/easy.html"><code>easy</code> tactic</a>).</p>
+<p><code>now tactic</code> is simply notation for <code>tactic;</code>
+<a href="/ctpe/Automation/easy.html"><code>easy</code></a>.</p>
 <h3 id="syntax-5">Syntax</h3>
 <pre class="coq"><code>now split.</code></pre>
 <h3 id="examples-5">Examples</h3>
@@ -371,11 +379,12 @@ occurred.</p>
 <p>In my opinion, <code>do</code> is a difficult tactic to justify. I
 find myself using it when using <a
 href="/ctpe/Tacticals/repeat.html"><code>repeat</code></a> tends to be
-overzealous. For example, if I have 100 goals and 30 of them can be
-solved the same way, I&#x2019;m more likely to use
-<code>do 30 &lt;tactic&gt;</code> than
-<code>repeat &lt;tactic&gt;</code> to prevent the remaining 70 goals
-from being altered.</p>
+overzealous. For example, if I have a goal with 100 subterms, and I&#x2019;d
+like to apply a tactic <code>t</code> only to 30 of the subterms
+(assuming <code>t</code> works on individual subterms and not the whole
+goal), I&#x2019;m more likely to use <code>do 30 t</code> than
+<code>repeat t</code> to prevent the remaining 70 subterms from being
+affected.</p>
 <h3 id="syntax-6">Syntax</h3>
 <pre class="coq"><code>do 3 (split; [reflexivity | idtac]).</code></pre>
 <h3 id="examples-6">Examples</h3>

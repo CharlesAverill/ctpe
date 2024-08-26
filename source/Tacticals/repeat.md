@@ -7,6 +7,9 @@ title: "repeat - CTPE"
 The `repeat` tactical repeatedly executes a tactic until it either fails or causes no change in the goal.
 If the tactic provided succeeds, it will be recursively applied to each generated subgoal.
 
+Be careful: if the input tactic never fails, `repeat` will cause an infinite loop!
+For example, `repeat symmetry` or `repeat idtac` will always result in an infinite loop.
+
 ### Syntax
 
 ```coq

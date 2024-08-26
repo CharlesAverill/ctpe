@@ -145,14 +145,19 @@ any errors and always succeeding.</p>
 try reflexivity.</code></pre>
 <h3 id="examples">Examples</h3>
 <p>Before</p>
-<pre class="coq"><code>=========================
+<pre class="coq"><code>n: nat
+=========================
 1/1
-1 = 2</code></pre>
+n + 0 = n</code></pre>
 <pre class="coq"><code>try reflexivity.</code></pre>
 <p>After</p>
-<pre class="coq"><code>=========================
+<pre class="coq"><code>n: nat
+=========================
 1/1
-1 = 2</code></pre>
+n + 0 = n</code></pre>
+<p>Alternatively,</p>
+<pre class="coq"><code>try auto.</code></pre>
+<pre class="coq"><code>No more goals.</code></pre>
 <h3 id="resources">Resources</h3>
 <p><a
 href="https://coq.inria.fr/doc/master/refman/proof-engine/ltac.html#coq:tacn.try">Reference

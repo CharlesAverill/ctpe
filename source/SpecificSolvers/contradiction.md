@@ -31,7 +31,7 @@ contradiction.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Before
@@ -50,7 +50,7 @@ contradiction.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources

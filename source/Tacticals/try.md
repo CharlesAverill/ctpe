@@ -17,9 +17,10 @@ try reflexivity.
 
 Before
 ```coq
+n: nat
 =========================
 1/1
-1 = 2
+n + 0 = n
 ```
 
 ```coq
@@ -28,9 +29,20 @@ try reflexivity.
 
 After
 ```coq
+n: nat
 =========================
 1/1
-1 = 2
+n + 0 = n
+```
+
+Alternatively,
+
+```coq
+try auto.
+```
+
+```coq
+No more goals.
 ```
 
 ### Resources

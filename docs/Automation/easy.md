@@ -21,7 +21,9 @@ title: easy - CTPE
 
 - [`split`](/ctpe/Simplification/split.html) (this begins a recursive call of `easy`)
 
-- [`destruct`](/ctpe/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
+- [`destruct`](/ctpe/CaseAnalysis/destruct.html) (on hypotheses with conjunctions)
+
+`easy` is the base form of the [`now`](/ctpe/Tacticals/now.html) tactical.
 
 ### Syntax
 

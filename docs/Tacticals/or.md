@@ -31,7 +31,7 @@ reflexivity || assumption.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources

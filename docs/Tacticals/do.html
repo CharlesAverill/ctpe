@@ -146,11 +146,12 @@ occurred.</p>
 <p>In my opinion, <code>do</code> is a difficult tactic to justify. I
 find myself using it when using <a
 href="/ctpe/Tacticals/repeat.html"><code>repeat</code></a> tends to be
-overzealous. For example, if I have 100 goals and 30 of them can be
-solved the same way, I&#x2019;m more likely to use
-<code>do 30 &lt;tactic&gt;</code> than
-<code>repeat &lt;tactic&gt;</code> to prevent the remaining 70 goals
-from being altered.</p>
+overzealous. For example, if I have a goal with 100 subterms, and I&#x2019;d
+like to apply a tactic <code>t</code> only to 30 of the subterms
+(assuming <code>t</code> works on individual subterms and not the whole
+goal), I&#x2019;m more likely to use <code>do 30 t</code> than
+<code>repeat t</code> to prevent the remaining 70 subterms from being
+affected.</p>
 <h3 id="syntax">Syntax</h3>
 <pre class="coq"><code>do 3 (split; [reflexivity | idtac]).</code></pre>
 <h3 id="examples">Examples</h3>

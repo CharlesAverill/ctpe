@@ -8,9 +8,9 @@ The `do` tactical accepts a tactic `t` and a natural number `n`, applying `t` to
 `do` fails if one of the applications of `t` fails before `n` applications have occurred.
 
 In my opinion, `do` is a difficult tactic to justify. I find myself using it when using [`repeat`](/ctpe/Tacticals/repeat.html)
-tends to be overzealous. For example, if I have 100 goals and 30 of them can be solved the same way,
-I'm more likely to use `do 30 <tactic>` than `repeat <tactic>` to prevent the remaining 70 goals from
-being altered.
+tends to be overzealous. For example, if I have a goal with 100 subterms, and I'd like to apply a tactic `t`
+only to 30 of the subterms (assuming `t` works on individual subterms and not the whole goal), I'm more
+likely to use `do 30 t` than `repeat t` to prevent the remaining 70 subterms from being affected.
 
 ### Syntax
 

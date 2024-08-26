@@ -51,7 +51,7 @@ auto.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Script
@@ -68,6 +68,10 @@ Proof. auto with automation. Qed.
 ### Resources
 
 [Reference Documentation](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#coq:tacn.auto)
+
+["More Automation" - Logical Foundations](https://softwarefoundations.cis.upenn.edu/lf-current/Auto.html)
+["A Streamlined Treatment of Automation" - Logical Foundations](https://softwarefoundations.cis.upenn.edu/lf-current/AltAuto.html)
+["Theory and Practice of Automation in Coq Proofs" - Programming Language Foundations](https://softwarefoundations.cis.upenn.edu/plf-current/UseAuto.html)
 
 [Hint Databases](https://coq.inria.fr/doc/master/refman/proofs/automatic-tactics/auto.html#hintdatabases)
 
@@ -126,7 +130,9 @@ Qed.
 
 - [`split`](/ctpe/Simplification/split.html) (this begins a recursive call of `easy`)
 
-- [`destruct`](/ctpe/CaseAnalysis/destruct.html) (on hypotheses with conjunctions) 
+- [`destruct`](/ctpe/CaseAnalysis/destruct.html) (on hypotheses with conjunctions)
+
+`easy` is the base form of the [`now`](/ctpe/Tacticals/now.html) tactical.
 
 ### Syntax
 

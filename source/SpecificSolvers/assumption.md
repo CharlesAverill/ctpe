@@ -26,12 +26,12 @@ P
 ```
 
 ```coq
-assumption
+assumption.
 ```
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources

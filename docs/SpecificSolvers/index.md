@@ -40,7 +40,7 @@ reflexivity.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources
@@ -74,12 +74,12 @@ P
 ```
 
 ```coq
-assumption
+assumption.
 ```
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources
@@ -116,7 +116,7 @@ discriminate.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Before
@@ -132,7 +132,7 @@ discriminate.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources
@@ -169,7 +169,7 @@ exact I.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Before
@@ -186,7 +186,7 @@ exact (eq_refl (n + 5)).
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources
@@ -225,7 +225,7 @@ contradiction.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Before
@@ -244,7 +244,7 @@ contradiction.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources

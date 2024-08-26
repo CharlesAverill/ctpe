@@ -29,7 +29,7 @@ discriminate.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Before
@@ -45,7 +45,7 @@ discriminate.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 ### Resources

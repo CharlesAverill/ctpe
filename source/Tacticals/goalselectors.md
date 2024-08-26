@@ -45,7 +45,7 @@ all: exact I.
 
 After
 ```coq
-Proof finished
+No more goals.
 ```
 
 Alternatively,
