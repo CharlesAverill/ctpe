@@ -149,8 +149,11 @@ those that are provable are frequently harder to prove!</p>
 <h2 id="intros"><a
 href="/ctpe/Generalization/intros.html">intros</a></h2>
 <p>Typically the first tactics a Coq user ever utilizes.
-<code>intros</code> looks for assumptions in your goal and moves them to
-the goal&#x2019;s assumption space.</p>
+<code>intros</code> finds assumptions builtin to your goal (usually in
+the form of a <code>forall</code> quantifier) and moves them to the
+goal&#x2019;s context (a.k.a. hypothesis space, assumption space). This is
+similar to the first step of many informal, paper proofs, when the
+prover states &#x201C;let there be some number n, &#x2026;&#x201D;</p>
 <p>More specifically, <code>intros</code> <a
 href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking
 for <a href="/ctpe/glossary.html#type_inhabitation">type

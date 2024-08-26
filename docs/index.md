@@ -61,7 +61,8 @@ Theorems that are too weak (general) are frequently unprovable (even if their sp
 ## [intros](/ctpe/Generalization/intros.html)
 
 Typically the first tactics a Coq user ever utilizes.
-`intros` looks for assumptions in your goal and moves them to the goal's assumption space.
+`intros` finds assumptions builtin to your goal (usually in the form of a `forall` quantifier) and moves them to the goal's context (a.k.a. hypothesis space, assumption space).
+This is similar to the first step of many informal, paper proofs, when the prover states "let there be some number n, ..."
 
 More specifically, `intros` [specializes](/ctpe/glossary.html#specialize) a goal by looking for [type inhabitation](/ctpe/glossary.html#type_inhabitation) and proposition assumptions and moving them into the assumption space.
 For example, if you write `forall (n : nat), n + 0 = n`, the `forall` is acting as an assumption that there is a value of type `nat` that we can call `n`.
