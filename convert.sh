@@ -7,7 +7,7 @@ cp -r templates/highlight docs/highlight
 python compile_html_template.py $1 templates/pd_template.html templates/style.css sub_template.html
 
 # Find all Markdown files
-md_files=($(find docs -type f -name "*.md"))
+md_files=($(git ls-files -m 'docs/**/*.md'))
 total_files=${#md_files[@]}
 
 # Function to display progress
