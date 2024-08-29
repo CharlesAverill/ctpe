@@ -1,1 +1,1 @@
-python compile.py && sh convert.sh notest $1 && git add . && git commit -m "Update $(date +"%Y-%m-%d %H:%M:%S")" && git push
+python compile.py && sh convert.sh notest $1 && git add . && git commit -m "Update $(date +"%Y-%m-%d %H:%M:%S")" && git push && cd .. && git add ctpe && git commit -m "CTPE $(date + "%Y-%m-%d %H:%M:%S")" && git push && cd ctpe
