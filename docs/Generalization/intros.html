@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Embed Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="intros - CTPE">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
+    <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
+    <meta property="article:author" content="Charles Averill">
+    <meta property="article:section" content="Technology">
+    <meta property="article:tag" content="coq">
+    <meta property="article:tag" content="proof">
+    <meta property="article:tag" content="formal verification">
+    <meta property="article:tag" content="tactic">
+
+    <title>intros - CTPE</title>
+    <style>
+:root {
+    --blue: #0000FF;
+    --light-blue: #1e90ff;
+  }
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+/* td {
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: left;
+}
+
+tr td:last-child {
+    text-align: right;
+} */
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: left;
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.home {
+    text-align: center;
+}
+
+body {
+    font-family: Garamond;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 8;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 769px) {
+    body {
+        margin-left: 25%;
+        margin-right: 25%;
+        text-align: justify;
+    }
+}
+    </style>
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Github</a></h3></td>
+            <td><form style="text-align: right" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Tactic Name">
+                <button type="submit" id="submitButton">Tactic Search</button>
+            </form></td>
+        </tr>
+    </table>
+
+    <!-- Content -->
+    <div class="container">
+<h2 id="intros"><a
+href="/ctpe/Generalization/intros.html">intros</a></h2>
+<p>Typically the first tactics a Coq user ever utilizes.
+<code>intros</code> finds assumptions builtin to your goal (usually in
+the form of a <code>forall</code> quantifier) and moves them to the
+goal&#x2019;s context (a.k.a. hypothesis space, assumption space). This is
+similar to the first step of many informal, paper proofs, when the
+prover states &#x201C;let there be some number n, &#x2026;&#x201D;</p>
+<p>More specifically, <code>intros</code> <a
+href="/ctpe/glossary.html#specialize">specializes</a> a goal by looking
+for <a href="/ctpe/glossary.html#type_inhabitation">type
+inhabitation</a> and proposition assumptions and moving them into the
+assumption space. For example, if you write
+<code>forall (n : nat), n + 0 = n</code>, the <code>forall</code> is
+acting as an assumption that there is a value of type <code>nat</code>
+that we can call <code>n</code>. Calling <code>intros</code> here will
+provide you an assumption <code>n</code> that there is a value of type
+<code>nat</code>.</p>
+<p><code>intros</code> will not introduce variables that are contained
+in opaque/wrapped definitions - <b>unless</b> an explicit name is
+provided for them.</p>
+<p>A simpler tactic, <code>intro</code>, acts similarly but can only
+introduce one assumption, and will introduce variables contained in
+opaque/wrapped definitions.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>(* Simple usage - introduces all named assumptions *)
+intros.
+
+(* Give specific names to assumptions as you introduce *)
+intros n m x.
+
+(* Split a conjunction or existential assumption upon introducing *)
+intros [A B].</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>=========================
+forall (n : nat), n + 0 = n</code></pre>
+<pre class="coq"><code>intros x.</code></pre>
+<p>After</p>
+<pre class="coq"><code>x: nat
+=========================
+1/1
+x + 0 = x</code></pre>
+<p>Before</p>
+<pre class="coq"><code>=========================
+forall (A B C : Prop), A /\ B -&gt; C -&gt; A /\ C</code></pre>
+<pre class="coq"><code>intros A B C [ATrue BTrue].</code></pre>
+<p>After</p>
+<pre class="coq"><code>A, B, C: Prop
+ATrue: A
+BTrue: B
+=========================
+1/1
+C -&gt; A /\ C</code></pre>
+<p>Before (assume <code>P := forall (n : nat), n = n</code>)</p>
+<pre class="coq"><code>=========================
+1/1
+P</code></pre>
+<pre class="coq"><code>intros.</code></pre>
+<p>After</p>
+<pre class="coq"><code>=========================
+1/1
+P</code></pre>
+<p>Alternatively,</p>
+<pre class="coq"><code>intro.</code></pre>
+<p>After</p>
+<pre class="coq"><code>n: nat
+=========================
+1/1
+n = n</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proof-engine/tactics.html#coq:tacn.intros">Reference
+Documentation</a></p>
+<hr>
+    </div>
+</body>
+</html>

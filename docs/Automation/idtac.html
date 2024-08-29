@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Embed Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="idtac - CTPE">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
+    <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
+    <meta property="article:author" content="Charles Averill">
+    <meta property="article:section" content="Technology">
+    <meta property="article:tag" content="coq">
+    <meta property="article:tag" content="proof">
+    <meta property="article:tag" content="formal verification">
+    <meta property="article:tag" content="tactic">
+
+    <title>idtac - CTPE</title>
+    <style>
+:root {
+    --blue: #0000FF;
+    --light-blue: #1e90ff;
+  }
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+/* td {
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: left;
+}
+
+tr td:last-child {
+    text-align: right;
+} */
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: left;
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.home {
+    text-align: center;
+}
+
+body {
+    font-family: Garamond;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 8;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 769px) {
+    body {
+        margin-left: 25%;
+        margin-right: 25%;
+        text-align: justify;
+    }
+}
+    </style>
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Github</a></h3></td>
+            <td><form style="text-align: right" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Tactic Name">
+                <button type="submit" id="submitButton">Tactic Search</button>
+            </form></td>
+        </tr>
+    </table>
+
+    <!-- Content -->
+    <div class="container">
+<h2 id="idtac"><a href="/ctpe/Automation/idtac.html">idtac</a></h2>
+<p><code>idtac</code> leaves a goal completely unchanged. This tactic
+will never fail.</p>
+<p>A term can be provided as an argument to print a message to the
+console. String and integers are printed literally rather than via their
+type&#x2019;s pretty-printer.</p>
+<p><code>idtac</code> is sometimes useful when you have many goals
+selected and only want to operate on some of them.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>(* Simple usage *)
+idtac.
+
+(* Print a message *)
+idtac &quot;Hello World!&quot;.</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>=========================
+1/1
+True</code></pre>
+<pre class="coq"><code>idtac.</code></pre>
+<p>After</p>
+<pre class="coq"><code>=========================
+1/1
+True</code></pre>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+=========================
+1/1
+n + 0 = n</code></pre>
+<pre class="coq"><code>(* Only apply reflexivity to the n = 0 case. Leave the n = S n&#39; case unaffected *)
+induction n; [reflexivity | idtac].</code></pre>
+<p>After</p>
+<pre class="coq"><code>n : nat
+IHn : n + 0 = n
+=========================
+1/1
+S n + 0 = S n</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a
+href="https://coq.inria.fr/doc/v8.10/refman/proof-engine/ltac.html#coq:tacn.idtac">Reference
+Documentation</a></p>
+<hr>
+    </div>
+</body>
+</html>

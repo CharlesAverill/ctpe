@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Embed Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Simplification - CTPE">
+    <meta property="og:url" content="https://charlesaverill.github.io/ctpe/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/github/explore/7905d12e729f7b0f0dc9b80ad385fca3b6e17523/topics/coq/coq.png">
+    <meta property="og:description" content="A simplified explanation of commonly-used Coq tactics">
+    <meta property="article:author" content="Charles Averill">
+    <meta property="article:section" content="Technology">
+    <meta property="article:tag" content="coq">
+    <meta property="article:tag" content="proof">
+    <meta property="article:tag" content="formal verification">
+    <meta property="article:tag" content="tactic">
+
+    <title>Simplification - CTPE</title>
+    <style>
+:root {
+    --blue: #0000FF;
+    --light-blue: #1e90ff;
+  }
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+/* td {
+    text-align: center;
+}
+
+tr td:first-child {
+    text-align: left;
+}
+
+tr td:last-child {
+    text-align: right;
+} */
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: left;
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.home {
+    text-align: center;
+}
+
+body {
+    font-family: Garamond;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 8;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 769px) {
+    body {
+        margin-left: 25%;
+        margin-right: 25%;
+        text-align: justify;
+    }
+}
+    </style>
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="/ctpe/highlight/styles/school-book.css">
+    <script src="/ctpe/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        function performSearch() {
+            let searchText = searchInput.value.toLowerCase();
+            let headers = document.querySelectorAll("h2");
+            for (let header of headers) {
+                if (header.textContent.toLowerCase().includes(searchText)) {
+                    // Scroll to the header
+                    header.scrollIntoView({ behavior: "smooth" });
+                    break; // Stop searching after first match
+                }
+            }
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            performSearch(); // Perform the search
+        });
+    });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><h3 class="home"><a href="/ctpe/">Home</a></h3></td>
+            <td><h3 class="home"><a href="https://github.com/CharlesAverill/ctpe/">Github</a></h3></td>
+            <td><form style="text-align: right" id="searchForm">
+                <input type="text" id="searchInput" placeholder="Tactic Name">
+                <button type="submit" id="submitButton">Tactic Search</button>
+            </form></td>
+        </tr>
+    </table>
+
+    <!-- Content -->
+    <div class="container">
+<h1 id="simplification"><a
+href="/ctpe/Simplification/index.html">Simplification</a></h1>
+<p>This group of tactic aims to reduce the complexity of terms in a
+goal. They will not solve a goal, only convert it into what is a
+structurally smaller (although maybe not lexically smaller!) form of the
+original goal.</p>
+<h2 id="simpl"><a href="/ctpe/Simplification/simpl.html">simpl</a></h2>
+<p><code>simpl</code> evaluates terms that are constructed of constant
+values - not variables. <code>simpl</code> can also partially evaluate
+partially-constant values.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="coq"><code>(* Simplify the goal as much as possible *)
+simpl.
+
+(* Simplify a hypothesis *)
+simpl in H.
+
+(* Simplify in the entire proof state *)
+simpl in *.
+
+(* Only simplify a specific term in a specific hypothesis *)
+simpl (2 + 2) in H.</code></pre>
+<h3 id="examples">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>=========================
+1/1
+2 + 2 = 1 + 3</code></pre>
+<pre class="coq"><code>simpl (2 + 2).</code></pre>
+<p>After</p>
+<pre class="coq"><code>=========================
+1/1
+4 = 1 + 3</code></pre>
+<h3 id="resources">Resources</h3>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.simpl">Reference
+Documentation</a></p>
+<hr>
+<h2 id="unfold"><a
+href="/ctpe/Simplification/unfold.html">unfold</a></h2>
+<p><code>unfold</code> replaces definition identifiers with the
+definition&#x2019;s contents, simplifying along the way.</p>
+<h3 id="syntax-1">Syntax</h3>
+<pre class="coq"><code>(* Simple example *)
+unfold plus.
+
+(* Unfolding a definition in a hypothesis *)
+unfold X in H.
+
+(* Unfolding a definition in all hypotheses and the goal *)
+unfold X in *.</code></pre>
+<h3 id="examples-1">Examples</h3>
+<p>Given</p>
+<pre class="coq"><code>Fixpoint bitlist (n : nat) : list bool :=
+    match n with
+    | O =&gt;    true  :: nil
+    | S n&#39; =&gt; false :: (bitlist n&#39;)
+    end.</code></pre>
+<p>Before</p>
+<pre class="coq"><code>n: nat
+l: list bool
+H: bitlist (S (S n)) = false :: false :: l
+=========================
+1/1
+bitlist (S n) = false :: l</code></pre>
+<pre class="coq"><code>unfold bitlist in *.</code></pre>
+<p>After</p>
+<pre class="coq"><code>n: nat
+l: list bool
+H: false
+     :: false
+        :: (fix bitlist (n : nat) : list bool :=
+              match n with
+              | 0 =&gt; true :: nil
+              | S n&#39; =&gt; false :: bitlist n&#39;
+              end) n =
+    false :: false :: l
+=========================
+1/1
+false
+ :: (fix bitlist (n0 : nat) : list bool :=
+       match n0 with
+       | 0 =&gt; true :: nil
+       | S n&#39; =&gt; false :: bitlist n&#39;
+       end) n = false :: l</code></pre>
+<h3 id="resources-1">Resources</h3>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/equality.html#coq:tacn.unfold">Reference
+Documentation</a></p>
+<hr>
+<h2 id="split"><a href="/ctpe/Simplification/split.html">split</a></h2>
+<p><code>split</code> is primarily used to break a single goal of the
+form <code>A /\ B</code> into two new goals <code>A</code> and
+<code>B</code>.</p>
+<p>You will often notice that <code>split</code> seems to solve some of
+the subgoals that it generates. This is because <code>split</code> is
+just shorthand for <code>constructor 1</code> (see the <a
+href="/ctpe/CaseAnalysis/constructor.html"><code>constructor</code>
+tactic</a>).</p>
+<p>Looking at the definition of <code>/\</code> (or
+<code>and</code>):</p>
+<pre class="coq"><code>Inductive and (A B : Prop) : Prop :=  conj : A -&gt; B -&gt; A /\ B.</code></pre>
+<p>we can see that <code>and</code> has a single constructor called
+<code>conj</code> - so <code>constructor 1</code> simply reduces to
+<code>apply conj</code>, which would give us goals <code>A</code> and
+<code>B</code> due to the impliciations that it carries.</p>
+<h3 id="syntax-2">Syntax</h3>
+<pre class="coq"><code>split.</code></pre>
+<h3 id="examples-2">Examples</h3>
+<p>Before</p>
+<pre class="coq"><code>=========================
+1/1
+True /\ False</code></pre>
+<pre class="coq"><code>split.</code></pre>
+<p>After</p>
+<pre class="coq"><code>=========================
+1/2
+True
+=========================
+2/2
+False</code></pre>
+<h3 id="resources-2">Resources</h3>
+<p><a
+href="https://coq.inria.fr/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#coq:tacn.split">Reference
+Documentation</a></p>
+<hr>
+<hr>
+    </div>
+</body>
+</html>
