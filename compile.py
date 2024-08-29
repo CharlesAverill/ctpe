@@ -52,10 +52,9 @@ def compile_markdown(file_path, docs_dir, depth, use_absolute_path, is_root=Fals
 def backup_docs(docs_dir):
     if os.path.exists(docs_dir):
         shutil.make_archive(docs_dir, "zip", docs_dir)
-        shutil.rmtree(docs_dir)
 
 def copy_source_to_docs(source_dir, docs_dir):
-    shutil.copytree(source_dir, docs_dir)
+    shutil.copytree(source_dir, docs_dir, dirs_exist_ok=True)
 
 def rename_template_to_index(docs_dir):
     os.rename(os.path.join(docs_dir, "template.md"), os.path.join(docs_dir, "index.md"))

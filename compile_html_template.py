@@ -1,7 +1,5 @@
 import sys
 
-print(sys.argv)
-
 testing = sys.argv[1] == "test"
 
 with open(sys.argv[2], "r") as file:
