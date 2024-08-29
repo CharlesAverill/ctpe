@@ -12,3 +12,7 @@ This category of tactics generally intends to solve a large category of simple g
 #include trivial.md
 
 #include easy.md
+
+#include idtac.md
+
+#include fail.md
