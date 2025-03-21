@@ -4,8 +4,11 @@ title: "discriminate - CTPE"
 
 ## [discriminate](/ctpe/SpecificSolvers/discriminate.html)
 
-`discriminate` solves goals that are trivial inequalities (something of the form `x <> y`).
+`discriminate` solves goals that are trivial inequalities (something of the form `x <> y`)\*.
 This tactic will fail if the goal is not an inequality or is non-trivial.
+
+\* Keep in mind that `x <> y` is actually shorthand for `x = y -> False`! 
+This means that `discriminate` actually searches for trivial inequalities in assumptions.
 
 ### Syntax
 
@@ -37,6 +40,23 @@ Before
 =========================
 1/1
 "hello" <> "world"
+```
+
+```coq
+discriminate.
+```
+
+After
+```coq
+No more goals.
+```
+
+Before
+```coq
+H: S n = O
+==========================
+1/1
+False
 ```
 
 ```coq
