@@ -27,6 +27,7 @@ progress() {
 i=0
 for md_file in "${md_files[@]}"; do
     html_file="${md_file%.md}.html"
+	echo $html_file
     pandoc --ascii --preserve-tabs --template sub_template.html "$md_file" -o "$html_file"
     if [ $? != 0 ] ; then 
         echo "$md_file conversion failed"

@@ -1,1 +1,1 @@
-python compile.py test && sh convert.sh test && python -m http.server --directory docs
+python3.10 compile.py test && ./convert.sh test all && python -m http.server --directory docs
